@@ -53,6 +53,7 @@ No painel do Cloudflare: Workers e Pages → Criar → Pages → Conectar ao Git
 
 O comando de build só atualiza a cópia dos dados do GitHub; se a API falhar, ele mantém a cópia anterior e a publicação segue. Cada branch ganha um endereço de prévia para testar no Note 10.
 
-Depois de publicar, falta:
-- Trocar `img/previa.jpg` no `<meta property="og:image">` do `index.html` pelo endereço completo (ex.: `https://seu-site.pages.dev/img/previa.jpg`). O WhatsApp só mostra a imagem da prévia com endereço completo.
+Publicado em **https://lucasfrois.pages.dev** (projeto `lucasfrois` no Cloudflare). Se um dia trocar de domínio, atualize `og:image` e `og:url` no `index.html`.
+
+Falta:
 - Ligar a medição: criar o site no Umami e colar o ID em `config.js` (`umami.idSite`) e o endereço em `umami.hostsProducao`.
