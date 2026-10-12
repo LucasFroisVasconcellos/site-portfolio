@@ -1,0 +1,13 @@
+{
+  "nome": "Lucas Frois Vasconcellos",
+  "titulo": { "pt": "Desenvolvimento web, automação e dados · Freelancer", "en": "Web development, automation and data · Freelancer" },
+  "sobre": {
+    "pt": "Construo sites, scripts e ferramentas sob medida, programando com IA. Venho do JavaScript (um ano de scripts para Tribal Wars) e do Python e SQL aprendidos na engenharia, e quero seguir carreira em ciência de dados.",
+    "en": "I build websites, scripts and custom tools, coding with AI. I come from JavaScript (a year of Tribal Wars scripts) and the Python and SQL I learned in engineering, and I'm heading toward a career in data science."
+  },
+  "formacao": [
+    { "pt": "Ciência da Computação · UFSCar", "en": "Computer Science · UFSCar" },
+    { "pt": "Engenharia Mecânica (Python e SQL)", "en": "Mechanical Engineering (Python and SQL)" }
+  ],
+  "competencias": ["JavaScript", "HTML", "CSS", "Python", "SQL", "MySQL", "Google Sheets", "Three.js", "Git"]
+}

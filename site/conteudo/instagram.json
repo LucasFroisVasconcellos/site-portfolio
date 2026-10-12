@@ -1,0 +1,17 @@
+{
+  "usuario": "lucas_frois1",
+  "nome": "Lucas Frois",
+  "avatar": "img/marcacao/avatar.webp",
+  "bio": { "pt": "Bio de marcação: texto real na Fase 7.", "en": "Placeholder bio: real text in Phase 7." },
+  "fotos": [
+    { "arquivo": "img/marcacao/insta-1.webp", "legenda": { "pt": "Publicação de marcação 1", "en": "Placeholder post 1" } },
+    { "arquivo": "img/marcacao/insta-2.webp", "legenda": { "pt": "Publicação de marcação 2", "en": "Placeholder post 2" } },
+    { "arquivo": "img/marcacao/insta-3.webp", "legenda": { "pt": "Publicação de marcação 3", "en": "Placeholder post 3" } },
+    { "arquivo": "img/marcacao/insta-4.webp", "legenda": { "pt": "Publicação de marcação 4", "en": "Placeholder post 4" } },
+    { "arquivo": "img/marcacao/insta-5.webp", "legenda": { "pt": "Publicação de marcação 5", "en": "Placeholder post 5" } },
+    { "arquivo": "img/marcacao/insta-6.webp", "legenda": { "pt": "Publicação de marcação 6", "en": "Placeholder post 6" } },
+    { "arquivo": "img/marcacao/insta-7.webp", "legenda": { "pt": "Publicação de marcação 7", "en": "Placeholder post 7" } },
+    { "arquivo": "img/marcacao/insta-8.webp", "legenda": { "pt": "Publicação de marcação 8", "en": "Placeholder post 8" } },
+    { "arquivo": "img/marcacao/insta-9.webp", "legenda": { "pt": "Publicação de marcação 9", "en": "Placeholder post 9" } }
+  ]
+}

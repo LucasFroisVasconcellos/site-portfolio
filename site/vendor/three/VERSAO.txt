@@ -1,0 +1,5 @@
+Three.js r186 (pacote npm three@0.186.1), arquivos build/three.module.js e build/three.core.js
+Origem: https://github.com/mrdoob/three.js, tag r186. Licença MIT em LICENSE.
+Carregado só ao abrir as medalhas (import dinâmico). SHA-256:
+9edde002b066a9a05676a6127f67735b62baf399bdea529f2f7e31657da769e6  three.core.js
+9052042d676cb0fdc1ddfefe193053f34b7ac0513a616fdac4535d49987812ea  three.module.js

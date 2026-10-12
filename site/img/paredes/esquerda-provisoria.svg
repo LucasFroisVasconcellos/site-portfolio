@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 572" width="1024" height="572">
+  <rect width="1024" height="572" fill="#dadad8"/>
+  <polygon points="0,0 1024,0 790,105 186,105" fill="#f3f2ef"/>
+  <polygon points="0,0 186,105 186,500 0,572" fill="#dbdad6"/>
+  <polygon points="1024,0 790,105 790,500 1024,572" fill="#dbdad6"/>
+  <rect x="186" y="105" width="604" height="395" fill="#edebe7"/>
+  <polygon points="0,572 186,500 790,500 1024,572" fill="#354130"/>
+  <g stroke="#26302a" stroke-width="1.2">
+    <line x1="186.0" y1="500" x2="-260.0" y2="572"/>
+    <line x1="236.3" y1="500" x2="-131.3" y2="572"/>
+    <line x1="286.7" y1="500" x2="-2.7" y2="572"/>
+    <line x1="337.0" y1="500" x2="126.0" y2="572"/>
+    <line x1="387.3" y1="500" x2="254.7" y2="572"/>
+    <line x1="437.7" y1="500" x2="383.3" y2="572"/>
+    <line x1="488.0" y1="500" x2="512.0" y2="572"/>
+    <line x1="538.3" y1="500" x2="640.7" y2="572"/>
+    <line x1="588.7" y1="500" x2="769.3" y2="572"/>
+    <line x1="639.0" y1="500" x2="898.0" y2="572"/>
+    <line x1="689.3" y1="500" x2="1026.7" y2="572"/>
+    <line x1="739.7" y1="500" x2="1155.3" y2="572"/>
+    <line x1="790.0" y1="500" x2="1284.0" y2="572"/>
+    <line x1="0" y1="515" x2="1024" y2="515"/>
+    <line x1="0" y1="538" x2="1024" y2="538"/>
+  </g>
+  <rect x="186" y="488" width="604" height="12" fill="#2f3d2c"/>
+  <polygon points="0,560 186,488 186,500 0,572" fill="#2f3d2c"/>
+  <polygon points="1024,560 790,488 790,500 1024,572" fill="#2f3d2c"/>
+  <g fill="none" stroke="#1b1b1b" stroke-width="2">
+    <polyline points="0,0 186,105 790,105 1024,0"/>
+    <polyline points="0,572 186,500 790,500 1024,572"/>
+    <line x1="186" y1="105" x2="186" y2="500"/>
+    <line x1="790" y1="105" x2="790" y2="500"/>
+  </g>
+  <rect x="380" y="170" width="220" height="190" fill="#cfe3ef" stroke="#1b1b1b" stroke-width="3"/><line x1="490" y1="170" x2="490" y2="360" stroke="#1b1b1b" stroke-width="3"/><rect x="370" y="360" width="240" height="10" fill="#e3e1dc" stroke="#1b1b1b" stroke-width="2"/>
+</svg>

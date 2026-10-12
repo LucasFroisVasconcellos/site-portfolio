@@ -1,0 +1,48 @@
+{
+  "projetos": [
+    {
+      "id": "site-portfolio",
+      "nome": { "pt": "Este site", "en": "This site" },
+      "descricao": {
+        "pt": "O quarto interativo que você está vendo: paredes ilustradas, PC com janelas de verdade, notebook com contato e medalhas em 3D.",
+        "en": "The interactive room you're looking at: illustrated walls, a PC with real windows, a laptop for contact and 3D medals."
+      },
+      "tecnologias": ["HTML", "CSS", "JavaScript", "Three.js", "Cloudflare Pages"],
+      "imagem": "img/marcacao/projeto-portfolio.webp",
+      "link": "https://github.com/LucasFroisVasconcellos/site-portfolio"
+    },
+    {
+      "id": "planner-tw",
+      "nome": { "pt": "Planejador de operações", "en": "Operation planner" },
+      "descricao": {
+        "pt": "Script para o jogo Tribal Wars, usado pela liderança da tribo: mapa em canvas e distribuição de alvos entre os jogadores.",
+        "en": "A Tribal Wars script used by the tribe's leadership: canvas map and target distribution across players."
+      },
+      "tecnologias": ["JavaScript", "Tampermonkey", "Canvas"],
+      "imagem": "img/marcacao/projeto-planner.webp",
+      "link": "https://github.com/LucasFroisVasconcellos/Planner-Tw"
+    },
+    {
+      "id": "calculadora-lucro-real",
+      "nome": { "pt": "Calculadora de Lucro Real", "en": "Real Profit Calculator" },
+      "descricao": {
+        "pt": "Calcula o lucro de verdade de quem vende no Mercado Livre e na Shopee, com taxas, frete e impostos.",
+        "en": "Works out the real profit for sellers on Mercado Livre and Shopee, including fees, shipping and taxes."
+      },
+      "tecnologias": ["HTML", "CSS", "JavaScript", "Cloudflare Pages"],
+      "imagem": "img/marcacao/projeto-calculadora.webp",
+      "link": null
+    },
+    {
+      "id": "gerenciador-de-mercado",
+      "nome": { "pt": "Gerenciador de mercado", "en": "Store manager" },
+      "descricao": {
+        "pt": "Descrição a completar na Fase 7 (marcação).",
+        "en": "Description to be completed in Phase 7 (placeholder)."
+      },
+      "tecnologias": ["A definir"],
+      "imagem": "img/marcacao/projeto-mercado.webp",
+      "link": "https://github.com/LucasFroisVasconcellos/gerenciador-de-mercado"
+    }
+  ]
+}

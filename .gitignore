@@ -1,0 +1,10 @@
+# Originais das imagens (podem ter metadados): ficam só no PC (seção 9.3)
+originais/
+node_modules/
+.env
+.env.*
+*.log
+test-results/
+relatorios/
+.DS_Store
+Thumbs.db
