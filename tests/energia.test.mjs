@@ -124,3 +124,23 @@ test('Invariante 6: 100.000 sequências aleatórias de 50 eventos', () => {
     }
   }
 });
+
+test('Regra 6: temporizador antigo que dispara mesmo assim é descartado pela geração', () => {
+  // Simula um temporizador que já estava na fila quando o estado mudou (cancelar não alcança).
+  let t = 0;
+  const fila = [];
+  const e = criarEnergia({
+    agora: () => t,
+    agendar: (fn, ms) => { fila.push({ fn, em: t + ms }); return fila.length; },
+    cancelar: () => {},
+  });
+  e.botao(); // desligando, temporizador de 1 s na fila
+  e.blecaute(0); // desligado direto
+  e.botao(); // iniciando, temporizador de 2,5 s
+  t = 1000;
+  fila[0].fn(); // o temporizador velho do desligamento dispara
+  assert.equal(e.estado, 'iniciando');
+  t = 2500;
+  fila[1].fn();
+  assert.equal(e.estado, 'ligado');
+});

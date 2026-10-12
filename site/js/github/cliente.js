@@ -132,7 +132,6 @@ export function criarClienteGitHub({
       if (cache && agora() - Date.parse(cache.hora) < validade) {
         return { dados: cache, origem: 'cache', erro: null };
       }
-      if (agora() < suspensoAte) return reserva('limite');
       return rodada();
     },
 
@@ -140,8 +139,7 @@ export function criarClienteGitHub({
     async atualizar() {
       if (rodadaEmCurso) return rodadaEmCurso;
       if (agora() - ultimaRodada < intervaloBotao) return { ignorado: true };
-      if (agora() < suspensoAte) return reserva('limite');
-      return rodada();
+      return rodada(); // Durante a suspensão, chamar() recusa sem tocar na rede (regra 4).
     },
 
     podeAtualizarEm() {

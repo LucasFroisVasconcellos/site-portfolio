@@ -322,6 +322,33 @@ await caso('RF-31', 'medalhas abrem em 3D (ou 2D sem WebGL) e mostram os dados',
   assert.ok((await p.textContent('.medalha-info')).includes('MVP'));
 });
 
+await caso('RF-36', 'com “reduzir movimento”, a câmera troca por corte, sem animação', async (p) => {
+  await abrirPulando(p);
+  await p.click('[data-item=monitor]', { force: true });
+  const ms = await p.evaluate(() => document.querySelector('.giro:not([data-oculta]) .parede').style.getPropertyValue('--foco-ms'));
+  assert.equal(ms, '0ms');
+}, { contexto: { reducedMotion: 'reduce' } });
+
+await caso('RNF-16', 'perda do contexto gráfico nas medalhas cai para a versão 2D', async (p) => {
+  await abrirPulando(p);
+  await p.click('#seta-dir'); await p.waitForTimeout(450);
+  await p.click('#seta-dir'); await p.waitForTimeout(450);
+  await p.click('[data-item=medalhas]', { force: true });
+  await p.waitForSelector('.medalha-canvas', { timeout: 15000 });
+  await p.evaluate(() => {
+    const c = document.querySelector('.medalha-canvas');
+    (c.getContext('webgl2') || c.getContext('webgl')).getExtension('WEBGL_lose_context').loseContext();
+  });
+  await p.waitForSelector('.medalha-2d', { timeout: 5000 });
+});
+
+await caso('RF-35', 'prévia do link: título, descrição e imagem declarados', async (p) => {
+  await p.goto(BASE);
+  for (const prop of ['og:title', 'og:description', 'og:image']) {
+    assert.ok(await p.getAttribute(`meta[property="${prop}"]`, 'content'), prop);
+  }
+});
+
 await navegador.close();
 servidor.kill();
 
