@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Quarto do Lucas · Portfólio interativo</title>
+  <meta name="description" content="Entre no quarto do Lucas Frois Vasconcellos: ligue o PC, veja os projetos no GitHub, fale com ele pelo notebook e conheça o handebol na parede de trás.">
+  <meta name="theme-color" content="#1F2933">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Quarto do Lucas · Portfólio interativo">
+  <meta property="og:description" content="Um quarto que funciona: PC com janelas, projetos no GitHub e contato pelo notebook.">
+  <meta property="og:image" content="img/previa.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="img/icones/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="img/paredes/frente-leve.webp" as="image">
+  <link rel="stylesheet" href="estilos/base.css">
+  <link rel="stylesheet" href="estilos/quarto.css">
+  <link rel="stylesheet" href="estilos/pc.css">
+  <link rel="stylesheet" href="estilos/notebook.css">
+  <link rel="stylesheet" href="estilos/parede.css">
+  <script type="module" src="js/main.js"></script>
+  <script nomodule src="js/sem-suporte.js"></script>
+</head>
+<body>
+  <!-- Camada 1 e 2: o quarto e as telas em HTML (montados pelo main.js) -->
+  <main id="palco" tabindex="-1" data-i18n-aria="ctrl.palco" aria-label="Quarto interativo">
+    <div id="paredes"></div>
+    <div id="fundo-foco" aria-hidden="true"></div>
+  </main>
+
+  <!-- Camada 4: conteúdo do foco -->
+  <section id="conteudo-foco" aria-live="polite" hidden></section>
+
+  <!-- Camada 5: controles -->
+  <div id="controles" hidden>
+    <button id="btn-voltar" class="ctrl ctrl-voltar" type="button" hidden>
+      <span aria-hidden="true">←</span> <span data-i18n="ctrl.voltar">Voltar</span>
+    </button>
+    <div class="ctrl-topo-dir">
+      <div class="irpara">
+        <button id="btn-irpara" class="ctrl" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-irpara">
+          <span data-i18n="ctrl.irpara">Ir para</span> <span aria-hidden="true">▾</span>
+        </button>
+        <div id="menu-irpara" class="menu-irpara" role="menu" hidden>
+          <p class="menu-titulo" data-i18n="ctrl.irpara.titulo">Itens do quarto</p>
+        </div>
+      </div>
+      <div class="idiomas" role="group" data-i18n-aria="ctrl.idioma" aria-label="Idioma">
+        <button class="ctrl ctrl-idioma" type="button" data-idioma="pt" lang="pt-BR" translate="no">PT</button>
+        <button class="ctrl ctrl-idioma" type="button" data-idioma="en" lang="en" translate="no">EN</button>
+      </div>
+      <button id="btn-ajuda" class="ctrl ctrl-redondo" type="button" data-i18n-aria="ctrl.ajuda" data-i18n-title="ctrl.ajuda" aria-label="Rever o passeio">?</button>
+    </div>
+    <div class="setas" id="setas">
+      <button id="seta-esq" class="ctrl seta" type="button" data-i18n-aria="ctrl.esquerda" aria-label="Girar para a esquerda">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" /></svg>
+      </button>
+      <p id="nome-parede" class="nome-parede" aria-live="polite"></p>
+      <button id="seta-dir" class="ctrl seta" type="button" data-i18n-aria="ctrl.direita" aria-label="Girar para a direita">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
+      </button>
+    </div>
+    <button id="btn-pular" class="ctrl ctrl-pular" type="button" hidden data-i18n="ctrl.pular">Pular</button>
+  </div>
+
+  <!-- Camada 6: avisos -->
+  <div id="avisos">
+    <p id="texto-passeio" class="texto-passeio" role="status" hidden></p>
+    <div id="aviso-ligue" class="aviso aviso-ligue" role="alert" hidden>
+      <strong data-i18n="aviso.ligue">Ligue o PC</strong>
+      <span data-i18n="aviso.ligue.dica">Acabou a luz. Toque no gabinete para ligar de novo.</span>
+    </div>
+    <div id="seta-ligue" class="seta-ligue" aria-hidden="true" hidden></div>
+    <div id="aviso-gire" class="aviso aviso-gire" role="dialog" aria-modal="false" hidden>
+      <div class="icone-gire" aria-hidden="true"></div>
+      <strong data-i18n="aviso.gire">Gire o celular</strong>
+      <span data-i18n="aviso.gire.texto">A tela fica maior com o celular deitado.</span>
+      <button id="btn-continuar-pe" class="ctrl" type="button" data-i18n="aviso.gire.continuar">Continuar em pé</button>
+    </div>
+    <div id="fps" class="fps" hidden></div>
+  </div>
+
+  <!-- Camada 7: carregamento e erro -->
+  <div id="carregamento" class="carregamento">
+    <div class="carregamento-caixa">
+      <p class="carregamento-nome" translate="no">Lucas Frois</p>
+      <p id="carregamento-texto">Arrumando o quarto…</p>
+      <div class="barra" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="barra-progresso">
+        <div class="barra-preenchida" id="barra-preenchida"></div>
+      </div>
+      <p class="porcentagem" id="porcentagem">0%</p>
+    </div>
+    <div class="erro" id="erro-carregamento" hidden>
+      <p class="erro-titulo" data-i18n="erro.titulo">O quarto não carregou</p>
+      <p data-i18n="erro.texto">A conexão demorou demais ou caiu no meio do caminho.</p>
+      <button id="btn-tentar" class="ctrl ctrl-principal" type="button" data-i18n="erro.tentar">Tentar de novo</button>
+    </div>
+  </div>
+
+  <!-- RF-08: mensagem quando o quarto não funciona neste navegador -->
+  <div id="sem-suporte" class="sem-suporte" hidden>
+    <h1 data-i18n="sem3d.titulo">Lucas Frois Vasconcellos</h1>
+    <p data-i18n="sem3d.texto">Este navegador não consegue abrir o quarto interativo. Você ainda me encontra aqui:</p>
+    <ul>
+      <li><a href="https://github.com/LucasFroisVasconcellos" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/lucas-frois1/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://www.instagram.com/lucas_frois1/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+      <li><a href="https://wa.me/5511958153322" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+    </ul>
+    <p data-i18n="leiame.privacidade.texto" class="sem-suporte-privacidade"></p>
+  </div>
+  <noscript>
+    <div class="sem-suporte sem-suporte-noscript">
+      <h1>Lucas Frois Vasconcellos</h1>
+      <p>O quarto interativo precisa de JavaScript. Você ainda me encontra aqui:</p>
+      <ul>
+        <li><a href="https://github.com/LucasFroisVasconcellos" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/lucas-frois1/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://www.instagram.com/lucas_frois1/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+        <li><a href="https://wa.me/5511958153322" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+      </ul>
+    </div>
+  </noscript>
+</body>
+</html>

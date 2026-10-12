@@ -26,13 +26,18 @@ def cartao(nome, tam, fundo, linhas, cor_texto="#1F2933"):
     d = ImageDraw.Draw(img)
     w, h = tam
     d.rectangle([6, 6, w - 7, h - 7], outline="#1F2933", width=4)
-    total = len(linhas)
-    for i, (texto, t) in enumerate(linhas):
+    medidas = []
+    for texto, t in linhas:
         f = fonte(t)
         caixa = d.textbbox((0, 0), texto, font=f)
+        medidas.append((texto, f, caixa))
+    espaco = 18
+    altura_total = sum(c[3] - c[1] for _, _, c in medidas) + espaco * (len(medidas) - 1)
+    y = (h - altura_total) / 2
+    for texto, f, caixa in medidas:
         tw, th = caixa[2] - caixa[0], caixa[3] - caixa[1]
-        y = h / 2 + (i - (total - 1) / 2) * t * 1.5 - th / 2
-        d.text(((w - tw) / 2, y), texto, font=f, fill=cor_texto)
+        d.text(((w - tw) / 2 - caixa[0], y - caixa[1]), texto, font=f, fill=cor_texto)
+        y += th + espaco
     img.save(DEST / nome, "WEBP", quality=70, method=6)
 
 

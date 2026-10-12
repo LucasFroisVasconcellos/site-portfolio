@@ -24,9 +24,10 @@ export function enquadrarParede({ vw, vh, w, h, essencial, margem = 12, topo = 0
 }
 
 // Foco (RF-05): a área do item ocupa a área útil da tela.
-export function enquadrarFoco({ vw, vh, area, preenchimento = 0.94, topo = 0, base = 0 }) {
+export function enquadrarFoco({ vw, vh, area, preenchimento = 0.94, topo = 0, base = 0, lados = 0 }) {
   const uh = Math.max(1, vh - topo - base);
-  const s = Math.min((vw * preenchimento) / area.w, (uh * preenchimento) / area.h);
+  const uw = Math.max(1, vw - 2 * lados);
+  const s = Math.min((uw * preenchimento) / area.w, (uh * preenchimento) / area.h);
   const tx = vw / 2 - (area.x + area.w / 2) * s;
   const ty = topo + uh / 2 - (area.y + area.h / 2) * s;
   return { s, tx, ty };

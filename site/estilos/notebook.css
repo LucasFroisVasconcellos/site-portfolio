@@ -1,0 +1,117 @@
+/* Notebook: tela inicial e aplicativos emulados (WhatsApp, Instagram, LinkedIn). */
+.nb {
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  background: #0f172a; color: #1b1f24;
+  font-size: 17px; line-height: 1.4;
+}
+.nb-area { flex: 1; position: relative; overflow: hidden; }
+.nb-tela { position: absolute; inset: 0; display: flex; flex-direction: column; }
+.nb-doca {
+  flex: 0 0 46px; display: flex; align-items: center; justify-content: center; gap: 12px; position: relative;
+  background: rgba(15, 23, 42, .96); color: #fff;
+}
+.nb-inicio {
+  min-height: 38px; display: flex; align-items: center; gap: 8px; padding: 0 16px;
+  border: 2px solid rgba(255, 255, 255, .5); border-radius: 999px; background: rgba(255, 255, 255, .12); color: #fff; cursor: pointer; font-weight: 700;
+}
+.nb-inicio-icone { width: 16px; height: 16px; border: 2.5px solid #fff; border-radius: 4px; }
+.nb-hora { position: absolute; right: 14px; font-variant-numeric: tabular-nums; font-size: 15px; }
+
+.nb-inicio-tela {
+  align-items: center; justify-content: center; gap: 26px;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(250, 204, 21, .35) 0 14%, transparent 15%),
+    linear-gradient(145deg, #334155 0%, #1e3a5f 60%, #0f766e 100%);
+  color: #fff;
+}
+.nb-relogio { text-align: center; text-shadow: 0 2px 6px rgba(0, 0, 0, .45); }
+.nb-relogio-grande { margin: 0; font-size: 76px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.nb-data { margin: 6px 0 0; font-size: 19px; }
+.nb-apps { display: flex; gap: 22px; }
+.nb-app {
+  width: 128px; padding: 12px 6px; border: 2px solid transparent; border-radius: 16px;
+  background: rgba(255, 255, 255, .12); color: #fff; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 8px; font-weight: 700;
+}
+.nb-app:hover, .nb-app:focus-visible { border-color: var(--destaque); background: rgba(255, 255, 255, .22); }
+.nb-app-icone { width: 72px; height: 72px; }
+
+.nb-cab {
+  flex: 0 0 auto; display: flex; align-items: center; gap: 10px; padding: 8px 12px;
+  border-bottom: 2px solid #1b1f24;
+}
+.nb-cab > :first-child { flex: 1; min-width: 0; }
+.nb-selo {
+  padding: 2px 10px; border-radius: 999px; border: 1.5px dashed currentColor; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+}
+.nb-botao-real {
+  min-height: 40px; padding: 0 14px; border: 2px solid #1b1f24; border-radius: 999px; background: var(--destaque); font-weight: 800; cursor: pointer;
+}
+.nb-aviso { margin: 8px 12px; padding: 6px 10px; border-radius: 8px; background: #fff7d1; border: 1px dashed #a16207; color: #5b4300; font-size: 14px; }
+
+/* WhatsApp emulado (cores próprias, sem logotipo oficial) */
+.wa { background: #efe7dc; }
+.wa-cab { background: #1f6f4a; color: #fff; border-color: #0d3b26; }
+.wa-contato { display: flex; align-items: center; gap: 10px; }
+.wa-contato div { display: flex; flex-direction: column; line-height: 1.2; }
+.wa-avatar, .li-avatar {
+  width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; flex: 0 0 auto;
+  background: var(--destaque); color: #1b1f24; font-weight: 800; border: 2px solid #1b1f24;
+}
+.wa-status { font-size: 13px; opacity: .85; }
+.wa-conversa { flex: 1; overflow: auto; padding: 8px 14px; display: flex; flex-direction: column; gap: 8px; }
+.wa-aviso { align-self: center; margin: 0; padding: 4px 12px; border-radius: 8px; background: #fff7d1; color: #5b4300; font-size: 13px; text-align: center; max-width: 90%; }
+.wa-balao { align-self: flex-start; max-width: 78%; padding: 8px 12px; border-radius: 4px 14px 14px 14px; background: #fff; border: 1.5px solid #c9bfae; }
+.wa-balao p { margin: 0; }
+.wa-rodape { display: flex; gap: 8px; padding: 8px 10px; background: #e2d8c9; border-top: 2px solid #1b1f24; }
+.wa-campo {
+  flex: 1; resize: none; min-height: 52px; padding: 8px 12px; border: 2px solid #1b1f24; border-radius: 14px;
+  font: inherit; font-size: 17px; background: #fff; color: #1b1f24; user-select: text; -webkit-user-select: text;
+}
+.wa-lado { display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 4px; }
+.wa-contador { font-size: 12px; color: var(--texto-2); font-variant-numeric: tabular-nums; }
+.wa-enviar, .wa-btn {
+  min-height: 44px; min-width: 88px; padding: 0 14px; border: 2px solid #1b1f24; border-radius: 999px; background: #fff; font-weight: 800; cursor: pointer;
+}
+.wa-enviar { background: #25a35a; color: #fff; }
+.wa-enviar:disabled { background: #9ca3af; cursor: not-allowed; }
+.wa-btn-principal { background: #25a35a; color: #fff; }
+.wa-confirmar { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(15, 23, 42, .55); }
+.wa-confirmar-caixa { width: min(90%, 460px); padding: 18px; border-radius: 14px; background: #fff; border: 2px solid #1b1f24; box-shadow: 0 10px 30px rgba(0, 0, 0, .35); }
+.wa-confirmar-caixa p { margin: 0 0 10px; font-weight: 800; font-size: 18px; }
+.wa-previa { margin: 0 0 14px; padding: 8px 12px; max-height: 120px; overflow: auto; border-left: 4px solid #25a35a; background: #f3f4f6; white-space: pre-wrap; word-break: break-word; }
+.wa-confirmar-botoes { display: flex; gap: 10px; justify-content: flex-end; }
+
+/* Instagram emulado */
+.ig { background: #fff; }
+.ig-cab { background: #fff; }
+.ig-cab .nb-selo { color: #9d174d; }
+.ig-rolagem { flex: 1; overflow: auto; overscroll-behavior: contain; }
+.ig-perfil { display: flex; gap: 18px; align-items: center; padding: 12px 16px 4px; }
+.ig-avatar { width: 84px; height: 84px; border-radius: 50%; border: 3px solid #e1306c; object-fit: cover; }
+.ig-nome { margin: 0; font-weight: 800; }
+.ig-bio, .ig-num { margin: 2px 0; font-size: 15px; }
+.ig-grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; padding: 6px 3px 12px; }
+.ig-foto { padding: 0; border: 0; aspect-ratio: 1; cursor: pointer; background: #eee; }
+.ig-foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ig-ampliada { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(0, 0, 0, .86); }
+.ig-ampliada figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; color: #fff; }
+.ig-ampliada img { max-height: 340px; width: auto; border-radius: 6px; }
+.ig-fechar { position: absolute; top: 10px; right: 10px; width: 46px; height: 46px; border-radius: 50%; border: 2px solid #fff; background: rgba(0, 0, 0, .5); color: #fff; font-size: 28px; cursor: pointer; }
+
+/* LinkedIn emulado */
+.li { background: #f3f2ef; }
+.li-cab { background: #fff; }
+.li-cab .nb-selo { color: #1e5faf; }
+.li-rolagem { flex: 1; overflow: auto; overscroll-behavior: contain; padding-bottom: 12px; }
+.li-capa { height: 70px; background: linear-gradient(90deg, #1e5faf, #0f766e); }
+.li-topo { padding: 0 16px; margin-top: -28px; }
+.li-avatar { width: 64px; height: 64px; font-size: 22px; }
+.li-topo h2 { margin: 6px 0 0; font-size: 22px; }
+.li-titulo { margin: 2px 0 0; color: var(--texto-2); }
+.li-sec { margin: 10px 12px 0; padding: 10px 14px; background: #fff; border: 1.5px solid #d6d3cc; border-radius: 10px; }
+.li-sec h3 { margin: 0 0 6px; font-size: 17px; }
+.li-sec p, .li-sec ul { margin: 0; }
+.li-skills { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; list-style: none; }
+.li-skills li { padding: 3px 10px; border-radius: 999px; border: 1.5px solid #1e5faf; color: #1e5faf; font-size: 14px; }
