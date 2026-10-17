@@ -37,7 +37,10 @@ Auditoria de qualidade (10 itens) e de segurança (regras de out/2026), com as c
 | Domínio próprio | ACCEPTED_EVIDENCE_GAP | Custa dinheiro; fica para depois |
 | Ilustrações das paredes em 2560 px | ACCEPTED_EVIDENCE_GAP | As originais têm 1024 px; precisam ser geradas de novo |
 | Three.js minificado | ACCEPTED_EVIDENCE_GAP | O repositório oficial não traz a versão minificada; ela só vem no pacote npm, que não estava acessível. Hoje é baixado só ao abrir as medalhas |
-| 2FA nas contas | NOT_TESTED | A API não mostra; o Lucas precisa conferir |
+| 2FA no GitHub | PASS | Conferido na página de segurança da conta (17/10): app autenticador e GitHub Mobile configurados, sem SMS, códigos de recuperação vistos |
+| Push protection pessoal | PASS | Ativo em Settings → Code security (17/10) |
+| 2FA no Cloudflare e no Google | NOT_TESTED | Falta o Lucas confirmar |
+| Chamado para reativar o Actions | Aberto | Enviado ao suporte do GitHub em 17/10 |
 | Proteção da main | PASS | Regra "main protegida" ativa (API, 17/10): deletion, non_fast_forward, pull_request e required_status_checks com `Cloudflare Pages` |
 | GitHub Actions | BLOCKED_ENVIRONMENT | "GitHub Actions is currently disabled for your account": só o suporte do GitHub reativa. Política do repositório já restrita a checkout e setup-node fixados por SHA |
 | Site principal atualizado | NOT_TESTED | O Cloudflare informou deploy de produção com sucesso para o merge `2291baf`. As prévias da mesma versão foram conferidas (robots, sitemap, 404, /sobre/), mas a leitura direta de lucasfrois.pages.dev voltou da cópia em cache da ferramenta |

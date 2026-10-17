@@ -2,7 +2,7 @@
 
 Conferência do site, do repositório no GitHub e da publicação contra as regras de segurança do Lucas (Guia Mestre v1.0, complementos KipperDev de set/2026 e complementos de out/2026). Cada regra está marcada como aplicada, não aplicável (com o motivo) ou pendente.
 
-Resultado: nenhuma falha confirmada no código. Foram feitas 6 correções de proteção e ficaram 5 pendências que dependem de ação manual do Lucas (o Actions entre elas).
+Resultado: nenhuma falha confirmada no código. Foram feitas 6 correções de proteção e ficaram pendências que dependem do Lucas; 2FA e push protection do GitHub já foram feitos em 17/10.
 
 ## Como o site funciona (superfície de ataque)
 
@@ -23,7 +23,8 @@ Se um dia o site ganhar algo que grave dados de visitantes (mural de recados, fo
 | Nada sensível no histórico | **Aplicada** | Foram varridos os 117 arquivos de todos os commits: tokens, chaves, senhas, e-mails, CPF, IPs privados e dados de saúde ou pessoais. Achados: só o número do WhatsApp (público por decisão, seção 9.2 do ARQ-002), números de teste fictícios e as próprias expressões do verificador |
 | `originais/` (imagens com possíveis metadados) fora do Git | **Aplicada** | Nunca entrou em nenhum commit |
 | `.gitignore` desde o início e completo | **Corrigida** | Ampliado com `.env*`, chaves (`.pem`, `.key`, `.p12`), bancos, dumps, backups, uploads, exportações, planilhas e logs |
-| Varredura de segredos e push protection | **Aplicada** | `secret_scanning` e `secret_scanning_push_protection` ativos no repositório (API do GitHub) |
+| Varredura de segredos e push protection | **Aplicada** | `secret_scanning` e `secret_scanning_push_protection` ativos no repositório (API do GitHub) e push protection pessoal ativo na conta (17/10) |
+| 2FA na conta do GitHub | **Aplicada** | App autenticador e GitHub Mobile, sem SMS (conferido em 17/10) |
 | Branch main protegida | **Aplicada** | Regra "main protegida" ativa desde 17/10/2026 (conferida pela API): exclusão e force push bloqueados, pull request obrigatório e check `Cloudflare Pages` exigido. Falta acrescentar o check `testes` quando o Actions voltar |
 | Repositório privado por padrão | **Exceção registrada** | Continua público por decisão do Lucas em 17/10/2026: o portfólio mostra o próprio código e os commits ao vivo. Teste do 12-Factor: o código pode ficar público sem vazar credencial, porque não existe nenhuma |
 | `.env.example` | Não aplicável | O site não usa variáveis de ambiente |
@@ -61,8 +62,10 @@ Regra "main protegida" ativa: branch → pull request → prévia do Cloudflare 
 ## Pendências que só o Lucas pode fazer
 
 1. **Reativar o Actions:**
-   - O GitHub Actions está desligado na sua conta. Abra um chamado em support.github.com pedindo a reativação. Quando voltar, acrescente o check `testes` na regra "main protegida".
-2. **2FA com app autenticador ou passkey** no GitHub, no Cloudflare, no Google e no npm (se criar conta), com os códigos de recuperação guardados fora do PC. A API não mostra se o 2FA do GitHub está ligado: **não verificado**.
-3. **Push protection na conta pessoal** do GitHub: Settings → Code security → Push protection for yourself. No repositório já está ativa.
+   - O chamado ao suporte do GitHub foi aberto em 17/10. Quando o Actions voltar, acrescentar o check `testes` na regra "main protegida".
+2. **2FA:**
+   - No GitHub, **feito** (conferido em 17/10): app autenticador e GitHub Mobile, sem SMS, com os códigos de recuperação já vistos.
+   - Falta no Cloudflare, no Google e no npm (se criar conta), com os códigos de recuperação guardados fora do PC.
+3. **Push protection na conta pessoal** do GitHub: **feito** (conferido em 17/10).
 4. **Fotos reais:** só subir depois de passar pela lista da seção 9.3 do ARQ-002 (metadados removidos, crédito do fotógrafo e autorização de quem aparece). O `npm run verificar` recusa imagem com metadados.
 5. **Umami:** antes de colar o ID, atualizar a página `/privacidade/`, que já avisa isso.
