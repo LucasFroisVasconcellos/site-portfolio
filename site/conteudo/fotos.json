@@ -1,7 +1,3 @@
 {
-  "fotos": [
-    { "arquivo": "img/marcacao/foto-2023.webp", "ano": 2023, "legenda": { "pt": "Foto de marcação", "en": "Placeholder photo" }, "credito": "a definir" },
-    { "arquivo": "img/marcacao/foto-2024.webp", "ano": 2024, "legenda": { "pt": "Foto de marcação", "en": "Placeholder photo" }, "credito": "a definir" },
-    { "arquivo": "img/marcacao/foto-2025.webp", "ano": 2025, "legenda": { "pt": "Foto de marcação", "en": "Placeholder photo" }, "credito": "a definir" }
-  ]
+  "fotos": []
 }

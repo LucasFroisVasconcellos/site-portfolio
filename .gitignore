@@ -1,10 +1,40 @@
 # Originais das imagens (podem ter metadados): ficam só no PC (seção 9.3)
 originais/
+# Dependências e saídas de teste
 node_modules/
+test-results/
+playwright-report/
+relatorios/
+coverage/
+# Segredos: nunca no repositório (o site não tem nenhum; isto é só proteção)
 .env
 .env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+id_rsa*
+credentials*.json
+# Bancos, dumps, backups e exportações (o site não tem banco)
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+*.dump
+*.bak
+backup*/
+dumps/
+uploads/
+exports/
+*.csv
+*.xlsx
+*.xls
+# Diversos
 *.log
-test-results/
-relatorios/
+*.bundle
 .DS_Store
 Thumbs.db
+.vscode/
+.idea/

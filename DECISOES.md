@@ -9,7 +9,7 @@ O que mudou em relação ao ARQ-002 v1.1 e por quê. Todo controle deixado de fo
 
 ## Técnicas
 
-3. **Sem Vite e sem build.** O ambiente onde o site foi feito não tinha acesso ao npm. O site ficou em JavaScript puro com módulos nativos, que o Cloudflare Pages serve direto da pasta `site/`. Ganho: zero dependências instaladas, nada para auditar com `npm audit`, nenhum lockfile necessário. O Three.js r186 foi copiado do repositório oficial, com a licença e o SHA-256 conferidos por teste (`vendor/three/VERSAO.txt`).
+3. **Sem Vite e sem build.** O ambiente onde o site foi feito não tinha acesso ao npm. O site ficou em JavaScript puro com módulos nativos, que o Cloudflare Pages serve direto da pasta `site/`. Ganho: zero dependências instaladas, nada para auditar com `npm audit`, nenhum lockfile necessário. O Three.js r186 foi copiado do repositório oficial, com a licença e o SHA-256 conferidos por teste (`vendor/three-r186/VERSAO.txt`).
 4. **O quarto é desenhado com CSS, não com WebGL.** As paredes são imagens vistas de frente; mover e ampliar imagem é o que o navegador faz de mais leve. Resultado: nenhuma chamada de desenho, nenhuma luz, texto das telas sempre nítido e nenhum risco do R2 (HTML sobre 3D no iPhone). O Three.js ficou só nas medalhas (RF-31), baixado quando o visitante as abre. Por isso:
    - RF-08 (sem WebGL 2): o quarto abre mesmo sem WebGL; só as medalhas caem para 2D. A mensagem com os links aparece para navegadores sem módulos JavaScript ou sem JavaScript.
    - RNF-06 e RNF-07 (chamadas de desenho e memória de textura) deixam de se aplicar ao quarto.
@@ -24,3 +24,14 @@ O que mudou em relação ao ARQ-002 v1.1 e por quê. Todo controle deixado de fo
 11. **Textos dos post-its, do LinkedIn e dos projetos são rascunhos** montados com o que o Lucas já contou (UFSCar, Tribal Wars, Python e SQL, ciência de dados, handebol). A versão final entra na Fase 7. Fotos, medalhas e Instagram usam imagens de marcação.
 12. **Medição desligada** até existir o ID do site no Umami (`config.js`). Sem ID, nada é enviado.
 13. **Checagem duplicada do limite da API removida.** A auditoria de mutação mostrou que a suspensão por `x-ratelimit-reset` era conferida em dois lugares e nenhum teste distinguia os dois. Ficou um único ponto (`chamar()`), que cobre todos os caminhos e agora é morto pelo teste GH-02.
+
+## Auditoria de 17/10/2026
+
+14. **Nada de marcação no ar.** Textos "Fase 7", "a completar", "a definir" e as imagens de marcação saíram. Sem fotos reais, o quadro digital mostra só "em breve" e o Instagram mostra só o botão para o perfil verdadeiro. O projeto "Gerenciador de mercado" saiu da lista até ter descrição. A imagem do projeto "Este site" é uma captura real do próprio site. Um teste impede texto de marcação de voltar.
+15. **Páginas em texto `/sobre/` e `/privacidade/`.** Não são a versão 2D recusada: são o conteúdo para buscadores, IAs e quem não roda JavaScript, com link fixo no quarto (canto superior esquerdo e menu "Ir para").
+16. **O brilho dos itens pulsa 3 vezes (4,5 s)** ao chegar em cada parede e depois fica aceso parado (WCAG 2.2.2 e bateria). Isso substitui o pulso contínuo do RF-04.
+17. **Pinça do navegador liberada no quarto.** No modo Foco das telas, a pinça continua sendo a do próprio site (RF-24).
+18. **Telas menores no celular em pé:** PC com 640 × 384 e notebook com 640 × 400, com fonte maior. O texto do PC passou de 7,9 px para 10,5 px no Note 10 em pé. O aviso "Gire o celular" continua.
+19. **Repositório continua público** (decisão do Lucas, 17/10/2026), como exceção à regra de repositório privado, porque o portfólio mostra o próprio código.
+20. **Sem banco de dados**: não é necessário; o motivo está em `SEGURANCA.md`.
+21. **Testes no navegador ficam fora do GitHub Actions.** O CI roda os testes unitários e a conferência do build sem instalar nada, então não entra código de terceiros no pipeline. Os 30 testes do Playwright rodam no PC (`npm run test:e2e`).

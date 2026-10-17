@@ -7,7 +7,6 @@
   "erro.tentar": "Tentar de novo",
   "sem3d.titulo": "Lucas Frois Vasconcellos",
   "sem3d.texto": "Este navegador não consegue abrir o quarto interativo. Você ainda me encontra aqui:",
-
   "ctrl.voltar": "Voltar",
   "ctrl.irpara": "Ir para",
   "ctrl.irpara.titulo": "Itens do quarto",
@@ -17,13 +16,11 @@
   "ctrl.direita": "Girar para a direita",
   "ctrl.idioma": "Idioma",
   "ctrl.palco": "Quarto interativo. Use as setas para trocar de parede.",
-
   "parede.frente": "Parede do PC",
   "parede.direita": "Parede do guarda-roupa",
   "parede.tras": "Parede de trás",
   "parede.esquerda": "Parede da janela",
   "parede.provisoria": "Ilustração provisória: a arte desta parede ainda vai chegar.",
-
   "item.postits": "Post-its",
   "item.monitor": "Monitor do PC",
   "item.notebook": "Notebook",
@@ -32,20 +29,17 @@
   "item.medalhas": "Medalhas",
   "energia.ligar": "Ligar o PC",
   "energia.desligar": "Desligar o PC",
-
   "passeio.bemvindo": "Quarto interativo",
   "passeio.setas": "Use as setas para trocar de parede",
   "passeio.brilho": "Os itens que brilham podem ser clicados",
   "passeio.pc": "O PC funciona: abra janelas e veja o GitHub",
   "passeio.notebook": "O contato fica no notebook",
   "passeio.tras": "Atrás de você: handebol e medalhas",
-
   "aviso.ligue": "Ligue o PC",
   "aviso.ligue.dica": "Acabou a luz. Toque no gabinete para ligar de novo.",
   "aviso.gire": "Gire o celular",
   "aviso.gire.texto": "A tela fica maior com o celular deitado.",
   "aviso.gire.continuar": "Continuar em pé",
-
   "postit.1.titulo": "Oi, eu sou o Lucas",
   "postit.1.texto": "Lucas Frois Vasconcellos. Crio sites, automações e ferramentas, sempre com a IA como parceira de código.",
   "postit.2.titulo": "O que eu faço",
@@ -54,8 +48,6 @@
   "postit.3.texto": "JavaScript · HTML e CSS · Python · SQL (MySQL) · Google Sheets · Three.js · Git",
   "postit.4.titulo": "Rumo",
   "postit.4.texto": "Cursei Ciência da Computação na UFSCar e quero seguir em ciência de dados. Fora da tela, sou capitão de um time de handebol: veja a parede de trás.",
-  "postit.rascunho": "Textos de rascunho: a versão final entra na Fase 7.",
-
   "pc.nome": "FroisOS",
   "pc.iniciando": "Iniciando…",
   "pc.desligando": "Desligando…",
@@ -69,11 +61,9 @@
   "pc.barra": "Barra de tarefas",
   "pc.areaTrabalho": "Área de trabalho",
   "pc.ligarMonitor": "Botão de ligar",
-
   "app.github": "GitHub",
   "app.projetos": "Projetos",
   "app.leiame": "Leia-me",
-
   "gh.simulacao": "Simulação: dados reais da API pública do GitHub, mostrados pelo site. O botão abre o GitHub de verdade.",
   "gh.abrir": "Abrir página",
   "gh.atualizar": "Atualizar",
@@ -94,18 +84,15 @@
   "gh.reposPublicos": "{n} repositórios públicos",
   "gh.estrelas": "{n} estrelas",
   "gh.tentar": "Tentar de novo",
-
   "tempo.agora": "agora",
   "tempo.min": "há {n} min",
   "tempo.h": "há {n} h",
   "tempo.dia": "há 1 dia",
   "tempo.dias": "há {n} dias",
-
   "projetos.titulo": "Projetos",
   "projetos.tecnologias": "Tecnologias",
   "projetos.abrir": "Abrir projeto",
   "projetos.semLink": "Projeto privado ou ainda sem página pública.",
-
   "leiame.titulo": "Leia-me",
   "leiame.como.titulo": "Como este site foi feito",
   "leiame.como.texto": "O quarto são ilustrações das paredes do meu quarto real, geradas com IA e montadas em HTML, CSS e JavaScript puro. As telas do monitor e do notebook são HTML de verdade, encaixado sobre o desenho. As medalhas usam Three.js. O código foi escrito com a ajuda do Claude.",
@@ -115,11 +102,9 @@
   "leiame.privacidade.texto": "Este site não usa cookies e não pede nenhum dado seu. O Cloudflare recebe seu endereço IP para entregar as páginas. Ao abrir o app do GitHub, o GitHub recebe seu IP para responder à consulta. A contagem de visitas (Umami, com servidores nos Estados Unidos e na União Europeia) recebe só a página vista e o nome dos cliques, sem identificar você. Seu idioma, se o passeio já foi visto e uma cópia dos dados públicos do GitHub ficam guardados só no seu aparelho. A mensagem escrita no WhatsApp do notebook só sai do seu aparelho quando você confirma o envio, e vai direto para o WhatsApp.",
   "leiame.marcas.titulo": "Marcas",
   "leiame.marcas.texto": "GitHub, WhatsApp, Instagram e LinkedIn aparecem só para dizer aonde cada botão leva. Este site não tem ligação com essas empresas. As telas desses serviços são simulações, e os ícones são desenhos próprios.",
-
   "nb.inicio": "Início",
   "nb.simulacao": "Simulação",
   "nb.tela": "Tela do notebook",
-
   "wa.nome": "Lucas Frois",
   "wa.status": "responde quando pode",
   "wa.boasvindas": "Oi! Escreve aqui o que você precisa. Quando tocar em enviar, a mensagem abre no seu WhatsApp para você mandar de verdade.",
@@ -130,29 +115,31 @@
   "wa.abrir": "Abrir WhatsApp",
   "wa.cancelar": "Cancelar",
   "wa.simulacao": "Simulação. O envio acontece no WhatsApp de verdade, depois da sua confirmação.",
-
   "ig.abrir": "Abrir no Instagram",
   "ig.simulacao": "Simulação do perfil. Fotos guardadas no próprio site.",
   "ig.posts": "publicações",
   "ig.fechar": "Fechar foto",
-
   "li.abrir": "Abrir no LinkedIn",
   "li.simulacao": "Simulação do perfil. O botão abre o LinkedIn de verdade.",
   "li.sobre": "Sobre",
   "li.formacao": "Formação",
   "li.competencias": "Competências",
-
   "quadro.anterior": "Foto anterior",
   "quadro.proxima": "Próxima foto",
   "quadro.credito": "Foto: {nome}",
   "quadro.titulo": "Handebol",
   "quadro.contagem": "{i} de {n}",
-
   "medalha.arraste": "Arraste para girar a medalha",
   "medalha.competicao": "Competição",
   "medalha.colocacao": "Colocação",
   "medalha.ano": "Ano",
   "medalha.escolher": "Escolher medalha",
   "medalha.sem3d": "Seu aparelho não mostra 3D. Aqui está a medalha em 2D.",
-  "medalha.marcacao": "Medalha de marcação: as fotos reais da frente e do verso entram na Fase 7."
+  "quadro.emBreve": "As fotos dos jogos entram aqui em breve.",
+  "ig.verNoApp": "As publicações ficam no Instagram.",
+  "marca.sub": "· portfólio interativo",
+  "marca.paginas": "Páginas",
+  "marca.sobre": "Sobre",
+  "marca.privacidade": "Privacidade",
+  "marca.sobreTexto": "Sobre mim, em texto"
 }

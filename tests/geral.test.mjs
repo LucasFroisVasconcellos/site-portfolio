@@ -93,7 +93,11 @@ test('Campos bilíngues dos arquivos de conteúdo têm PT e EN; links estão na 
   for (const f of ['projetos', 'fotos', 'medalhas', 'instagram', 'linkedin']) conferir(json(`conteudo/${f}.json`), f);
   for (const f of json('conteudo/fotos.json').fotos) assert.ok(existsSync(join(SITE, f.arquivo)), f.arquivo);
   for (const f of json('conteudo/instagram.json').fotos) assert.ok(existsSync(join(SITE, f.arquivo)), f.arquivo);
-  for (const p of json('conteudo/projetos.json').projetos) assert.ok(existsSync(join(SITE, p.imagem)), p.imagem);
+  for (const p of json('conteudo/projetos.json').projetos) if (p.imagem) assert.ok(existsSync(join(SITE, p.imagem)), p.imagem);
+  // Nada de texto ou imagem de marcação publicado (auditoria de 17/10/2026).
+  const valores = (o) => (typeof o === 'string' ? [o] : o && typeof o === 'object' ? Object.values(o).flatMap(valores) : []);
+  const tudo = ['pt', 'en', 'projetos', 'fotos', 'medalhas', 'instagram', 'linkedin'].flatMap((f) => valores(json(`conteudo/${f}.json`))).join('\n');
+  assert.doesNotMatch(tudo, /marca[cç][aã]o|placeholder|a completar|to complete|a definir|to be defined|Fase 7|Phase 7|rascunho/i);
 });
 
 test('i18n: troca sem recarregar e formata variáveis', () => {
@@ -173,11 +177,38 @@ test('Itens dentro da parede e paredes em ciclo', () => {
 });
 
 test('RNF-19: Three.js vendorizado confere com o hash registrado', () => {
-  const linhas = readFileSync(join(SITE, 'vendor/three/VERSAO.txt'), 'utf8').split('\n').filter((l) => /^[0-9a-f]{64} /.test(l));
+  const linhas = readFileSync(join(SITE, 'vendor/three-r186/VERSAO.txt'), 'utf8').split('\n').filter((l) => /^[0-9a-f]{64} /.test(l));
   assert.equal(linhas.length, 2);
   for (const l of linhas) {
     const [hash, arq] = l.split(/\s+/);
-    const real = createHash('sha256').update(readFileSync(join(SITE, 'vendor/three', arq))).digest('hex');
+    const real = createHash('sha256').update(readFileSync(join(SITE, 'vendor/three-r186', arq))).digest('hex');
     assert.equal(real, hash, arq);
   }
+});
+
+test('Desempenho: a lista de modulepreload do index.html é exatamente a árvore de módulos', () => {
+  const html = readFileSync(join(SITE, 'index.html'), 'utf8');
+  const pre = [...html.matchAll(/<link rel="modulepreload" href="([^"]+)">/g)].map((m) => m[1]).sort();
+  const visto = new Set();
+  const fila = ['js/main.js'];
+  while (fila.length) {
+    const p = fila.shift();
+    if (visto.has(p)) continue;
+    visto.add(p);
+    const src = readFileSync(join(SITE, p), 'utf8');
+    for (const m of src.matchAll(/^import [^;]*?from '(\.[^']+)'/gm)) {
+      fila.push(join(dirname(p), m[1]).replaceAll('\\', '/'));
+    }
+  }
+  assert.deepEqual(pre, [...visto].sort());
+});
+
+test('SEO: dados estruturados válidos e páginas em texto com h1 e canonical', () => {
+  for (const pg of ['index.html', 'sobre/index.html', 'privacidade/index.html']) {
+    const h = readFileSync(join(SITE, pg), 'utf8');
+    assert.match(h, /rel="canonical" href="https:\/\/lucasfrois\.pages\.dev\//, pg);
+    assert.match(h, /<h1[\s>]/, pg);
+    for (const m of h.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) JSON.parse(m[1]);
+  }
+  assert.match(readFileSync(join(SITE, 'robots.txt'), 'utf8'), /Sitemap: https:\/\/lucasfrois\.pages\.dev\/sitemap\.xml/);
 });

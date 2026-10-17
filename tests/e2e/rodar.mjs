@@ -52,6 +52,8 @@ async function abrirPulando(p) {
   await p.click('#btn-pular');
   await p.waitForFunction(() => document.body.classList.contains('modo-quarto'));
 }
+// Espera o giro terminar (uma parede só na tela) em vez de um tempo fixo.
+const esperarGiro = (p) => p.waitForFunction(() => document.querySelectorAll('.giro:not([data-oculta])').length === 1, null, { timeout: 3000 });
 const paredeAtual = (p) => p.evaluate(() => document.getElementById('nome-parede').textContent);
 const estadoPC = (p) => p.evaluate(() => document.querySelector('.pc').dataset.estado);
 
@@ -76,13 +78,13 @@ await caso('Passeio-2', 'segunda visita no aparelho não roda o passeio', async 
 await caso('RF-03/RNF-13', 'setas da tela e do teclado trocam de parede', async (p) => {
   await abrirPulando(p);
   await p.click('#seta-dir');
-  await p.waitForTimeout(500);
+  await p.waitForTimeout(50); await esperarGiro(p);
   assert.equal(await paredeAtual(p), 'Parede do guarda-roupa');
   await p.keyboard.press('ArrowLeft');
-  await p.waitForTimeout(500);
+  await p.waitForTimeout(50); await esperarGiro(p);
   assert.equal(await paredeAtual(p), 'Parede do PC');
   await p.keyboard.press('ArrowLeft');
-  await p.waitForTimeout(500);
+  await p.waitForTimeout(50); await esperarGiro(p);
   assert.equal(await paredeAtual(p), 'Parede da janela');
 });
 
@@ -235,7 +237,7 @@ await caso('RF-32', 'idioma troca sem recarregar e sem fechar janelas; escolha l
 await caso('RNF-17', 'com o armazenamento bloqueado o site funciona', async (p) => {
   await abrirPulando(p);
   await p.click('#seta-dir');
-  await p.waitForTimeout(500);
+  await p.waitForTimeout(50); await esperarGiro(p);
   assert.equal(await paredeAtual(p), 'Parede do guarda-roupa');
 }, {
   antes: (p) => p.addInitScript(() => {
@@ -315,8 +317,8 @@ await caso('RNF-12', 'área de toque de 44 px em todos os itens (Note 10 em pé)
 
 await caso('RF-31', 'medalhas abrem em 3D (ou 2D sem WebGL) e mostram os dados', async (p) => {
   await abrirPulando(p);
-  await p.click('#seta-dir'); await p.waitForTimeout(450);
-  await p.click('#seta-dir'); await p.waitForTimeout(450);
+  await p.click('#seta-dir'); await p.waitForTimeout(50); await esperarGiro(p);
+  await p.click('#seta-dir'); await p.waitForTimeout(50); await esperarGiro(p);
   await p.click('[data-item=medalhas]', { force: true });
   await p.waitForSelector('.medalha-canvas, .medalha-2d', { timeout: 15000 });
   assert.ok((await p.textContent('.medalha-info')).includes('MVP'));
@@ -331,8 +333,8 @@ await caso('RF-36', 'com “reduzir movimento”, a câmera troca por corte, sem
 
 await caso('RNF-16', 'perda do contexto gráfico nas medalhas cai para a versão 2D', async (p) => {
   await abrirPulando(p);
-  await p.click('#seta-dir'); await p.waitForTimeout(450);
-  await p.click('#seta-dir'); await p.waitForTimeout(450);
+  await p.click('#seta-dir'); await p.waitForTimeout(50); await esperarGiro(p);
+  await p.click('#seta-dir'); await p.waitForTimeout(50); await esperarGiro(p);
   await p.click('[data-item=medalhas]', { force: true });
   await p.waitForSelector('.medalha-canvas', { timeout: 15000 });
   await p.evaluate(() => {
@@ -348,6 +350,29 @@ await caso('RF-35', 'prévia do link: título, descrição e imagem declarados',
     assert.ok(await p.getAttribute(`meta[property="${prop}"]`, 'content'), prop);
   }
 });
+
+await caso('WCAG 2.2.2', 'o brilho dos itens para sozinho em até 5 s e não há animação infinita', async (p) => {
+  await abrirPulando(p);
+  await p.waitForTimeout(5200);
+  const rodando = await p.evaluate(() => document.getAnimations().filter((a) => a.playState === 'running' && a.effect?.getTiming().iterations === Infinity && a.effect.target?.closest?.('.item')).length);
+  assert.equal(rodando, 0);
+});
+
+await caso('SEO/a11y', 'título h1 visível no quarto e menu com Sobre e Privacidade', async (p) => {
+  await abrirPulando(p);
+  assert.ok(await p.isVisible('.marca-quarto h1'));
+  await p.click('#btn-irpara');
+  assert.equal(await p.getAttribute('.menu-paginas a[href="sobre/"]', 'href'), 'sobre/');
+  await p.keyboard.press('End');
+});
+
+for (const [rota, titulo] of [['sobre/', 'Lucas Frois Vasconcellos'], ['privacidade/', 'Privacidade'], ['404.html', 'Essa página não existe']]) {
+  await caso(`Página ${rota}`, 'abre sem erro, sem violação de CSP e com o h1 certo', async (p) => {
+    await p.goto(`${BASE}${rota}`);
+    assert.equal((await p.textContent('h1')).trim(), titulo);
+    assert.equal(await p.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+  }, { contexto: { viewport: { width: 320, height: 640 } } });
+}
 
 await navegador.close();
 servidor.kill();

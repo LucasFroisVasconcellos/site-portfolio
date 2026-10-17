@@ -6,6 +6,8 @@ import { el, icone, botao } from '../dom.js';
 export const RESOLUCAO = Object.freeze({
   normal: { w: 1200, h: 720, barra: 44, titulo: 36 },
   compacta: { w: 800, h: 480, barra: 48, titulo: 48 },
+  // Celular em pé: tela lógica menor, para o texto não ficar minúsculo (auditoria de 17/10/2026).
+  minima: { w: 640, h: 384, barra: 48, titulo: 48 },
 });
 const VISIVEL_MINIMO = 48; // Regra 3: 48 px da barra de título sempre dentro da tela.
 
@@ -67,6 +69,7 @@ export function criarSistema({ i18n, energia, escala, aoLigarPeloMonitor, aoEven
     raiz.style.width = `${res.w}px`;
     raiz.style.height = `${res.h}px`;
     raiz.classList.toggle('compacta', compacta);
+    raiz.classList.toggle('minima', res === RESOLUCAO.minima);
     raiz.style.setProperty('--barra', `${res.barra}px`);
     raiz.style.setProperty('--titulo', `${res.titulo}px`);
     for (const j of janelas.values()) {
@@ -281,9 +284,11 @@ export function criarSistema({ i18n, energia, escala, aoLigarPeloMonitor, aoEven
     registrar(id, app) { apps.set(id, app); },
     iniciar() { montarIcones(); montarMenu(); aplicarResolucao(); mostrarEstado(energia.estado); traduzir(); },
     definirCompacta(sim) {
-      if (sim === compacta) return false;
-      compacta = sim;
-      res = sim ? RESOLUCAO.compacta : RESOLUCAO.normal;
+      // sim: false (normal), true (compacta) ou 'minima'.
+      const nova = sim === 'minima' ? RESOLUCAO.minima : sim ? RESOLUCAO.compacta : RESOLUCAO.normal;
+      if (nova === res) return false;
+      compacta = Boolean(sim);
+      res = nova;
       aplicarResolucao();
       return true;
     },

@@ -112,6 +112,25 @@ a { color: var(--link); }
 
 .ctrl-pular { position: absolute; right: 16px; bottom: calc(18px + var(--seguro-baixo)); }
 
+/* Marca e links das páginas em texto (h1 visível: auditoria de 17/10/2026) */
+.marca-quarto {
+  position: absolute; top: 12px; left: 12px; max-width: calc(100vw - 300px);
+  padding: 6px 12px; border-radius: 12px; background: var(--papel); border: 2px solid var(--texto);
+}
+.marca-quarto h1 { margin: 0; font-size: 16px; line-height: 1.25; }
+.marca-sub { font-weight: 500; color: var(--texto-2); }
+.marca-links { display: flex; gap: 2px 12px; flex-wrap: wrap; font-size: 15px; }
+.marca-links a { display: inline-block; padding: 4px 0; min-height: 28px; }
+body.modo-foco .marca-quarto { display: none; }
+.menu-paginas { border-top: 1px solid #d6cfc1; margin-top: 6px; padding-top: 6px; }
+.menu-paginas a { display: flex; align-items: center; min-height: 44px; padding: 8px 12px; border-radius: 8px; color: var(--link); }
+.menu-paginas a:hover, .menu-paginas a:focus-visible { background: var(--postit); }
+@media (max-width: 760px) {
+  .marca-sub, .marca-links { display: none; }
+  .marca-quarto { padding: 4px 10px; max-width: calc(100vw - 250px); }
+  .marca-quarto h1 { font-size: 15px; }
+}
+
 /* ---------- Avisos (camada 6) ---------- */
 #avisos { position: fixed; inset: 0; z-index: 60; pointer-events: none; }
 #avisos > * { pointer-events: auto; }

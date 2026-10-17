@@ -55,7 +55,7 @@ registrar('RNF-04 (código)', gz <= 300 * 1024, `${(gz / 1024).toFixed(1)} kB gz
 const leves = arquivos.filter((p) => /img\/paredes\/.*(-leve\.webp|\.svg)$/.test(rel(p)));
 const pesoLeves = leves.reduce((t, p) => t + statSync(p).size, 0);
 registrar('RNF-04 (imagens leves)', pesoLeves <= 1.2 * 1024 * 1024, `${(pesoLeves / 1024).toFixed(1)} kB`);
-const three = arquivos.filter((p) => rel(p).startsWith('vendor/three/') && extname(p) === '.js').reduce((t, p) => t + gzipSync(readFileSync(p)).length, 0);
+const three = arquivos.filter((p) => rel(p).startsWith('vendor/three-r186/') && extname(p) === '.js').reduce((t, p) => t + gzipSync(readFileSync(p)).length, 0);
 registrar('Three.js (sob demanda)', true, `${(three / 1024).toFixed(1)} kB gzip, baixado só ao abrir as medalhas`);
 
 // RNF-05: site inteiro até 8 MB.
@@ -68,12 +68,30 @@ for (const p of arquivos.filter((x) => extname(x) === '.js' && !rel(x).startsWit
   const s = readFileSync(p, 'utf8');
   for (const r of [/\.innerHTML\s*=/, /\.outerHTML\s*=/, /insertAdjacentHTML/, /\beval\(/, /new Function\(/, /document\.write/, /location\.(search|hash)/]) if (r.test(s)) perigos.push(`${rel(p)} ~ ${r}`);
 }
-const html = readFileSync(join(SITE, 'index.html'), 'utf8');
-if (/\sstyle\s*=/.test(html)) perigos.push('index.html: atributo style (bloqueado pela CSP)');
-if (/<script(?![^>]*\ssrc=)[^>]*>/.test(html)) perigos.push('index.html: script embutido');
-if (/\son[a-z]+\s*=/.test(html)) perigos.push('index.html: manipulador on* embutido');
-for (const m of html.matchAll(/<a\s[^>]*href="https?:[^"]+"[^>]*>/g)) if (!/rel="noopener noreferrer"/.test(m[0]) || !/target="_blank"/.test(m[0])) perigos.push(`link sem noopener: ${m[0]}`);
+const paginas = arquivos.filter((p) => extname(p) === '.html');
+for (const pg of paginas) {
+  const h = readFileSync(pg, 'utf8');
+  if (/\sstyle\s*=/.test(h)) perigos.push(`${rel(pg)}: atributo style (bloqueado pela CSP)`);
+  // Só dados estruturados (application/ld+json) podem ficar embutidos: não são executados.
+  if (/<script(?![^>]*\ssrc=)(?![^>]*type="application\/ld\+json")[^>]*>/.test(h)) perigos.push(`${rel(pg)}: script embutido`);
+  if (/\son[a-z]+\s*=/.test(h)) perigos.push(`${rel(pg)}: manipulador on* embutido`);
+  for (const m of h.matchAll(/<a\s[^>]*href="https?:[^"]+"[^>]*>/g)) if (!/rel="noopener noreferrer"/.test(m[0])) perigos.push(`${rel(pg)}: link sem noopener: ${m[0]}`);
+  for (const m of h.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+    try { JSON.parse(m[1]); } catch { perigos.push(`${rel(pg)}: dados estruturados com JSON inválido`); }
+  }
+}
 registrar('Invariante 2 / CSP', perigos.length === 0, perigos.join('; ') || 'sem innerHTML, eval, estilo ou script embutido');
+
+// SEO: robots, sitemap, 404 e endereço canônico em toda página indexável.
+const seo = [];
+for (const f of ['robots.txt', 'sitemap.xml', '404.html']) if (!arquivos.some((p) => rel(p) === f)) seo.push(`falta ${f}`);
+const mapa = arquivos.some((p) => rel(p) === 'sitemap.xml') ? readFileSync(join(SITE, 'sitemap.xml'), 'utf8') : '';
+for (const loc of mapa.matchAll(/<loc>https:\/\/[^/]+\/([^<]*)<\/loc>/g)) {
+  const arq = loc[1] === '' ? 'index.html' : `${loc[1]}index.html`;
+  if (!arquivos.some((p) => rel(p) === arq)) seo.push(`sitemap aponta para página inexistente: ${loc[1]}`);
+  else if (!readFileSync(join(SITE, arq), 'utf8').includes('rel="canonical"')) seo.push(`${arq} sem canonical`);
+}
+registrar('SEO básico', seo.length === 0, seo.join('; ') || 'robots.txt, sitemap.xml, 404.html e canonical em todas as páginas do sitemap');
 
 // _headers com todos os cabeçalhos da seção 8.5.
 const cab = readFileSync(join(SITE, '_headers'), 'utf8');

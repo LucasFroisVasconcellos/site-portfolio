@@ -140,7 +140,7 @@ export function registrarApps(sistema, { i18n, energia, cliente, conteudo, medic
         ? botao(t('projetos.abrir'), () => { if (abrirExterno(p.link)) medicao.evento(p.link.startsWith('https://github.com/') ? 'sair-github' : 'sair-projeto'); }, 'pc-botao pc-botao-principal')
         : el('p', { classe: 'pc-nota', texto: t('projetos.semLink') });
       corpo.append(el('article', { classe: 'pc-projeto' },
-        el('img', { classe: 'pc-projeto-img', attrs: { src: p.imagem, alt: '', loading: 'lazy', width: 960, height: 540 } }),
+        p.imagem ? el('img', { classe: 'pc-projeto-img', attrs: { src: p.imagem, alt: i18n.campo(p.nome), loading: 'lazy', width: 960, height: 540 } }) : null,
         el('h2', { texto: i18n.campo(p.nome) }),
         el('p', { texto: i18n.campo(p.descricao) }),
         el('h3', { texto: t('projetos.tecnologias') }),
@@ -155,7 +155,7 @@ export function registrarApps(sistema, { i18n, energia, cliente, conteudo, medic
     evento: 'app-leiame',
     tamanho: { w: 640, h: 500 },
     montar(corpo) {
-      const creditos = [...new Set(conteudo.fotos.map((f) => f.credito).filter((c) => c && c !== 'a definir'))];
+      const creditos = [...new Set(conteudo.fotos.map((f) => f.credito).filter(Boolean))];
       corpo.append(el('article', { classe: 'pc-leiame' },
         el('h2', { texto: t('leiame.como.titulo') }), el('p', { texto: t('leiame.como.texto') }),
         el('h2', { texto: t('leiame.creditos.titulo') }),

@@ -12,7 +12,7 @@ import { criarEnergia } from './pc/energia.js';
 import { criarSistema, RESOLUCAO } from './pc/sistema.js';
 import { registrarApps } from './pc/apps.js';
 import { criarClienteGitHub } from './github/cliente.js';
-import { criarNotebook, TELA_NOTEBOOK } from './notebook/notebook.js';
+import { criarNotebook, TELA_NOTEBOOK, TELA_NOTEBOOK_MINIMA } from './notebook/notebook.js';
 import { desenharPostits, criarQuadro, TELA_QUADRO } from './parede/parede.js';
 import { criarPainelMedalhas } from './parede/medalhas.js';
 import { instalarGestos, limitarZoom, limitarDeslocamento } from './gestos.js';
@@ -64,6 +64,21 @@ async function iniciar() {
   let feitos = 0;
   const passo = () => { feitos += 1; progresso(feitos / total); };
 
+  // As imagens das paredes começam a baixar junto com os textos, não depois (auditoria de 17/10/2026).
+  let app = null;
+  const quarto = criarQuarto({
+    raiz: $('paredes'), i18n: null, reduzirMovimento, tempos: L,
+    aoClicarItem: (item) => app?.clicarItem(item),
+  });
+  quarto.montar();
+  const tempoEsgotado = new Promise((_, rej) => {
+    if (estourou) rej(new Error('tempo'));
+    ctrl.signal.addEventListener('abort', () => rej(new Error('tempo')));
+  });
+  tempoEsgotado.catch(() => {});
+  const imagens = quarto.carregarImagens(() => passo());
+  imagens.catch(() => {});
+
   let conteudo;
   try {
     const entradas = await Promise.all(Object.entries(ARQUIVOS).map(async ([k, url]) => {
@@ -83,21 +98,8 @@ async function iniciar() {
   aplicarTextos(document, i18n);
   const medicao = criarMedicao({ idioma: () => i18n.idioma });
 
-  const quarto = criarQuarto({
-    raiz: $('paredes'), i18n, reduzirMovimento, tempos: L,
-    aoClicarItem: (item) => app.clicarItem(item),
-  });
-  quarto.montar();
-  aplicarTextos($('paredes'), i18n);
-
   try {
-    await Promise.race([
-      quarto.carregarImagens((f) => progresso((Object.keys(ARQUIVOS).length + f * 4) / total)),
-      new Promise((_, rej) => {
-        if (estourou) rej(new Error('tempo'));
-        ctrl.signal.addEventListener('abort', () => rej(new Error('tempo')));
-      }),
-    ]);
+    await Promise.race([imagens, tempoEsgotado]);
   } catch {
     clearTimeout(limite);
     mostrarErroCarregamento(medicao);
@@ -105,7 +107,7 @@ async function iniciar() {
   }
   clearTimeout(limite);
 
-  const app = montarApp({ conteudo, i18n, medicao, quarto });
+  app = montarApp({ conteudo, i18n, medicao, quarto });
   app.comecar();
 }
 
@@ -140,7 +142,8 @@ function montarApp({ conteudo, i18n, medicao, quarto }) {
     aoEvento: (n) => medicao.evento(n),
   });
   registrarApps(sistema, { i18n, energia, cliente, conteudo: { projetos: conteudo.projetos.projetos, fotos: conteudo.fotos.fotos }, medicao });
-  const compacta = () => window.innerWidth < 900;
+  const compacta = () => (window.innerWidth < 520 ? 'minima' : window.innerWidth < 900);
+  const telaNotebook = () => (window.innerWidth < 520 ? TELA_NOTEBOOK_MINIMA : TELA_NOTEBOOK);
   sistema.definirCompacta(compacta());
   sistema.iniciar();
   quarto.encaixarTela(itemPorId('monitor'), { w: sistema.resolucao.w, h: sistema.resolucao.h, conteudo: sistema.el });
@@ -160,7 +163,8 @@ function montarApp({ conteudo, i18n, medicao, quarto }) {
   // ---------- Notebook ----------
   const notebook = criarNotebook({ i18n, conteudo: { instagram: conteudo.instagram, linkedin: conteudo.linkedin }, medicao });
   notebook.iniciar();
-  quarto.encaixarTela(itemPorId('notebook'), { ...TELA_NOTEBOOK, conteudo: notebook.el, acimaPenumbra: true });
+  notebook.definirTamanho(telaNotebook());
+  quarto.encaixarTela(itemPorId('notebook'), { ...telaNotebook(), conteudo: notebook.el, acimaPenumbra: true });
   notebook.ligarRelogio(true);
 
   // ---------- Parede de trás ----------
@@ -190,7 +194,7 @@ function montarApp({ conteudo, i18n, medicao, quarto }) {
     for (const b of setas.querySelectorAll('button')) b.disabled = novo !== 'quarto';
     $('btn-irpara').disabled = novo === 'passeio';
     $('btn-ajuda').disabled = novo === 'passeio';
-    if (novo !== 'quarto') fecharMenu();
+    if (novo !== 'quarto') fecharMenu(); else quarto.repulsar();
     reavaliarBlecaute();
     atualizarSetaLigue();
   }
@@ -268,10 +272,10 @@ function montarApp({ conteudo, i18n, medicao, quarto }) {
       const rotulo = item.tipo === 'energia'
         ? i18n.t(energia.estado === 'ligado' ? 'energia.desligar' : 'energia.ligar')
         : i18n.t(`item.${item.id}`);
-      menu.append(el('button', {
+      menu.insertBefore(el('button', {
         texto: rotulo, attrs: { type: 'button', role: 'menuitem' },
         on: { click: () => irParaItem(item) },
-      }));
+      }), menu.querySelector('.menu-paginas'));
     }
   }
   function abrirMenu() {
@@ -288,7 +292,7 @@ function montarApp({ conteudo, i18n, medicao, quarto }) {
   }
   btnMenu.addEventListener('click', (e) => { e.stopPropagation(); if (menu.hidden) abrirMenu(); else fecharMenu(); });
   menu.addEventListener('keydown', (e) => {
-    const itens = [...menu.querySelectorAll('button')];
+    const itens = [...menu.querySelectorAll('button, a')];
     const i = itens.indexOf(document.activeElement);
     if (e.key === 'ArrowDown') { e.preventDefault(); itens[(i + 1) % itens.length].focus(); }
     if (e.key === 'ArrowUp') { e.preventDefault(); itens[(i - 1 + itens.length) % itens.length].focus(); }
@@ -487,6 +491,9 @@ function montarApp({ conteudo, i18n, medicao, quarto }) {
     cancelAnimationFrame(pedidoQuadro);
     pedidoQuadro = requestAnimationFrame(() => {
       if (sistema.definirCompacta(compacta())) quarto.redimensionarTela('pc', sistema.resolucao.w, sistema.resolucao.h);
+      const tn = telaNotebook();
+      notebook.definirTamanho(tn);
+      quarto.redimensionarTela('notebook', tn.w, tn.h);
       quarto.enquadrar(false);
       atualizarSetaLigue();
       atualizarAvisoGire();

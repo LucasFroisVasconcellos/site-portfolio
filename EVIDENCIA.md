@@ -1,6 +1,47 @@
-# Registro de evidência: versão 0.1.0 (12/10/2026)
+# Registro de evidência
 
 Formato da seção 10.9 do ARQ-002. Um teste não executado nunca aparece como PASS.
+
+## Versão 0.2.0: auditoria de 17/10/2026
+
+Auditoria de qualidade (10 itens) e de segurança (regras de out/2026), com as correções aplicadas. O detalhe da segurança está em `SEGURANCA.md`.
+
+| Bloco | Resultado |
+|---|---|
+| Testes unitários (`npm test`) | 69/69 PASS |
+| Testes no navegador (`npm run test:e2e`, Chromium 141) | 30/30 PASS |
+| Mutação dos controles (`npm run mutacao`) | 14/14 mutantes mortos |
+| Conferência do build (`npm run verificar`) | 9/9 PASS |
+
+### Os 10 itens da auditoria de qualidade
+
+| Item | Antes | Agora | Evidência |
+|---|---|---|---|
+| Responsivo | PASS | PASS | 10 tamanhos de 320 a 2560 px: sem rolagem lateral, controles sem sobreposição, áreas de toque de 44 px. Páginas de texto sem rolagem lateral em 320 px |
+| Acessibilidade | FAIL | PASS no laboratório | h1 visível; pinça do navegador liberada; brilho para em 4,5 s; texto do PC no celular em pé de 7,9 para 10,5 px; nenhum par de texto e fundo abaixo de 4,5:1; teclado e nomes de botões testados. Leitor de tela real: **NOT_TESTED** (falta TalkBack no Note 10) |
+| Desempenho | FAIL | Melhorou; **FAIL** pela meta | Laboratório com 4G lento e processador 4x mais lento: maior elemento (LCP) de 3,8 para 2,8 s (a meta do Google é 2,5 s); quarto pronto de 4,2 para 3,4 s; 50 requisições, 306 kB; layout sem saltos (CLS 0). Cache confirmado no ar (prévia): imagens com `max-age=604800`. Lighthouse no site publicado: **NOT_TESTED** |
+| Imagens WebP, abaixo de 300 KB | FAIL técnico | FAIL técnico (aceito) | Todas abaixo de 300 KB (a maior tem 66 KB). Só a `previa.jpg` não é WebP, de propósito: é a imagem de prévia do link, e o WhatsApp lê JPG com mais segurança |
+| Vídeos WebM | N/A | N/A | O site não tem vídeo |
+| Imagens reais | FAIL | **FAIL** (depende do Lucas) | Imagens de marcação removidas e captura real do próprio site no projeto. Faltam as fotos de handebol, de perfil e dos outros projetos |
+| Design e texto | FAIL | PASS | Nenhum texto de marcação no ar (teste automático). Ressalva: as duas paredes provisórias continuam com o aviso de provisória |
+| SEO | FAIL | PASS (prévia) | Na prévia do Cloudflare: `robots.txt` em texto, `sitemap.xml` em XML e endereço inexistente com **404** de verdade. Canonical, dados estruturados, h1 e `/sobre/`. Indexação real no Google: **NOT_TESTED** (Search Console) |
+| GEO | FAIL | PASS (prévia) | `/sobre/` legível sem JavaScript, com projetos, ferramentas, formação, conquistas e contato; dados estruturados Person e ProfilePage |
+| Privacidade | FAIL | PASS | `/privacidade/` com controlador, dados, finalidade, retenção, base legal e direitos, com link fixo no quarto |
+| Domínio, SSL, HTTPS | FAIL / PASS / PASS | FAIL / PASS / PASS | Ainda sem domínio próprio. Certificado válido nas conexões. `http://lucasfrois.pages.dev/` responde **301** para https (conferido em 17/10), com HSTS de 1 ano. Validade e protocolos do certificado: **NOT_TESTED** (o SSL Labs não terminou) |
+
+### Pendências registradas
+
+| Pendência | Situação | Motivo |
+|---|---|---|
+| Fotos reais | ACCEPTED_EVIDENCE_GAP | Dependem do Lucas e da lista da seção 9.3 |
+| Domínio próprio | ACCEPTED_EVIDENCE_GAP | Custa dinheiro; fica para depois |
+| Ilustrações das paredes em 2560 px | ACCEPTED_EVIDENCE_GAP | As originais têm 1024 px; precisam ser geradas de novo |
+| Three.js minificado | ACCEPTED_EVIDENCE_GAP | O repositório oficial não traz a versão minificada; ela só vem no pacote npm, que não estava acessível. Hoje é baixado só ao abrir as medalhas |
+| 2FA nas contas | NOT_TESTED | A API não mostra; o Lucas precisa conferir |
+
+---
+
+## Versão 0.1.0 (12/10/2026)
 
 ## Resumo
 

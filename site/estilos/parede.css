@@ -22,7 +22,6 @@
 @keyframes postit-entra { from { opacity: 0; transform: translateY(18px) rotate(var(--giro, 0deg)); } }
 .postit h2 { margin: 0 0 6px; font-size: 19px; }
 .postit p { margin: 0; font-size: 17px; }
-.postits-nota { margin: 0; padding: 4px 12px; border-radius: 999px; background: rgba(250, 247, 240, .92); color: var(--texto-2); font-size: 14px; }
 @media (max-width: 560px) {
   .postits-foco { grid-template-columns: 1fr; gap: 14px; }
   .postit { min-height: 0; padding: 14px; }
@@ -33,7 +32,9 @@
   user-select: none; -webkit-user-select: none; touch-action: none;
 }
 .quadro-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.quadro-vazio { position: absolute; inset: 0; display: grid; place-items: center; background: linear-gradient(135deg, #1f2933, #374151); font-size: 64px; font-weight: 800; color: rgba(255, 255, 255, .5); }
+.quadro-vazio { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; background: linear-gradient(135deg, #1f2933, #374151); color: rgba(255, 255, 255, .82); text-align: center; padding: 24px; }
+.quadro-vazio-titulo { font-size: 64px; font-weight: 800; }
+.quadro-vazio-texto { font-size: 30px; }
 .quadro-ano { position: absolute; right: 18px; top: 14px; padding: 2px 14px; border-radius: 999px; background: rgba(0, 0, 0, .55); font-size: 34px; font-weight: 800; }
 .quadro-seta {
   position: absolute; top: 50%; transform: translateY(-50%);
@@ -84,7 +85,6 @@
 .metal-ouro .medalha-bolinha { background: radial-gradient(circle at 35% 35%, #fff3b0, #e9b949 55%, #a8761a); }
 .metal-prata .medalha-bolinha { background: radial-gradient(circle at 35% 35%, #fff, #c9ced6 55%, #7d8590); }
 .metal-bronze .medalha-bolinha { background: radial-gradient(circle at 35% 35%, #f8d2b0, #c27c3a 55%, #7a4519); }
-.medalha-nota { margin: 0; color: var(--texto-2); font-size: 14px; }
 
 @media (max-width: 700px), (max-height: 520px) {
   .medalha-painel { grid-template-columns: 1fr; overflow: auto; }
