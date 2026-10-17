@@ -2,7 +2,7 @@
 
 Conferência do site, do repositório no GitHub e da publicação contra as regras de segurança do Lucas (Guia Mestre v1.0, complementos KipperDev de set/2026 e complementos de out/2026). Cada regra está marcada como aplicada, não aplicável (com o motivo) ou pendente.
 
-Resultado: nenhuma falha confirmada no código. Foram feitas 6 correções de proteção e ficaram 5 pendências que dependem de ação manual do Lucas (a proteção da main e o Actions entre elas).
+Resultado: nenhuma falha confirmada no código. Foram feitas 6 correções de proteção e ficaram 5 pendências que dependem de ação manual do Lucas (o Actions entre elas).
 
 ## Como o site funciona (superfície de ataque)
 
@@ -24,7 +24,7 @@ Se um dia o site ganhar algo que grave dados de visitantes (mural de recados, fo
 | `originais/` (imagens com possíveis metadados) fora do Git | **Aplicada** | Nunca entrou em nenhum commit |
 | `.gitignore` desde o início e completo | **Corrigida** | Ampliado com `.env*`, chaves (`.pem`, `.key`, `.p12`), bancos, dumps, backups, uploads, exportações, planilhas e logs |
 | Varredura de segredos e push protection | **Aplicada** | `secret_scanning` e `secret_scanning_push_protection` ativos no repositório (API do GitHub) |
-| Branch main protegida | **Pendente** (BLOCKED_ENVIRONMENT) | A API recusou a escrita das regras de proteção a partir deste ambiente. Passo a passo em "Pendências" |
+| Branch main protegida | **Aplicada** | Regra "main protegida" ativa desde 17/10/2026 (conferida pela API): exclusão e force push bloqueados, pull request obrigatório e check `Cloudflare Pages` exigido. Falta acrescentar o check `testes` quando o Actions voltar |
 | Repositório privado por padrão | **Exceção registrada** | Continua público por decisão do Lucas em 17/10/2026: o portfólio mostra o próprio código e os commits ao vivo. Teste do 12-Factor: o código pode ficar público sem vazar credencial, porque não existe nenhuma |
 | `.env.example` | Não aplicável | O site não usa variáveis de ambiente |
 | CI/CD | **Corrigida no código; não rodou** | O workflow está no repositório, mas o GitHub Actions não executou nenhuma vez: a página do Actions diz "GitHub Actions is currently disabled for your account" (17/10). Só o suporte do GitHub reativa. A política do repositório já foi apertada: só `actions/checkout` e `actions/setup-node`, obrigatoriamente fixadas por SHA. `.github/workflows/testes.yml`: actions fixadas por SHA de commit (checkout v7.0.1 de julho/2026; setup-node v7.1.0 de 07/10/2026, mais de 7 dias), `permissions: contents: read`, `persist-credentials: false`, nenhum segredo e nenhum `pull_request_target` |
@@ -56,12 +56,11 @@ Se um dia o site ganhar algo que grave dados de visitantes (mural de recados, fo
 
 ## Proteção da main
 
-O fluxo usado em 17/10 já foi branch → pull request (#1) → prévia do Cloudflare aprovada → merge. A regra que obriga esse caminho ainda não está ligada no GitHub (ver pendência 1).
+Regra "main protegida" ativa: branch → pull request → prévia do Cloudflare aprovada → merge. Force push e exclusão da main bloqueados. O pull request #4 foi o primeiro a passar por ela.
 
 ## Pendências que só o Lucas pode fazer
 
-1. **Proteger a main e reativar o Actions:**
-   - A regra "main protegida" (exclusão e force push bloqueados, pull request obrigatório, prévia do Cloudflare passando) foi preenchida no navegador do app do Claude e só espera a sua senha na tela "Confirm access". Se a tela fechar, refaça em Settings → Rules → Rulesets → New branch ruleset.
+1. **Reativar o Actions:**
    - O GitHub Actions está desligado na sua conta. Abra um chamado em support.github.com pedindo a reativação. Quando voltar, acrescente o check `testes` na regra "main protegida".
 2. **2FA com app autenticador ou passkey** no GitHub, no Cloudflare, no Google e no npm (se criar conta), com os códigos de recuperação guardados fora do PC. A API não mostra se o 2FA do GitHub está ligado: **não verificado**.
 3. **Push protection na conta pessoal** do GitHub: Settings → Code security → Push protection for yourself. No repositório já está ativa.
