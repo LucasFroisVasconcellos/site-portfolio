@@ -14,7 +14,7 @@ O site é estático: HTML, CSS e JavaScript puro, sem servidor e sem etapa de bu
 | `site/js/config.js` | Usuário do GitHub, número do WhatsApp, perfis e limites |
 | `site/conteudo/` | Textos em PT e EN, projetos, fotos, medalhas, Instagram e LinkedIn (RNF-20) |
 | `site/img/paredes/` | Ilustrações prontas (WebP sem metadados) e as paredes provisórias |
-| `site/img/marcacao/` | Imagens de marcação até a Fase 7 |
+| `site/sobre/` e `site/privacidade/` | Páginas em texto: lidas por buscadores, IAs e quem não roda JavaScript |
 | `originais/` | Ilustrações originais. **Fica fora do Git** (só no seu PC) |
 | `scripts/` | Preparar imagens, servidor local, instantâneo do GitHub, conferência e mutação |
 | `tests/` | Testes unitários (`*.test.mjs`) e no navegador (`e2e/`) |
@@ -34,6 +34,23 @@ npm run mutacao      # tira cada controle de segurança e confere que algum test
 ```
 
 Para usar o contador de quadros por segundo (RNF-01): `Ctrl + Shift + F` no site.
+
+## Como publicar uma mudança
+
+A branch `main` é protegida: nada entra direto nela, e force push fica bloqueado.
+
+1. Crie uma branch, faça a mudança e rode `npm test` e `npm run verificar`.
+2. Envie a branch para o GitHub. O Cloudflare monta uma prévia com endereço próprio, para conferir no Note 10.
+3. Abra o pull request. Os testes rodam sozinhos no GitHub Actions (`.github/workflows/testes.yml`).
+4. Com os testes verdes, faça o merge. O Cloudflare publica a `main` em lucasfrois.pages.dev.
+
+## Fotos reais (handebol, projetos, Instagram)
+
+Antes de subir qualquer foto, passe pela lista da seção 9.3 do ARQ-002: sem metadados, crédito do fotógrafo e autorização de quem aparece. Depois:
+- **Quadro digital:** acrescente em `site/conteudo/fotos.json`. Sem fotos, o quadro mostra só "em breve".
+- **Instagram:** acrescente em `site/conteudo/instagram.json` (e a `bio`, se quiser). Sem fotos, aparece só o botão para o Instagram de verdade.
+- **Projetos:** campo `imagem` em `site/conteudo/projetos.json`. Projeto sem descrição pronta não deve entrar na lista.
+- Rode `npm run verificar`: ele recusa imagem com metadados.
 
 ## Trocar ou acrescentar uma parede
 

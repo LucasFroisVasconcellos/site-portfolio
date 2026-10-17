@@ -35,7 +35,7 @@ body.modo-foco #palco { touch-action: none; }
 .aviso-provisoria {
   position: absolute; left: 50%; top: 430px; transform: translateX(-50%);
   margin: 0; padding: 6px 14px; border-radius: 999px;
-  background: rgba(250, 247, 240, .92); border: 1.5px dashed var(--texto-2);
+  background: var(--papel); border: 1.5px dashed var(--texto-2);
   color: var(--texto-2); font-size: 14px; white-space: nowrap;
   pointer-events: none;
 }

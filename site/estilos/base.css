@@ -115,7 +115,7 @@ a { color: var(--link); }
 /* Marca e links das páginas em texto (h1 visível: auditoria de 17/10/2026) */
 .marca-quarto {
   position: absolute; top: 12px; left: 12px; max-width: calc(100vw - 300px);
-  padding: 6px 12px; border-radius: 12px; background: rgba(250, 247, 240, .94); border: 2px solid var(--texto);
+  padding: 6px 12px; border-radius: 12px; background: var(--papel); border: 2px solid var(--texto);
 }
 .marca-quarto h1 { margin: 0; font-size: 16px; line-height: 1.25; }
 .marca-sub { font-weight: 500; color: var(--texto-2); }

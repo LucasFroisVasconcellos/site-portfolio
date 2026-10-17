@@ -1,7 +1,7 @@
 // Configuração única do site (ARQ-002, seção 6.2). Nenhum segredo aqui: tudo é público.
 
 export const CONFIG = Object.freeze({
-  versao: '0.1.0',
+  versao: '0.2.0',
   github: Object.freeze({
     usuario: 'LucasFroisVasconcellos',
     api: 'https://api.github.com',
