@@ -115,3 +115,10 @@
 .li-sec p, .li-sec ul { margin: 0; }
 .li-skills { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; list-style: none; }
 .li-skills li { padding: 3px 10px; border-radius: 999px; border: 1.5px solid #1e5faf; color: #1e5faf; font-size: 14px; }
+.ig-vazio { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 16px 24px; text-align: center; }
+.ig-vazio p { margin: 0; }
+.nb.minima { font-size: 18px; }
+.nb.minima .nb-relogio-grande { font-size: 64px; }
+.nb.minima .nb-apps { gap: 12px; }
+.nb.minima .nb-app { width: 116px; }
+.nb.minima .nb-app-icone { width: 62px; height: 62px; }

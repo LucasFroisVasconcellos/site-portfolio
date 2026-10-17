@@ -1,9 +1,68 @@
 {
   "medalhas": [
-    { "id": "mvp-1", "competicao": { "pt": "Prêmio de MVP (a completar)", "en": "MVP award (to complete)" }, "colocacao": { "pt": "MVP", "en": "MVP" }, "ano": null, "metal": "ouro", "fita": "#1D4ED8", "frente": null, "verso": null },
-    { "id": "mvp-2", "competicao": { "pt": "Prêmio de MVP (a completar)", "en": "MVP award (to complete)" }, "colocacao": { "pt": "MVP", "en": "MVP" }, "ano": null, "metal": "ouro", "fita": "#B91C1C", "frente": null, "verso": null },
-    { "id": "campeao-estadual", "competicao": { "pt": "Campeonato estadual", "en": "State championship" }, "colocacao": { "pt": "Campeão", "en": "Champion" }, "ano": null, "metal": "ouro", "fita": "#15803D", "frente": null, "verso": null },
-    { "id": "copa-sesc", "competicao": { "pt": "Copa SESC", "en": "SESC Cup" }, "colocacao": { "pt": "Campeão", "en": "Champion" }, "ano": null, "metal": "prata", "fita": "#1D4ED8", "frente": null, "verso": null },
-    { "id": "outra", "competicao": { "pt": "Outra competição (a completar)", "en": "Other competition (to complete)" }, "colocacao": { "pt": "A definir", "en": "To be defined" }, "ano": null, "metal": "bronze", "fita": "#B91C1C", "frente": null, "verso": null }
+    {
+      "id": "mvp-1",
+      "competicao": {
+        "pt": "Prêmio de melhor jogador",
+        "en": "Best player award"
+      },
+      "colocacao": {
+        "pt": "MVP",
+        "en": "MVP"
+      },
+      "ano": null,
+      "metal": "ouro",
+      "fita": "#1D4ED8",
+      "frente": null,
+      "verso": null
+    },
+    {
+      "id": "mvp-2",
+      "competicao": {
+        "pt": "Prêmio de melhor jogador",
+        "en": "Best player award"
+      },
+      "colocacao": {
+        "pt": "MVP",
+        "en": "MVP"
+      },
+      "ano": null,
+      "metal": "ouro",
+      "fita": "#B91C1C",
+      "frente": null,
+      "verso": null
+    },
+    {
+      "id": "campeao-estadual",
+      "competicao": {
+        "pt": "Campeonato estadual",
+        "en": "State championship"
+      },
+      "colocacao": {
+        "pt": "Campeão",
+        "en": "Champion"
+      },
+      "ano": null,
+      "metal": "ouro",
+      "fita": "#15803D",
+      "frente": null,
+      "verso": null
+    },
+    {
+      "id": "copa-sesc",
+      "competicao": {
+        "pt": "Copa SESC",
+        "en": "SESC Cup"
+      },
+      "colocacao": {
+        "pt": "Campeão",
+        "en": "Champion"
+      },
+      "ano": null,
+      "metal": "ouro",
+      "fita": "#1D4ED8",
+      "frente": null,
+      "verso": null
+    }
   ]
 }

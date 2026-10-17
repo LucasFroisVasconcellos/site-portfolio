@@ -7,7 +7,6 @@
   "erro.tentar": "Try again",
   "sem3d.titulo": "Lucas Frois Vasconcellos",
   "sem3d.texto": "This browser can't open the interactive room. You can still find me here:",
-
   "ctrl.voltar": "Back",
   "ctrl.irpara": "Go to",
   "ctrl.irpara.titulo": "Room items",
@@ -17,13 +16,11 @@
   "ctrl.direita": "Turn right",
   "ctrl.idioma": "Language",
   "ctrl.palco": "Interactive room. Use the arrows to switch walls.",
-
   "parede.frente": "PC wall",
   "parede.direita": "Wardrobe wall",
   "parede.tras": "Back wall",
   "parede.esquerda": "Window wall",
-  "parede.provisoria": "Placeholder illustration: the art for this wall is on its way.",
-
+  "parede.provisoria": "Temporary illustration: the art for this wall is on its way.",
   "item.postits": "Sticky notes",
   "item.monitor": "PC monitor",
   "item.notebook": "Laptop",
@@ -32,20 +29,17 @@
   "item.medalhas": "Medals",
   "energia.ligar": "Turn the PC on",
   "energia.desligar": "Turn the PC off",
-
   "passeio.bemvindo": "Interactive room",
   "passeio.setas": "Use the arrows to switch walls",
   "passeio.brilho": "Glowing items can be clicked",
   "passeio.pc": "The PC works: open windows and check GitHub",
   "passeio.notebook": "Contact lives on the laptop",
   "passeio.tras": "Behind you: handball and medals",
-
   "aviso.ligue": "Turn on the PC",
   "aviso.ligue.dica": "The power went out. Tap the PC case to turn it back on.",
   "aviso.gire": "Rotate your phone",
   "aviso.gire.texto": "The screen gets bigger with your phone sideways.",
   "aviso.gire.continuar": "Keep it upright",
-
   "postit.1.titulo": "Hi, I'm Lucas",
   "postit.1.texto": "Lucas Frois Vasconcellos. I build websites, automations and tools, always with AI as my coding partner.",
   "postit.2.titulo": "What I do",
@@ -54,8 +48,6 @@
   "postit.3.texto": "JavaScript · HTML & CSS · Python · SQL (MySQL) · Google Sheets · Three.js · Git",
   "postit.4.titulo": "Heading to",
   "postit.4.texto": "I studied Computer Science at UFSCar and I'm moving toward data science. Away from the screen, I captain a handball team: check the back wall.",
-  "postit.rascunho": "Draft texts: the final version arrives in Phase 7.",
-
   "pc.nome": "FroisOS",
   "pc.iniciando": "Starting…",
   "pc.desligando": "Shutting down…",
@@ -69,11 +61,9 @@
   "pc.barra": "Taskbar",
   "pc.areaTrabalho": "Desktop",
   "pc.ligarMonitor": "Power button",
-
   "app.github": "GitHub",
   "app.projetos": "Projects",
   "app.leiame": "Read me",
-
   "gh.simulacao": "Simulation: real data from GitHub's public API, displayed by this site. The button opens the real GitHub.",
   "gh.abrir": "Open page",
   "gh.atualizar": "Refresh",
@@ -94,18 +84,15 @@
   "gh.reposPublicos": "{n} public repositories",
   "gh.estrelas": "{n} stars",
   "gh.tentar": "Try again",
-
   "tempo.agora": "just now",
   "tempo.min": "{n} min ago",
   "tempo.h": "{n} h ago",
   "tempo.dia": "1 day ago",
   "tempo.dias": "{n} days ago",
-
   "projetos.titulo": "Projects",
   "projetos.tecnologias": "Technologies",
   "projetos.abrir": "Open project",
   "projetos.semLink": "Private project or no public page yet.",
-
   "leiame.titulo": "Read me",
   "leiame.como.titulo": "How this site was made",
   "leiame.como.texto": "The room is made of illustrations of the walls of my real bedroom, generated with AI and assembled in plain HTML, CSS and JavaScript. The monitor and laptop screens are real HTML placed over the drawing. The medals use Three.js. The code was written with help from Claude.",
@@ -115,11 +102,9 @@
   "leiame.privacidade.texto": "This site uses no cookies and asks for none of your data. Cloudflare receives your IP address to deliver the pages. When you open the GitHub app, GitHub receives your IP to answer the request. Visit counting (Umami, with servers in the United States and the European Union) receives only the page viewed and the names of clicks, without identifying you. Your language, whether you've seen the tour and a copy of GitHub's public data are stored only on your device. The message written in the laptop's WhatsApp only leaves your device when you confirm sending it, and it goes straight to WhatsApp.",
   "leiame.marcas.titulo": "Trademarks",
   "leiame.marcas.texto": "GitHub, WhatsApp, Instagram and LinkedIn appear only to say where each button leads. This site is not affiliated with those companies. The screens of those services are simulations, and the icons are original drawings.",
-
   "nb.inicio": "Home",
   "nb.simulacao": "Simulation",
   "nb.tela": "Laptop screen",
-
   "wa.nome": "Lucas Frois",
   "wa.status": "replies when he can",
   "wa.boasvindas": "Hi! Write what you need here. When you tap send, the message opens in your WhatsApp so you can send it for real.",
@@ -130,29 +115,31 @@
   "wa.abrir": "Open WhatsApp",
   "wa.cancelar": "Cancel",
   "wa.simulacao": "Simulation. Sending happens in the real WhatsApp, after you confirm.",
-
   "ig.abrir": "Open on Instagram",
   "ig.simulacao": "Profile simulation. Photos are stored on this site.",
   "ig.posts": "posts",
   "ig.fechar": "Close photo",
-
   "li.abrir": "Open on LinkedIn",
   "li.simulacao": "Profile simulation. The button opens the real LinkedIn.",
   "li.sobre": "About",
   "li.formacao": "Education",
   "li.competencias": "Skills",
-
   "quadro.anterior": "Previous photo",
   "quadro.proxima": "Next photo",
   "quadro.credito": "Photo: {nome}",
   "quadro.titulo": "Handball",
   "quadro.contagem": "{i} of {n}",
-
   "medalha.arraste": "Drag to spin the medal",
   "medalha.competicao": "Competition",
   "medalha.colocacao": "Placement",
   "medalha.ano": "Year",
   "medalha.escolher": "Choose medal",
   "medalha.sem3d": "Your device can't show 3D. Here is the medal in 2D.",
-  "medalha.marcacao": "Placeholder medal: real photos of the front and back arrive in Phase 7."
+  "quadro.emBreve": "Game photos are coming here soon.",
+  "ig.verNoApp": "The posts live on Instagram.",
+  "marca.sub": "· interactive portfolio",
+  "marca.paginas": "Pages",
+  "marca.sobre": "About",
+  "marca.privacidade": "Privacy",
+  "marca.sobreTexto": "About me, as text"
 }

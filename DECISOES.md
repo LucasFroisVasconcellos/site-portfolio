@@ -9,7 +9,7 @@ O que mudou em relação ao ARQ-002 v1.1 e por quê. Todo controle deixado de fo
 
 ## Técnicas
 
-3. **Sem Vite e sem build.** O ambiente onde o site foi feito não tinha acesso ao npm. O site ficou em JavaScript puro com módulos nativos, que o Cloudflare Pages serve direto da pasta `site/`. Ganho: zero dependências instaladas, nada para auditar com `npm audit`, nenhum lockfile necessário. O Three.js r186 foi copiado do repositório oficial, com a licença e o SHA-256 conferidos por teste (`vendor/three/VERSAO.txt`).
+3. **Sem Vite e sem build.** O ambiente onde o site foi feito não tinha acesso ao npm. O site ficou em JavaScript puro com módulos nativos, que o Cloudflare Pages serve direto da pasta `site/`. Ganho: zero dependências instaladas, nada para auditar com `npm audit`, nenhum lockfile necessário. O Three.js r186 foi copiado do repositório oficial, com a licença e o SHA-256 conferidos por teste (`vendor/three-r186/VERSAO.txt`).
 4. **O quarto é desenhado com CSS, não com WebGL.** As paredes são imagens vistas de frente; mover e ampliar imagem é o que o navegador faz de mais leve. Resultado: nenhuma chamada de desenho, nenhuma luz, texto das telas sempre nítido e nenhum risco do R2 (HTML sobre 3D no iPhone). O Three.js ficou só nas medalhas (RF-31), baixado quando o visitante as abre. Por isso:
    - RF-08 (sem WebGL 2): o quarto abre mesmo sem WebGL; só as medalhas caem para 2D. A mensagem com os links aparece para navegadores sem módulos JavaScript ou sem JavaScript.
    - RNF-06 e RNF-07 (chamadas de desenho e memória de textura) deixam de se aplicar ao quarto.

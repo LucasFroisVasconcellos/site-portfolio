@@ -2,7 +2,7 @@
 
 O quarto do Lucas no navegador: quatro paredes ilustradas, PC com sistema de janelas e o app do GitHub, notebook com WhatsApp, Instagram e LinkedIn, post-its, quadro digital e medalhas em 3D.
 
-O site é estático: HTML, CSS e JavaScript puro, sem servidor e sem etapa de build. A única biblioteca é o Three.js (r186), guardada em `site/vendor/three` e baixada só quando o visitante abre as medalhas.
+O site é estático: HTML, CSS e JavaScript puro, sem servidor e sem etapa de build. A única biblioteca é o Three.js (r186), guardada em `site/vendor/three-r186` e baixada só quando o visitante abre as medalhas.
 
 ## Pastas
 

@@ -21,7 +21,7 @@ function quebrarTexto(ctx, texto, largura) {
   return linhas.slice(0, 4);
 }
 
-// Desenha a face da medalha num canvas (marcação até chegarem as fotos reais).
+// Desenha a face da medalha num canvas, até chegarem as fotos reais da frente e do verso.
 export function desenharFace(medalha, lado, i18n, tamanho = 512) {
   const c = document.createElement('canvas');
   c.width = tamanho; c.height = tamanho;
@@ -92,10 +92,9 @@ export function criarPainelMedalhas({ i18n, conteudo, medicao }) {
   const dica = el('p', { classe: 'medalha-dica' });
   const info = el('dl', { classe: 'medalha-info' });
   const seletor = el('div', { classe: 'medalha-seletor', attrs: { role: 'group' } });
-  const nota = el('p', { classe: 'medalha-nota' });
   const painel = el('div', { classe: 'medalha-painel' },
     el('div', { classe: 'medalha-visual' }, palco, dica),
-    el('div', { classe: 'medalha-lado' }, info, seletor, nota));
+    el('div', { classe: 'medalha-lado' }, info, seletor));
 
   function desenharInfo() {
     const m = medalhas[atual];
@@ -103,7 +102,7 @@ export function criarPainelMedalhas({ i18n, conteudo, medicao }) {
     info.append(
       el('dt', { texto: i18n.t('medalha.competicao') }), el('dd', { texto: i18n.campo(m.competicao) }),
       el('dt', { texto: i18n.t('medalha.colocacao') }), el('dd', { texto: i18n.campo(m.colocacao) }),
-      el('dt', { texto: i18n.t('medalha.ano') }), el('dd', { texto: m.ano ? String(m.ano) : '—' }));
+      m.ano ? el('dt', { texto: i18n.t('medalha.ano') }) : null, m.ano ? el('dd', { texto: String(m.ano) }) : null);
     seletor.setAttribute('aria-label', i18n.t('medalha.escolher'));
     seletor.textContent = '';
     medalhas.forEach((x, i) => {
@@ -114,7 +113,6 @@ export function criarPainelMedalhas({ i18n, conteudo, medicao }) {
       }, el('span', { classe: 'medalha-bolinha', attrs: { 'aria-hidden': 'true' } })));
     });
     dica.textContent = cena?.sem3d ? i18n.t('medalha.sem3d') : i18n.t('medalha.arraste');
-    nota.textContent = i18n.t('medalha.marcacao');
   }
 
   function aplicarTexturas() {
@@ -169,7 +167,7 @@ export function criarPainelMedalhas({ i18n, conteudo, medicao }) {
     if (!temWebGL2()) { medicao.evento('sem-3d'); modo2D(); return; }
     let THREE;
     try {
-      THREE = await import('../../vendor/three/three.module.js');
+      THREE = await import('../../vendor/three-r186/three.module.js');
     } catch {
       modo2D();
       return;

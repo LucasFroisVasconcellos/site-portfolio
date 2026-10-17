@@ -14,6 +14,35 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://lucasfrois.pages.dev/">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://lucasfrois.pages.dev/#site",
+        "url": "https://lucasfrois.pages.dev/",
+        "name": "Quarto do Lucas",
+        "inLanguage": ["pt-BR", "en"],
+        "author": { "@id": "https://lucasfrois.pages.dev/#lucas" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://lucasfrois.pages.dev/#lucas",
+        "name": "Lucas Frois Vasconcellos",
+        "url": "https://lucasfrois.pages.dev/",
+        "jobTitle": "Desenvolvedor web freelancer",
+        "knowsAbout": ["JavaScript", "HTML", "CSS", "Python", "SQL", "Three.js", "Automação"],
+        "sameAs": [
+          "https://github.com/LucasFroisVasconcellos",
+          "https://www.linkedin.com/in/lucas-frois1/",
+          "https://www.instagram.com/lucas_frois1/"
+        ]
+      }
+    ]
+  }
+  </script>
   <link rel="icon" href="img/icones/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="img/paredes/frente-leve.webp" as="image">
   <link rel="stylesheet" href="estilos/base.css">
@@ -21,6 +50,29 @@
   <link rel="stylesheet" href="estilos/pc.css">
   <link rel="stylesheet" href="estilos/notebook.css">
   <link rel="stylesheet" href="estilos/parede.css">
+  <!-- Pré-carrega toda a árvore de módulos de uma vez, sem cascata (auditoria de 17/10/2026). -->
+  <link rel="modulepreload" href="js/main.js">
+  <link rel="modulepreload" href="js/config.js">
+  <link rel="modulepreload" href="js/itens.js">
+  <link rel="modulepreload" href="js/armazenamento.js">
+  <link rel="modulepreload" href="js/i18n.js">
+  <link rel="modulepreload" href="js/medicao.js">
+  <link rel="modulepreload" href="js/quarto.js">
+  <link rel="modulepreload" href="js/passeio.js">
+  <link rel="modulepreload" href="js/blecaute.js">
+  <link rel="modulepreload" href="js/pc/energia.js">
+  <link rel="modulepreload" href="js/pc/sistema.js">
+  <link rel="modulepreload" href="js/pc/apps.js">
+  <link rel="modulepreload" href="js/github/cliente.js">
+  <link rel="modulepreload" href="js/notebook/notebook.js">
+  <link rel="modulepreload" href="js/parede/parede.js">
+  <link rel="modulepreload" href="js/parede/medalhas.js">
+  <link rel="modulepreload" href="js/gestos.js">
+  <link rel="modulepreload" href="js/dom.js">
+  <link rel="modulepreload" href="js/geometria.js">
+  <link rel="modulepreload" href="js/links.js">
+  <link rel="modulepreload" href="js/github/validar.js">
+  <link rel="modulepreload" href="js/whatsapp.js">
   <script type="module" src="js/main.js"></script>
   <script nomodule src="js/sem-suporte.js"></script>
 </head>
@@ -36,6 +88,13 @@
 
   <!-- Camada 5: controles -->
   <div id="controles" hidden>
+    <header class="marca-quarto">
+      <h1><span translate="no">Lucas Frois</span> <span class="marca-sub" data-i18n="marca.sub">· portfólio interativo</span></h1>
+      <nav class="marca-links" data-i18n-aria="marca.paginas" aria-label="Páginas">
+        <a href="sobre/" data-i18n="marca.sobre">Sobre</a>
+        <a href="privacidade/" data-i18n="marca.privacidade">Privacidade</a>
+      </nav>
+    </header>
     <button id="btn-voltar" class="ctrl ctrl-voltar" type="button" hidden>
       <span aria-hidden="true">←</span> <span data-i18n="ctrl.voltar">Voltar</span>
     </button>
@@ -46,6 +105,10 @@
         </button>
         <div id="menu-irpara" class="menu-irpara" role="menu" hidden>
           <p class="menu-titulo" data-i18n="ctrl.irpara.titulo">Itens do quarto</p>
+          <div class="menu-paginas">
+            <a href="sobre/" role="menuitem" data-i18n="marca.sobreTexto">Sobre mim, em texto</a>
+            <a href="privacidade/" role="menuitem" data-i18n="marca.privacidade">Privacidade</a>
+          </div>
         </div>
       </div>
       <div class="idiomas" role="group" data-i18n-aria="ctrl.idioma" aria-label="Idioma">
@@ -110,18 +173,20 @@
       <li><a href="https://www.instagram.com/lucas_frois1/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
       <li><a href="https://wa.me/5511958153322" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
     </ul>
-    <p data-i18n="leiame.privacidade.texto" class="sem-suporte-privacidade"></p>
+    <p>Tudo sobre mim em texto: <a href="sobre/">página Sobre</a>. Dados e privacidade: <a href="privacidade/">página de Privacidade</a>.</p>
   </div>
   <noscript>
     <div class="sem-suporte sem-suporte-noscript">
       <h1>Lucas Frois Vasconcellos</h1>
-      <p>O quarto interativo precisa de JavaScript. Você ainda me encontra aqui:</p>
+      <p>Crio sites, automações e ferramentas com JavaScript e Python. O quarto interativo precisa de JavaScript, mas a <a href="sobre/">página Sobre</a> tem tudo em texto: projetos, ferramentas, formação e contato.</p>
+      <p>Você também me encontra aqui:</p>
       <ul>
         <li><a href="https://github.com/LucasFroisVasconcellos" target="_blank" rel="noopener noreferrer">GitHub</a></li>
         <li><a href="https://www.linkedin.com/in/lucas-frois1/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
         <li><a href="https://www.instagram.com/lucas_frois1/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
         <li><a href="https://wa.me/5511958153322" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
       </ul>
+      <p><a href="privacidade/">Privacidade</a></p>
     </div>
   </noscript>
 </body>

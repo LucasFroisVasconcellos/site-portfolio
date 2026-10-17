@@ -11,6 +11,9 @@
   --titulo: 36px;
 }
 .pc.compacta { font-size: 16px; }
+.pc.minima { font-size: 17px; }
+.pc.minima .pc-icone-app { width: 92px; }
+.pc.minima .pc-icone-app .icone { width: 46px; height: 46px; }
 .pc img { -webkit-user-drag: none; }
 .pc-tela { position: absolute; inset: 0; }
 

@@ -7,6 +7,7 @@ import { linkWhatsApp, podeEnviar, limparMensagem, LIMITE_MENSAGEM } from '../wh
 import { CONFIG } from '../config.js';
 
 export const TELA_NOTEBOOK = Object.freeze({ w: 800, h: 500 });
+export const TELA_NOTEBOOK_MINIMA = Object.freeze({ w: 640, h: 400 });
 
 export function criarNotebook({ i18n, conteudo, medicao }) {
   const t = (k, v) => i18n.t(k, v);
@@ -137,10 +138,12 @@ export function criarNotebook({ i18n, conteudo, medicao }) {
           el('img', { classe: 'ig-avatar', attrs: { src: ig.avatar, alt: '', width: 320, height: 320 } }),
           el('div', {},
             el('p', { classe: 'ig-nome', texto: ig.nome, attrs: { translate: 'no' } }),
-            el('p', { classe: 'ig-bio', texto: i18n.campo(ig.bio) }),
-            el('p', { classe: 'ig-num', texto: `${ig.fotos.length} ${t('ig.posts')}` }))),
+            ig.bio ? el('p', { classe: 'ig-bio', texto: i18n.campo(ig.bio) }) : null,
+            ig.fotos.length ? el('p', { classe: 'ig-num', texto: `${ig.fotos.length} ${t('ig.posts')}` }) : null)),
         el('p', { classe: 'nb-aviso', texto: t('ig.simulacao') }),
-        grade),
+        ig.fotos.length ? grade : el('div', { classe: 'ig-vazio' },
+          el('p', { texto: t('ig.verNoApp') }),
+          botao(t('ig.abrir'), () => { if (abrirExterno(CONFIG.instagram)) medicao.evento('sair-instagram'); }, 'nb-botao-real'))),
       ampliada);
   }
 
@@ -184,6 +187,11 @@ export function criarNotebook({ i18n, conteudo, medicao }) {
 
   return {
     el: raiz,
+    definirTamanho({ w, h }) {
+      raiz.style.width = `${w}px`;
+      raiz.style.height = `${h}px`;
+      raiz.classList.toggle('minima', w < TELA_NOTEBOOK.w);
+    },
     iniciar() { traduzir(); },
     traduzir,
     abrirApp,

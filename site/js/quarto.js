@@ -154,7 +154,17 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
   function mostrarSo(id) {
     for (const [pid, p] of paredes) {
       const visivel = pid === id;
-      if (visivel) { delete p.giro.dataset.oculta; p.giro.inert = false; } else { p.giro.dataset.oculta = ''; p.giro.inert = true; }
+      if (visivel) {
+        delete p.giro.dataset.oculta;
+        p.giro.inert = false;
+        p.giro.classList.remove('pulsar');
+        void p.giro.offsetWidth; // Reinicia o pulso a cada chegada.
+        p.giro.classList.add('pulsar');
+      } else {
+        p.giro.dataset.oculta = '';
+        p.giro.inert = true;
+        p.giro.classList.remove('pulsar');
+      }
     }
   }
 
@@ -316,6 +326,7 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
     paredeInteira(animar = true) { return moverCamera({ tipo: 'parede' }, animar); },
     luz,
     ventoinhas(ligadas) { ventoinhas?.classList.toggle('ligado', ligadas); },
+    repulsar() { mostrarSo(atual); },
     posicaoNaTela,
     botao(itemId) {
       for (const [, p] of paredes) { const b = p.botoes.get(itemId); if (b) return b.el; }

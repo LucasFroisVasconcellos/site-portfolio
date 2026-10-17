@@ -11,7 +11,7 @@ export function desenharPostits(i18n) {
       el('h2', { texto: i18n.t(`postit.${i}.titulo`) }),
       el('p', { texto: i18n.t(`postit.${i}.texto`) })));
   }
-  return el('div', { classe: 'postits-camada' }, lista, el('p', { classe: 'postits-nota', texto: i18n.t('postit.rascunho') }));
+  return el('div', { classe: 'postits-camada' }, lista);
 }
 
 export const TELA_QUADRO = Object.freeze({ w: 960, h: 600 });
@@ -21,11 +21,14 @@ export function criarQuadro({ i18n, conteudo }) {
   let indice = fotos.length - 1; // Começa no ano mais recente.
   let carregado = false;
   const img = el('img', { classe: 'quadro-img', attrs: { alt: '', width: 1200, height: 800, draggable: 'false' } });
-  const vazio = el('div', { classe: 'quadro-vazio' }, el('span', { dados: { i18n: 'quadro.titulo' } }));
+  const vazio = el('div', { classe: 'quadro-vazio' },
+    el('span', { classe: 'quadro-vazio-titulo', dados: { i18n: 'quadro.titulo' } }),
+    fotos.length ? null : el('span', { classe: 'quadro-vazio-texto', dados: { i18n: 'quadro.emBreve' } }));
   const btnAnt = botao('‹', () => mover(-1), 'quadro-seta quadro-ant');
   const btnProx = botao('›', () => mover(1), 'quadro-seta quadro-prox');
   const ano = el('span', { classe: 'quadro-ano', attrs: { translate: 'no' } });
-  const raiz = el('div', { classe: 'quadro' }, img, vazio, ano, btnAnt, btnProx);
+  // Sem fotos publicadas, o quadro mostra só o título: nada de imagem de marcação.
+  const raiz = el('div', { classe: 'quadro' }, img, vazio, ano, fotos.length > 1 ? btnAnt : null, fotos.length > 1 ? btnProx : null);
   raiz.style.width = `${TELA_QUADRO.w}px`;
   raiz.style.height = `${TELA_QUADRO.h}px`;
   const legenda = el('div', { classe: 'quadro-legenda', attrs: { 'aria-live': 'polite' } });
@@ -33,7 +36,8 @@ export function criarQuadro({ i18n, conteudo }) {
 
   function desenhar() {
     const f = fotos[indice];
-    if (!f) return;
+    legenda.hidden = !f;
+    if (!f) { aoMudar(); return; }
     if (carregado) {
       img.src = f.arquivo; // RNF-05: a foto só carrega quando o item abre.
       img.alt = i18n.campo(f.legenda);
@@ -44,7 +48,7 @@ export function criarQuadro({ i18n, conteudo }) {
     legenda.append(
       el('strong', { texto: String(f.ano), attrs: { translate: 'no' } }),
       el('span', { texto: i18n.campo(f.legenda) }),
-      el('span', { classe: 'quadro-credito', texto: i18n.t('quadro.credito', { nome: f.credito }) }),
+      f.credito ? el('span', { classe: 'quadro-credito', texto: i18n.t('quadro.credito', { nome: f.credito }) }) : null,
       el('span', { classe: 'quadro-contagem', texto: i18n.t('quadro.contagem', { i: indice + 1, n: fotos.length }) }));
     btnAnt.setAttribute('aria-label', i18n.t('quadro.anterior'));
     btnProx.setAttribute('aria-label', i18n.t('quadro.proxima'));
