@@ -38,8 +38,8 @@ Auditoria de qualidade (10 itens) e de segurança (regras de out/2026), com as c
 | Ilustrações das paredes em 2560 px | ACCEPTED_EVIDENCE_GAP | As originais têm 1024 px; precisam ser geradas de novo |
 | Three.js minificado | ACCEPTED_EVIDENCE_GAP | O repositório oficial não traz a versão minificada; ela só vem no pacote npm, que não estava acessível. Hoje é baixado só ao abrir as medalhas |
 | 2FA nas contas | NOT_TESTED | A API não mostra; o Lucas precisa conferir |
-| Proteção da main | BLOCKED_ENVIRONMENT | A API recusou a escrita das regras a partir deste ambiente; passo a passo no `SEGURANCA.md` |
-| GitHub Actions | BLOCKED_ENVIRONMENT | O workflow está no repositório, mas nenhuma execução aconteceu em 17/10 (Actions provavelmente desligado) |
+| Proteção da main | BLOCKED_ENVIRONMENT | Regra preenchida pelo navegador; falta a senha do Lucas em "Confirm access" |
+| GitHub Actions | BLOCKED_ENVIRONMENT | "GitHub Actions is currently disabled for your account": só o suporte do GitHub reativa. Política do repositório já restrita a checkout e setup-node fixados por SHA |
 | Site principal atualizado | NOT_TESTED | O Cloudflare informou deploy de produção com sucesso para o merge `2291baf`. As prévias da mesma versão foram conferidas (robots, sitemap, 404, /sobre/), mas a leitura direta de lucasfrois.pages.dev voltou da cópia em cache da ferramenta |
 
 ---
