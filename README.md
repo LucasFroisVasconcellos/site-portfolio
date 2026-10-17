@@ -37,7 +37,7 @@ Para usar o contador de quadros por segundo (RNF-01): `Ctrl + Shift + F` no site
 
 ## Como publicar uma mudança
 
-Nada entra direto na `main`. Depois que a regra de proteção for ligada (pendência 1 do `SEGURANCA.md`), o GitHub passa a obrigar esse caminho e a bloquear force push.
+A branch `main` é protegida pela regra "main protegida": nada entra direto nela, e force push e exclusão ficam bloqueados.
 
 1. Crie uma branch, faça a mudança e rode `npm test` e `npm run verificar`.
 2. Envie a branch para o GitHub. O Cloudflare monta uma prévia com endereço próprio, para conferir no Note 10.
