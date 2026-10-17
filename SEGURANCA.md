@@ -2,7 +2,7 @@
 
 Conferência do site, do repositório no GitHub e da publicação contra as regras de segurança do Lucas (Guia Mestre v1.0, complementos KipperDev de set/2026 e complementos de out/2026). Cada regra está marcada como aplicada, não aplicável (com o motivo) ou pendente.
 
-Resultado: nenhuma falha confirmada no código. Foram feitas 6 correções de proteção e ficaram 4 pendências que dependem de ação manual do Lucas.
+Resultado: nenhuma falha confirmada no código. Foram feitas 6 correções de proteção e ficaram 5 pendências que dependem de ação manual do Lucas (a proteção da main e o Actions entre elas).
 
 ## Como o site funciona (superfície de ataque)
 
@@ -24,10 +24,10 @@ Se um dia o site ganhar algo que grave dados de visitantes (mural de recados, fo
 | `originais/` (imagens com possíveis metadados) fora do Git | **Aplicada** | Nunca entrou em nenhum commit |
 | `.gitignore` desde o início e completo | **Corrigida** | Ampliado com `.env*`, chaves (`.pem`, `.key`, `.p12`), bancos, dumps, backups, uploads, exportações, planilhas e logs |
 | Varredura de segredos e push protection | **Aplicada** | `secret_scanning` e `secret_scanning_push_protection` ativos no repositório (API do GitHub) |
-| Branch main protegida | **Corrigida** | Ver "Proteção da main" abaixo |
+| Branch main protegida | **Pendente** (BLOCKED_ENVIRONMENT) | A API recusou a escrita das regras de proteção a partir deste ambiente. Passo a passo em "Pendências" |
 | Repositório privado por padrão | **Exceção registrada** | Continua público por decisão do Lucas em 17/10/2026: o portfólio mostra o próprio código e os commits ao vivo. Teste do 12-Factor: o código pode ficar público sem vazar credencial, porque não existe nenhuma |
 | `.env.example` | Não aplicável | O site não usa variáveis de ambiente |
-| CI/CD | **Corrigida** | `.github/workflows/testes.yml`: actions fixadas por SHA de commit (checkout v7.0.1 de julho/2026; setup-node v7.1.0 de 07/10/2026, mais de 7 dias), `permissions: contents: read`, `persist-credentials: false`, nenhum segredo e nenhum `pull_request_target` |
+| CI/CD | **Corrigida no código; não rodou** | O workflow está no repositório, mas o GitHub Actions não executou nenhuma vez (0 execuções em 17/10). Provavelmente o Actions está desligado na conta ou no repositório. `.github/workflows/testes.yml`: actions fixadas por SHA de commit (checkout v7.0.1 de julho/2026; setup-node v7.1.0 de 07/10/2026, mais de 7 dias), `permissions: contents: read`, `persist-credentials: false`, nenhum segredo e nenhum `pull_request_target` |
 
 ## Dependências e cadeia de suprimentos
 
@@ -56,11 +56,14 @@ Se um dia o site ganhar algo que grave dados de visitantes (mural de recados, fo
 
 ## Proteção da main
 
-O fluxo agora é: branch → pull request → testes do GitHub Actions passando → merge. Force push e exclusão da main ficam bloqueados. O resultado da configuração está em `EVIDENCIA.md`.
+O fluxo usado em 17/10 já foi branch → pull request (#1) → prévia do Cloudflare aprovada → merge. A regra que obriga esse caminho ainda não está ligada no GitHub (ver pendência 1).
 
 ## Pendências que só o Lucas pode fazer
 
-1. **2FA com app autenticador ou passkey** no GitHub, no Cloudflare, no Google e no npm (se criar conta), com os códigos de recuperação guardados fora do PC. A API não mostra se o 2FA do GitHub está ligado: **não verificado**.
-2. **Push protection na conta pessoal** do GitHub: Settings → Code security → Push protection for yourself. No repositório já está ativa.
-3. **Fotos reais:** só subir depois de passar pela lista da seção 9.3 do ARQ-002 (metadados removidos, crédito do fotógrafo e autorização de quem aparece). O `npm run verificar` recusa imagem com metadados.
-4. **Umami:** antes de colar o ID, atualizar a página `/privacidade/`, que já avisa isso.
+1. **Ligar o GitHub Actions e proteger a main:**
+   - Settings do repositório → Actions → General → "Allow all actions and reusable workflows" → Save.
+   - Settings → Rules → Rulesets → New branch ruleset. Nome "main protegida"; Enforcement "Active"; Target "Include default branch". Marque "Restrict deletions", "Require a pull request before merging" (0 aprovações), "Require status checks to pass" (adicione `testes` e `Cloudflare Pages`) e "Block force pushes". Save.
+2. **2FA com app autenticador ou passkey** no GitHub, no Cloudflare, no Google e no npm (se criar conta), com os códigos de recuperação guardados fora do PC. A API não mostra se o 2FA do GitHub está ligado: **não verificado**.
+3. **Push protection na conta pessoal** do GitHub: Settings → Code security → Push protection for yourself. No repositório já está ativa.
+4. **Fotos reais:** só subir depois de passar pela lista da seção 9.3 do ARQ-002 (metadados removidos, crédito do fotógrafo e autorização de quem aparece). O `npm run verificar` recusa imagem com metadados.
+5. **Umami:** antes de colar o ID, atualizar a página `/privacidade/`, que já avisa isso.
