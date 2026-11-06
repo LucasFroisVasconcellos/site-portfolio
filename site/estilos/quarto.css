@@ -63,7 +63,6 @@ body.modo-foco #palco { touch-action: none; }
 .objetos.pc-ligado .ventoinha { animation: ventoinha-gira 1.1s linear infinite; }
 .giro[data-oculta] .ventoinha { animation-play-state: paused; }
 @keyframes ventoinha-gira { to { transform: rotate(360deg); } }
-@media (prefers-reduced-motion: reduce) { .objetos .ventoinha { animation: none; } }
 
 /* Camada 3: penumbra do blecaute (cobre ilustração e telas, menos o notebook). */
 .escuro {
