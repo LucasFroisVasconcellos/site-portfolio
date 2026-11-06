@@ -186,9 +186,9 @@
     "semantic_hash": "7117b1739d20394c38328fa2c4e3042f"
   },
   "tests/e2e/rodar.mjs": {
-    "mtime": 1793939652.9915771,
-    "seen": 1793939728.672804,
-    "ast_hash": "0b7de6116fde747d04faaae95f338d07",
+    "mtime": 1793940229.9404087,
+    "seen": 1793940367.963119,
+    "ast_hash": "c95edcd68df73bebefd7e0465d4b4e01",
     "semantic_hash": ""
   },
   "tests/energia.test.mjs": {

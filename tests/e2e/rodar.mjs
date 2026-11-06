@@ -237,10 +237,14 @@ await caso('RF-05/IG/LI', 'notebook centralizado no foco; Instagram e LinkedIn c
   assert.equal(await p.locator('.ig-foto').count(), 15);
   assert.equal(await p.locator('.ig-so-app').count(), 1); // posição sem foto: abre o Instagram
   assert.ok((await p.textContent('.ig-bio')).includes('\n'));
+  // A grade inteira tem que ser alcançável: a área rola até o fim.
+  const rola = (sel) => p.evaluate((s) => { const e = document.querySelector(s); e.scrollTop = 1e6; return [getComputedStyle(e).overflowY, e.scrollTop > 0]; }, sel);
+  assert.deepEqual(await rola('.ig-rolagem'), ['auto', true]);
   await p.click('.nb-inicio');
   await p.click('.nb-app[data-app=linkedin]');
   assert.equal(await p.locator('img.li-capa').count(), 1);
   assert.equal(await p.locator('img.li-avatar').count(), 1);
+  assert.deepEqual(await rola('.li-rolagem'), ['auto', true]);
 });
 
 await caso('RF-32', 'idioma troca sem recarregar e sem fechar janelas; escolha lembrada', async (p) => {
