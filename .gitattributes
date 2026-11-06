@@ -1,0 +1,13 @@
+# Finais de linha iguais no Windows e no GitHub (LF).
+# Sem isto, o Git do Windows troca LF por CRLF e o hash do Three.js deixa de conferir (teste RNF-19).
+* text=auto eol=lf
+# Biblioteca de terceiros: bytes exatos, nunca convertidos
+site/vendor/** -text
+# Arquivos do Windows
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+# Imagens
+*.webp binary
+*.jpg binary
+*.png binary
+*.ico binary

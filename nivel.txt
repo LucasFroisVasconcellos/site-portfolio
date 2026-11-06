@@ -1,0 +1,6 @@
+nivel=3
+data=2026-11-05
+respostas=login:nao;dados_pessoais:sim(so os do proprio Lucas, publicados por ele: nome, fotos, GitHub, redes, telefone do WhatsApp);dinheiro:nao;muitos_usuarios:desconhecido(site publico);publico:sim
+descricao=Crítico — escolhido pela regra "na dúvida, o nível mais alto": o site é público e o número de acessos é desconhecido.
+nao_aplicavel=Autenticação/sessão/MFA (o site não tem login); LGPD de visitantes (o site não coleta nem guarda dados de quem visita: o WhatsApp só abre o wa.me com o texto digitado, a medição Umami está desligada e não usa cookies); IDOR/RLS e banco (site estático, sem banco - ver SEGURANCA.md); lógica de negócio L01-L09 (sem servidor, sem dinheiro, sem busca, sem webhook); teste de carga k6 em servidor próprio (não existe servidor: o Cloudflare Pages serve arquivos estáticos pela CDN, e a API do GitHub é chamada pelo navegador de cada visitante)
+# Na duvida, use o nivel mais alto. Registre em nao_aplicavel o que nao se aplica e o motivo.

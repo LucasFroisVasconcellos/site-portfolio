@@ -1,0 +1,17 @@
+# Graphify: só o código do projeto (economiza tokens)
+# Biblioteca de terceiros (Three.js copiado do repositório oficial)
+site/vendor/
+# Documentação, imagens e conteúdo: não entram no grafo de código
+*.md
+site/img/
+site/conteudo/
+# Saídas e dependências
+graphify-out/
+node_modules/
+test-results/
+playwright-report/
+relatorios/
+# Páginas HTML, textos e CI: fora (grafo só de código, sem custo de extração semântica)
+*.html
+*.txt
+.github/
