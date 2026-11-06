@@ -65,23 +65,34 @@ body.modo-foco #palco { touch-action: none; }
 @keyframes ventoinha-gira { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .objetos .ventoinha { animation: none; } }
 
-/* Post-its da parede: o botão é o próprio post-it, com o título escrito. */
+/* Post-its da parede: o botão é o próprio post-it de papel, com o título escrito à mão. */
 .item.postit-parede {
+  --cor: #FFF06A; --cola: #EBD94F;
   display: flex; align-items: center; justify-content: center;
-  box-sizing: border-box; padding: 3px;
-  border: 1px solid #1A1A1A;
-  box-shadow: 1px 1.5px 0 rgba(0, 0, 0, .25);
+  box-sizing: border-box; padding: 6px 3px 3px;
+  border: 0; border-radius: 0 0 1px 4px / 0 0 1px 2px;
+  /* Faixa de cola mais escura no topo, papel levemente mais claro embaixo. */
+  background: linear-gradient(180deg, var(--cola) 0, var(--cola) 13%, var(--cor) 17%, var(--cor) 70%, color-mix(in srgb, var(--cor), #fff 18%) 100%);
+  /* Sombra de papel: colado em cima, descolando embaixo. */
+  box-shadow: 0 .4px .6px rgba(0, 0, 0, .18), 0 3px 3.5px -2px rgba(0, 0, 0, .32);
   transform: rotate(var(--giro, 0deg));
-  color: #1A1A1A; text-align: center;
+  color: #23262B; text-align: center;
 }
-.item.postit-parede[data-cor="1"] { background: #F2EA6B; }
-.item.postit-parede[data-cor="2"] { background: #EE9BBE; }
-.item.postit-parede[data-cor="3"] { background: #9BDB5A; }
-.item.postit-parede[data-cor="4"] { background: #8FC6E8; }
+/* Canto de baixo levantado. */
+.item.postit-parede::after {
+  content: ""; position: absolute; right: 0; bottom: 0; width: 9px; height: 9px;
+  background: linear-gradient(315deg, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, .14) 50%, color-mix(in srgb, var(--cor), #fff 30%) 56%);
+  pointer-events: none;
+}
+.item.postit-parede[data-cor="1"] { --cor: #FFF06A; --cola: #EBDA4C; }
+.item.postit-parede[data-cor="2"] { --cor: #FF9DC9; --cola: #EE86B5; }
+.item.postit-parede[data-cor="3"] { --cor: #B5EE7C; --cola: #9FDB62; }
+.item.postit-parede[data-cor="4"] { --cor: #95D8F7; --cola: #7CC5E8; }
 .postit-texto {
   position: relative;
-  font-size: 7.4px; font-weight: 700; line-height: 1.15;
-  overflow-wrap: anywhere; pointer-events: none;
+  font-family: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  font-size: 10.6px; font-weight: 600; line-height: .95;
+  overflow-wrap: break-word; hyphens: manual; pointer-events: none;
 }
 
 /* Camada 3: penumbra do blecaute (cobre ilustração e telas, menos o notebook). */
@@ -91,7 +102,7 @@ body.modo-foco #palco { touch-action: none; }
   pointer-events: none;
 }
 
-/* Itens clicáveis com destaque de jogo antigo (seção 5.5). */
+/* Itens clicáveis: o próprio objeto é o botão, sem contorno nem brilho. */
 .item {
   position: absolute; z-index: 4;
   padding: 0; margin: 0; border: 0; background: transparent;
@@ -99,22 +110,10 @@ body.modo-foco #palco { touch-action: none; }
   -webkit-tap-highlight-color: transparent;
 }
 .item .alvo { position: absolute; }
-.item .contorno {
-  position: absolute; inset: 0;
-  border: calc(2.6px / var(--s, 1)) solid var(--destaque);
-  border-radius: calc(4px / var(--s, 1));
-  box-shadow: 0 0 calc(10px / var(--s, 1)) calc(2px / var(--s, 1)) rgba(250, 204, 21, .75);
-  opacity: .55;
-}
-/* Pulsa 3 vezes (4,5 s) ao chegar na parede e fica aceso: WCAG 2.2.2 e bateria (RNF-08). */
-.giro.pulsar .item .contorno { animation: pulso 1.5s ease-in-out 3; }
-.item:hover .contorno, .item:focus-visible .contorno { animation: none; opacity: 1; box-shadow: 0 0 calc(16px / var(--s, 1)) calc(5px / var(--s, 1)) rgba(250, 204, 21, .95); }
-.item:focus-visible { outline: none; }
-@keyframes pulso { 0%, 100% { opacity: .2; } 50% { opacity: .95; } }
-
+.item:focus { outline: none; }
+/* Só quem navega pelo teclado vê onde está (WCAG 2.4.7). */
+.item:focus-visible { outline: calc(2px / var(--s, 1)) solid #1F1A17; outline-offset: calc(3px / var(--s, 1)); }
 body.modo-foco .item, body.modo-passeio .item { pointer-events: none; }
-body.modo-foco .item .contorno, body.modo-passeio .item:not(.espiado) .contorno { animation: none; opacity: 0; }
-body.modo-passeio .item.espiado .contorno { animation: none; opacity: 1; }
 
 /* Fundo escurecido no foco de telas: esconde a ilustração ampliada demais. */
 #fundo-foco {

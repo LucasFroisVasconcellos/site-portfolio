@@ -41,3 +41,6 @@ O que mudou em relação ao ARQ-002 v1.1 e por quê. Todo controle deixado de fo
 22. **Paredes em alta resolução com IA.** Frente e direita ampliadas 3× com Real-ESRGAN (`realesr-animevideov3`) e servidas em 2560 px. Arquivos com versão no nome (`-v2`, `-v3`) porque o `_headers` guarda `/img/*` por 7 dias.
 23. **Objetos da parede do PC feitos em código** (`objetos.js`): monitor, notebook e gabinete em SVG, copiando forma, cor e posição da ilustração; o fundo da frente não tem mais esses objetos. Os 4 post-its viraram itens separados, com o título escrito neles (legível sem clicar); clicar abre aquele post-it grande.
 24. **Exceção consciente ao RNF-08:** as ventoinhas do gabinete giram com o PC ligado. Param com o PC desligado, com a parede fora da tela, com a aba oculta e com "reduzir movimento".
+25. **Sem contorno amarelo nos itens.** O próprio objeto (monitor, notebook, gabinete, post-its, quadro, medalhas) é o botão; só quem navega pelo teclado vê um contorno, para saber onde está (WCAG 2.4.7). Substitui o RF-04 e a decisão 16.
+26. **Post-its realistas:** papel com faixa de cola, canto levantado, sombra de papel e letra à mão (Caveat, licença OFL, servida pelo próprio site em `fontes/`).
+27. **Cores fixas:** `color-scheme: only light` para o modo escuro automático do navegador (Samsung Internet, Chrome) não escurecer as cores do quarto.

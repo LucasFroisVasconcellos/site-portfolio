@@ -132,9 +132,9 @@
     "semantic_hash": "e5a545a5753d115006a2f558979e7b54"
   },
   "site/js/parede/parede.js": {
-    "mtime": 1793931464.9863708,
-    "seen": 1793931687.7130482,
-    "ast_hash": "19f914fe6898c803481bd613ec0485c4",
+    "mtime": 1793932414.2670958,
+    "seen": 1793932493.8099554,
+    "ast_hash": "09dd2727ff3469d855e30c1968b8cc0f",
     "semantic_hash": ""
   },
   "site/js/passeio.js": {
@@ -162,9 +162,9 @@
     "semantic_hash": "4e140d875db63dcf45a8d0a89151a89b"
   },
   "site/js/quarto.js": {
-    "mtime": 1793931473.4534223,
-    "seen": 1793931687.713054,
-    "ast_hash": "57bec30b3bcbad093ce0674db772d9fb",
+    "mtime": 1793932422.3109741,
+    "seen": 1793932493.8099613,
+    "ast_hash": "4703aa6f8d1af46fb3547a09d47eb526",
     "semantic_hash": ""
   },
   "site/js/sem-suporte.js": {

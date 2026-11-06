@@ -129,9 +129,7 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
         });
         const alvo = document.createElement('span');
         alvo.className = 'alvo';
-        const contorno = document.createElement('span');
-        contorno.className = 'contorno';
-        b.append(alvo, contorno);
+        b.append(alvo);
         if (item.postit) {
           // O post-it é o próprio botão, com o título escrito nele (legível sem clicar).
           b.classList.add('postit-parede');

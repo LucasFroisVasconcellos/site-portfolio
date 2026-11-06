@@ -2,7 +2,7 @@
 
 import { el, botao } from '../dom.js';
 
-const CORES_POSTIT = ['#FEF08A', '#F9A8D4', '#86EFAC', '#93C5FD'];
+const CORES_POSTIT = ['#FFF06A', '#FF9DC9', '#B5EE7C', '#95D8F7'];
 
 // Um post-it grande no foco, com o texto completo (RF-29).
 export function desenharPostit(i18n, n) {

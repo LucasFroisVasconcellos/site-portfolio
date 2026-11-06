@@ -1,5 +1,12 @@
+/* Letra à mão dos post-its (Caveat, licença OFL: fontes/OFL-caveat.txt). */
+@font-face {
+  font-family: "Caveat"; src: url("../fontes/caveat-v1.woff2") format("woff2");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
 /* Paleta da interface (ARQ-002, seção 5.2) e camadas da tela (seção 5.3). */
 :root {
+  /* O site tem cores próprias: o modo escuro automático do navegador não deve mudá-las. */
+  color-scheme: only light;
   --papel: #FAF7F0;
   --texto: #1F2933;
   --texto-2: #52606D;
