@@ -96,9 +96,9 @@
     "semantic_hash": "1fbe4ecba66432dae8eb9e772fe277fa"
   },
   "site/js/itens.js": {
-    "mtime": 1793943345.0118852,
-    "seen": 1793943596.029002,
-    "ast_hash": "104a459c344641c5f2c9ba2b0dff2301",
+    "mtime": 1793973106.4910564,
+    "seen": 1793973517.4755466,
+    "ast_hash": "849de72db2dffcab675217424619fc7f",
     "semantic_hash": ""
   },
   "site/js/links.js": {
@@ -132,9 +132,9 @@
     "semantic_hash": "e5a545a5753d115006a2f558979e7b54"
   },
   "site/js/parede/parede.js": {
-    "mtime": 1793932877.1437974,
-    "seen": 1793932971.508905,
-    "ast_hash": "2bd439c80904a356f10f9f3673985db1",
+    "mtime": 1793972915.3046472,
+    "seen": 1793973517.4755566,
+    "ast_hash": "f7e89d165493eecff8ecb36206c25d82",
     "semantic_hash": ""
   },
   "site/js/passeio.js": {
@@ -162,9 +162,9 @@
     "semantic_hash": "4e140d875db63dcf45a8d0a89151a89b"
   },
   "site/js/quarto.js": {
-    "mtime": 1793942498.2889245,
-    "seen": 1793942765.3785093,
-    "ast_hash": "37e20933481c246cdae59292fb587c65",
+    "mtime": 1793973053.950395,
+    "seen": 1793973517.475563,
+    "ast_hash": "3ca2c629186f8f9b4810fbb898b31d3c",
     "semantic_hash": ""
   },
   "site/js/sem-suporte.js": {
@@ -186,9 +186,9 @@
     "semantic_hash": "7117b1739d20394c38328fa2c4e3042f"
   },
   "tests/e2e/rodar.mjs": {
-    "mtime": 1793943506.8956115,
-    "seen": 1793943596.0290318,
-    "ast_hash": "1f2654ea41d8d88a10caf1ffbea9b5e4",
+    "mtime": 1793973349.8691263,
+    "seen": 1793973517.4755676,
+    "ast_hash": "09b42d6b0c4b36ee69c24c617929b564",
     "semantic_hash": ""
   },
   "tests/energia.test.mjs": {
@@ -198,9 +198,9 @@
     "semantic_hash": "e35de9defa0361a3cc0ea1d1d1e75636"
   },
   "tests/geral.test.mjs": {
-    "mtime": 1793943403.5879388,
-    "seen": 1793943596.0290349,
-    "ast_hash": "38f87d862c9b0ad0beef0b1fa9d190ac",
+    "mtime": 1793973081.4029002,
+    "seen": 1793973517.47557,
+    "ast_hash": "7c6f8fa09031ffa103143f2b20c999f4",
     "semantic_hash": ""
   },
   "tests/github.test.mjs": {
@@ -252,9 +252,9 @@
     "semantic_hash": ""
   },
   "site/js/app/modos.js": {
-    "mtime": 1793938021.9240203,
-    "seen": 1793938071.2814236,
-    "ast_hash": "013f3242c1827f914d49512f8cacff01",
+    "mtime": 1793972808.3109207,
+    "seen": 1793973517.475529,
+    "ast_hash": "474930db32090aca9c33d128f2c115cb",
     "semantic_hash": ""
   },
   "site/js/app/passeio-app.js": {
@@ -276,15 +276,15 @@
     "semantic_hash": ""
   },
   "site/js/objetos.js": {
-    "mtime": 1793942471.7949116,
-    "seen": 1793942765.378499,
-    "ast_hash": "43966f674c183e1467927220bc10867c",
+    "mtime": 1793973066.4857078,
+    "seen": 1793973517.4755545,
+    "ast_hash": "9c6c8c5ffb1570e842f3436132addb54",
     "semantic_hash": ""
   },
   "site/js/lateral.js": {
-    "mtime": 1793943345.0014336,
-    "seen": 1793943596.0290036,
-    "ast_hash": "81a3b368190260986a49ba75e6233d52",
+    "mtime": 1793973034.4101696,
+    "seen": 1793973517.4755478,
+    "ast_hash": "963631bb662961190fe8afb2a4cb2821",
     "semantic_hash": ""
   },
   "site/js/app/aviso-escuro.js": {

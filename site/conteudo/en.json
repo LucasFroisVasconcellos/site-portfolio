@@ -152,5 +152,7 @@
   "aviso.escuro.texto": "Samsung Internet darkens websites in dark theme, and the site can't turn that off.",
   "aviso.escuro.chrome": "Open in Chrome",
   "aviso.escuro.dica": "Or in Samsung Internet: Settings → Labs → Use website dark theme.",
-  "aviso.escuro.fechar": "Keep it this way"
+  "aviso.escuro.fechar": "Keep it this way",
+  "quadro.pausar": "Pause photos",
+  "quadro.continuar": "Resume photos"
 }

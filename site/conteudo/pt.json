@@ -152,5 +152,7 @@
   "aviso.escuro.texto": "O Samsung Internet escurece os sites no tema escuro, e o site não consegue desligar isso.",
   "aviso.escuro.chrome": "Abrir no Chrome",
   "aviso.escuro.dica": "Ou no Samsung Internet: Configurações → Labs → Usar tema escuro do site.",
-  "aviso.escuro.fechar": "Continuar assim"
+  "aviso.escuro.fechar": "Continuar assim",
+  "quadro.pausar": "Pausar as fotos",
+  "quadro.continuar": "Continuar as fotos"
 }

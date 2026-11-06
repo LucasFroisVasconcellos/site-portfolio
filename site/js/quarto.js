@@ -22,7 +22,7 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
   let girando = null;
   // Camadas SVG com ventoinhas que acompanham o PC ligado/desligado (frente e lateral).
   const camadasPc = [];
-  let lateral = null; // Mesa vista de lado: espelhos das telas e post-its (lateral.js).
+  const laterais = new Map(); // parede → mesa vista de lado: espelhos das telas e post-its (lateral.js).
   let objetos = null; // Camada SVG da frente (post-its, monitor, notebook, gabinete).
   const telasConfig = new Map(); // tela → { item, w, h, slot, acimaPenumbra }
   let extra = { z: 1, ex: 0, ey: 0 }; // Pinça no foco (RF-24), no espaço da tela.
@@ -128,7 +128,7 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
         if (def.id === 'frente') objetos = camadaObjetos;
       }
       const lado = criarTelasLaterais(def.id);
-      if (lado) { el.append(lado.camada); lateral = { ...lado, parede: def.id }; }
+      if (lado) { el.append(lado.camada); laterais.set(def.id, lado); }
       if (def.provisoria) {
         const aviso = document.createElement('p');
         aviso.className = 'aviso-provisoria';
@@ -245,20 +245,19 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
   let agendado = null;
   function atualizarEspelho(tela) {
     const cfg = telasConfig.get(tela);
-    const espelho = lateral?.espelhos[tela];
     const fonte = cfg?.slot.firstElementChild;
-    if (!espelho || !fonte) return;
-    espelhar(espelho, fonte, cfg.w, cfg.h);
+    if (!fonte) return;
+    for (const lado of laterais.values()) if (lado.espelhos[tela]) espelhar(lado.espelhos[tela], fonte, cfg.w, cfg.h);
     sujas.delete(tela);
   }
   function atualizarEspelhos() { for (const tela of [...sujas]) atualizarEspelho(tela); }
   function marcarSuja(tela) {
     sujas.add(tela);
-    if (atual !== lateral?.parede || agendado) return;
+    if (!laterais.has(atual) || agendado) return;
     agendado = setTimeout(() => { agendado = null; atualizarEspelhos(); }, 200);
   }
   function observarTela(tela, slot) {
-    if (!lateral?.espelhos[tela] || slot.dataset.espelhada) return;
+    if (!laterais.size || !['pc', 'notebook'].includes(tela) || slot.dataset.espelhada) return;
     slot.dataset.espelhada = '1';
     new MutationObserver(() => marcarSuja(tela)).observe(slot, { subtree: true, childList: true, attributes: true, characterData: true });
     slot.addEventListener('scroll', () => marcarSuja(tela), { capture: true, passive: true });
@@ -371,7 +370,7 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
     get girando() { return Boolean(girando); },
     irParaParede(id, direcao = 1) {
       extra = { z: 1, ex: 0, ey: 0 };
-      if (id === lateral?.parede) atualizarEspelhos(); // a cópia já entra certa no giro
+      if (laterais.has(id)) atualizarEspelhos(); // a cópia já entra certa no giro
       return girar(direcao, id);
     },
     get extra() { return { ...extra }; },
@@ -391,7 +390,7 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
     },
     async escreverPostits(i18n) {
       await escreverPostits(objetos, i18n);
-      if (lateral) await escreverPostits(lateral.svgPostits, i18n);
+      for (const lado of laterais.values()) await escreverPostits(lado.svgPostits, i18n);
     },
     repulsar() { mostrarSo(atual); },
     posicaoNaTela,

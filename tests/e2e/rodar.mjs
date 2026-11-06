@@ -269,30 +269,31 @@ await caso('LADO', 'mesa vista de lado: espelho ao vivo das telas, post-its, lig
   await p.keyboard.press('ArrowRight');
   await esperarGiro(p);
   assert.equal(await paredeAtual(p), 'Parede do guarda-roupa');
+  const W = '.giro:not([data-oculta])'; // só a parede à vista (a janela também tem a mesa de lado)
   // De lado aparece o mesmo que na frente.
-  assert.equal(await p.locator('.lado-nb .ig').count(), 1);
-  assert.equal(await p.locator('.lado-pc .pc-janela').count(), 1);
+  assert.equal(await p.locator(`${W} .lado-nb .ig`).count(), 1);
+  assert.equal(await p.locator(`${W} .lado-pc .pc-janela`).count(), 1);
   assert.equal(await p.locator('.lado-tela [id]').count(), 0); // cópia das telas sem ids repetidos
   // Tela do monitor encaixada nos cantos medidos do desenho lateral.
   const cantos = await p.evaluate(() => {
-    const pc = document.querySelector('.lado-pc').getBoundingClientRect();
+    const pc = document.querySelector('.giro:not([data-oculta]) .lado-pc').getBoundingClientRect();
     const parede = document.querySelector('.giro:not([data-oculta]) .parede').getBoundingClientRect();
     const s = parede.width / 1024;
     return [(pc.left - parede.left) / s, (pc.top - parede.top) / s, (pc.right - parede.left) / s, (pc.bottom - parede.top) / s];
   });
   [164.6, 293.4, 199.4, 352.4].forEach((v, i) => assert.ok(Math.abs(cantos[i] - v) < 0.6, `canto ${i}: ${cantos[i]} ≠ ${v}`));
   // Post-its de lado, com o texto escrito.
-  assert.equal(await p.locator('.lado-postits .postit-texto text').count() > 8, true);
-  assert.equal(await p.locator('.objetos-lado .ventoinha').count(), 3);
+  assert.equal(await p.locator(`${W} .lado-postits .postit-texto text`).count() > 8, true);
+  assert.equal(await p.locator(`${W} .objetos-lado .ventoinha`).count(), 3);
   // Gabinete de lado: desliga ali mesmo; o espelho e as ventoinhas acompanham ao vivo.
   await p.click('[data-item=energia-lado]', { force: true });
-  await p.waitForFunction(() => document.querySelector('.lado-pc .pc-desligado:not([hidden])'), null, { timeout: 8000 });
-  assert.equal(await p.evaluate(() => document.querySelector('.objetos-lado').classList.contains('pc-ligado')), false);
+  await p.waitForFunction(() => document.querySelector('.giro:not([data-oculta]) .lado-pc .pc-desligado:not([hidden])'), null, { timeout: 8000 });
+  assert.equal(await p.evaluate(() => document.querySelector('.giro:not([data-oculta]) .objetos-lado').classList.contains('pc-ligado')), false);
   assert.equal(await paredeAtual(p), 'Parede do guarda-roupa');
   await p.waitForFunction(() => !document.querySelector('.pc-desligado').hidden, null, { timeout: 10000 });
   await p.click('[data-item=energia-lado]', { force: true });
-  await p.waitForFunction(() => document.querySelector('.lado-pc .pc-boot:not([hidden])'), null, { timeout: 3000 });
-  await p.waitForFunction(() => document.querySelector('.lado-pc .pc-desktop:not([hidden])'), null, { timeout: 8000 });
+  await p.waitForFunction(() => document.querySelector('.giro:not([data-oculta]) .lado-pc .pc-boot:not([hidden])'), null, { timeout: 3000 });
+  await p.waitForFunction(() => document.querySelector('.giro:not([data-oculta]) .lado-pc .pc-desktop:not([hidden])'), null, { timeout: 8000 });
   // Post-it de lado: vira para a parede do PC e aproxima o post-it.
   await p.click('[data-item=postit-2-lado]', { force: true });
   await p.waitForFunction(() => document.body.classList.contains('modo-foco'), null, { timeout: 5000 });
@@ -328,6 +329,76 @@ await caso('ESCURO-2', 'sem aviso no Chrome com tema escuro nem no Samsung com t
   await abrirPulando(p);
   assert.equal(await p.isVisible('#aviso-escuro'), false);
 }, { contexto: { colorScheme: 'dark' } });
+
+await caso('TRAS', 'parede da cama: quadro digital como objeto, fotos passam sozinhas de longe, pausa no foco, medalhas', async (p) => {
+  await p.route('**/conteudo/fotos.json', (r) => r.fulfill({ contentType: 'application/json', body: JSON.stringify({ fotos: [1, 2, 4].map((n, i) => ({ ano: 2022 + i, arquivo: `img/instagram/post-0${n}.webp`, legenda: { pt: `Teste ${n}`, en: `Test ${n}` } })) }) }));
+  await abrirPulando(p);
+  await p.keyboard.press('ArrowLeft');
+  await esperarGiro(p);
+  await p.keyboard.press('ArrowLeft');
+  await esperarGiro(p);
+  assert.equal(await paredeAtual(p), 'Parede de trás');
+  assert.equal(await p.locator('.objetos-tras .obj-quadro').count(), 1);
+  // A tela de fotos fica no vão da moldura (cantos medidos no desenho).
+  const vao = await p.evaluate(() => {
+    const t = document.querySelector('.tela-slot[data-tela=quadro]').getBoundingClientRect();
+    const parede = document.querySelector('.giro:not([data-oculta]) .parede').getBoundingClientRect();
+    const s = parede.width / 1024;
+    return [(t.left - parede.left) / s, (t.top - parede.top) / s, (t.right - parede.left) / s, (t.bottom - parede.top) / s];
+  });
+  [438, 244.6, 490, 282.6].forEach((v, i) => assert.ok(Math.abs(vao[i] - v) < 0.6, `vão ${i}: ${vao[i]} ≠ ${v}`));
+  // De longe: a foto troca sozinha.
+  const ano = () => p.textContent('.tela-slot[data-tela=quadro] .quadro-ano');
+  const antes = await ano();
+  await p.waitForFunction((a) => document.querySelector('.tela-slot[data-tela=quadro] .quadro-ano').textContent !== a, antes, { timeout: 8000 });
+  // No foco: pausa, legenda sem "null".
+  await p.click('[data-item=quadro]', { force: true });
+  await p.waitForFunction(() => document.body.classList.contains('modo-foco'));
+  await p.waitForTimeout(900);
+  assert.ok(!(await p.textContent('.quadro-legenda')).includes('null'));
+  await p.click('.quadro-pausa');
+  assert.equal(await p.getAttribute('.quadro-pausa', 'aria-pressed'), 'true');
+  const parado = await ano();
+  await p.waitForTimeout(6800);
+  assert.equal(await ano(), parado);
+  await p.click('#btn-voltar');
+  await p.waitForTimeout(800);
+  await p.click('[data-item=medalhas]', { force: true });
+  await p.waitForFunction(() => document.body.classList.contains('modo-foco'));
+  assert.equal(await p.locator('#conteudo-foco .medalha-palco').count(), 1);
+});
+
+await caso('JANELA', 'parede da janela: espelho ao vivo das telas, ventoinhas atrás do vidro, post-its e cliques', async (p) => {
+  await abrirPulando(p);
+  await p.click('[data-item=notebook]', { force: true });
+  await p.waitForTimeout(900);
+  await p.click('.nb-app[data-app=linkedin]');
+  await p.click('#btn-voltar');
+  await p.waitForTimeout(800);
+  await p.keyboard.press('ArrowLeft');
+  await esperarGiro(p);
+  assert.equal(await paredeAtual(p), 'Parede da janela');
+  assert.equal(await p.locator('.objetos-janela .ventoinha').count(), 3);
+  // O que está aberto na frente aparece de lado nesta parede também.
+  const parede = '.giro:not([data-oculta])';
+  assert.equal(await p.locator(`${parede} .lado-nb .li`).count(), 1);
+  const cantos = await p.evaluate((sel) => {
+    const pc = document.querySelector(`${sel} .lado-pc`).getBoundingClientRect();
+    const r = document.querySelector(`${sel} .parede`).getBoundingClientRect();
+    const s = r.width / 1024;
+    return [(pc.left - r.left) / s, (pc.top - r.top) / s, (pc.right - r.left) / s, (pc.bottom - r.top) / s];
+  }, parede);
+  [933.2, 327.6, 989, 397.4].forEach((v, i) => assert.ok(Math.abs(cantos[i] - v) < 0.6, `canto ${i}: ${cantos[i]} ≠ ${v}`));
+  assert.ok(await p.locator(`${parede} .lado-postits .postit-texto text`).count() > 8);
+  // Gabinete desta vista desliga o PC ali mesmo.
+  await p.click('[data-item=energia-janela]', { force: true });
+  await p.waitForFunction((sel) => document.querySelector(`${sel} .lado-pc .pc-desligado:not([hidden])`), parede, { timeout: 8000 });
+  assert.equal(await paredeAtual(p), 'Parede da janela');
+  // Monitor desta vista: vira para a parede do PC e abre o PC.
+  await p.click('[data-item=monitor-janela]', { force: true });
+  await p.waitForFunction(() => document.body.classList.contains('modo-foco'), null, { timeout: 5000 });
+  assert.equal(await paredeAtual(p), 'Parede do PC');
+});
 
 await caso('RF-32', 'idioma troca sem recarregar e sem fechar janelas; escolha lembrada', async (p) => {
   await abrirPulando(p);

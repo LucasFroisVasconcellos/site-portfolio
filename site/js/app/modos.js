@@ -27,6 +27,7 @@ export function instalarModos(ctx) {
 
   function atualizarNomeParede() {
     $('nome-parede').textContent = i18n.t(`parede.${quarto.parede}`);
+    if (quarto.parede === 'tras') ctx.quadro?.carregar(); // fotos do quadro só quando a parede aparece
   }
 
   async function girar(direcao) {

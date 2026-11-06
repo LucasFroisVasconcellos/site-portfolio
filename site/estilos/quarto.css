@@ -111,6 +111,9 @@ body.foco-tela #fundo-foco { opacity: 1; }
    e os post-its, em perspectiva. A cópia é inerte; o clique é dos botões de atalho. */
 .objetos-lado .ventoinhas { opacity: .45; transition: opacity .3s ease; }
 .objetos-lado.pc-ligado .ventoinhas { opacity: 1; }
+/* Parede da janela: as ventoinhas ficam atrás da porta de vidro da mesa. */
+.objetos-lado .ventoinhas.atras-do-vidro { opacity: .35; }
+.objetos-lado.pc-ligado .ventoinhas.atras-do-vidro { opacity: .8; }
 .telas-laterais { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
 .lado-tela, .lado-postits {
   position: absolute; left: 0; top: 0; transform-origin: 0 0;

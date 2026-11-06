@@ -19,14 +19,12 @@ export const PAREDES = Object.freeze([
   },
   {
     id: 'tras',
-    provisoria: true,
-    imagem: { nitido: 'img/paredes/tras-provisoria.svg' },
-    essencial: { x: 255, y: 170, w: 535, h: 180 },
+    imagem: { leve: 'img/paredes/tras-leve-v1.webp', nitido: 'img/paredes/tras-nitido-v1.webp' },
+    essencial: { x: 422, y: 228, w: 382, h: 92 }, // do quadro digital às medalhas
   },
   {
     id: 'esquerda',
-    provisoria: true,
-    imagem: { nitido: 'img/paredes/esquerda-provisoria.svg' },
+    imagem: { leve: 'img/paredes/esquerda-leve-v1.webp', nitido: 'img/paredes/esquerda-nitido-v1.webp' },
     essencial: { x: 360, y: 160, w: 260, h: 220 },
   },
 ]);
@@ -106,16 +104,34 @@ export const ITENS = Object.freeze([
     id: 'energia-lado', parede: 'direita', tipo: 'energia', atalho: 'energia',
     area: { x: 201, y: 392, w: 27, h: 120 },
   },
+  // Atalhos da parede da janela: a mesa aparece de lado, à direita (mesmo comportamento da
+  // vista do guarda-roupa). O post-it 4 fica fora do desenho nesta vista, por isso não tem área.
+  { id: 'postit-1-janela', parede: 'esquerda', tipo: 'atalho', atalho: 'postit-1', area: { x: 984.4, y: 284.5, w: 8.8, h: 17.0 } },
+  { id: 'postit-2-janela', parede: 'esquerda', tipo: 'atalho', atalho: 'postit-2', area: { x: 995.0, y: 292.7, w: 9.3, h: 17.3 } },
+  { id: 'postit-3-janela', parede: 'esquerda', tipo: 'atalho', atalho: 'postit-3', area: { x: 1007.5, y: 279.4, w: 9.9, h: 18.2 } },
   {
+    id: 'monitor-janela', parede: 'esquerda', tipo: 'atalho', atalho: 'monitor',
+    area: { x: 930, y: 323, w: 67, h: 82 },
+  },
+  {
+    id: 'notebook-janela', parede: 'esquerda', tipo: 'atalho', atalho: 'notebook',
+    area: { x: 873, y: 355, w: 56, h: 46 },
+  },
+  {
+    id: 'energia-janela', parede: 'esquerda', tipo: 'energia', atalho: 'energia',
+    area: { x: 817, y: 405, w: 28, h: 118 },
+  },
+  {
+    // Quadro digital (objeto em objetos.js): a tela de fotos fica no vão da moldura.
     id: 'quadro', parede: 'tras', tipo: 'foco', evento: 'abrir-quadro', tela: 'quadro',
-    area: { x: 266, y: 176, w: 254, h: 164 },
-    telaQuad: [[272, 182], [514, 182], [514, 334], [272, 334]],
-    foco: { x: 272, y: 182, w: 242, h: 152 },
+    area: { x: 428, y: 234.6, w: 72, h: 57.4 },
+    telaQuad: [[438, 244.6], [490, 244.6], [490, 282.6], [438, 282.6]],
+    foco: { x: 438, y: 244.6, w: 52, h: 38 },
   },
   {
     id: 'medalhas', parede: 'tras', tipo: 'foco', evento: 'abrir-medalha',
-    area: { x: 578, y: 194, w: 204, h: 102 },
-    foco: { x: 560, y: 180, w: 240, h: 130 },
+    area: { x: 722, y: 235, w: 76, h: 81 },
+    foco: { x: 700, y: 226, w: 120, h: 98 },
   },
 ]);
 

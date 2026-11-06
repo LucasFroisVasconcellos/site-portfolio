@@ -182,8 +182,59 @@ function gabineteLado() {
   ]);
 }
 
+// Moldura do quadro digital na parede da cama, medida no desenho tras-nitido-v1.
+// A tela de fotos (HTML, parede.js) fica por cima, no vão da moldura.
+export const QUADRO_MOLDURA = Object.freeze({ x: 430, y: 236.6, w: 68, h: 53.4 });
+export const QUADRO_TELA = Object.freeze({ x: 438, y: 244.6, w: 52, h: 38 });
+
+function quadroDigital() {
+  const { x, y, w, h } = QUADRO_MOLDURA;
+  const t = QUADRO_TELA;
+  return svg('g', { class: 'obj-quadro' }, [
+    ret(x + 1.2, y + 1.6, w, h, '#000', { opacity: 0.16, rx: 1.4, filter: 'url(#sombra-quadro)' }),
+    ret(x, y, w, h, 'url(#moldura-quadro)', { rx: 1.4, stroke: TINTA, 'stroke-width': 1 }),
+    // Chanfro interno e o vão da tela.
+    ret(x + 2.2, y + 2.2, w - 4.4, h - 4.4, 'none', { rx: 0.8, stroke: '#4A4A4F', 'stroke-width': 0.6 }),
+    ret(t.x - 0.8, t.y - 0.8, t.w + 1.6, t.h + 1.6, '#0B0B0C', { rx: 0.4 }),
+    // LED de ligado no canto de baixo.
+    svg('circle', { cx: x + w - 4.2, cy: y + h - 3.4, r: 0.7, fill: '#5FD38D' }),
+  ]);
+}
+
+// Ventoinhas vistas da parede da janela: atrás da porta de vidro do compartimento da mesa.
+// Medidas pelos pixels vermelhos de esquerda-nitido-v1. Ficam um pouco apagadas (vidro na
+// frente) e a alça da porta é redesenhada por cima, como no desenho.
+export const VENTOINHAS_JANELA = [
+  { cx: 834.4, cy: 449.4 }, { cx: 834.4, cy: 472.6 }, { cx: 834.4, cy: 495 },
+];
+const ELIPSE_JANELA = { rx: 4.2, ry: 8.8 };
+
+function gabineteJanela() {
+  const sx = ELIPSE_JANELA.rx / RAIO_VENTOINHA;
+  const sy = ELIPSE_JANELA.ry / RAIO_VENTOINHA;
+  return svg('g', { class: 'obj-gabinete-janela' }, [
+    svg('g', { class: 'ventoinhas atras-do-vidro' }, VENTOINHAS_JANELA.map(({ cx, cy }) =>
+      svg('g', { transform: `translate(${cx} ${cy}) scale(${sx.toFixed(4)} ${sy.toFixed(4)})` }, [ventoinha(0, 0)]))),
+    // Alça da porta de vidro, na frente das ventoinhas.
+    ret(835.4, 454, 3.6, 22.4, '#E4E4E2', { rx: 1.6, stroke: TINTA, 'stroke-width': 0.7 }),
+    ret(836.5, 456.5, 1.3, 17.4, '#9A9A98', { rx: 0.6 }),
+  ]);
+}
+
 // Paredes que têm objetos em código. Devolve a camada pronta ou null.
 export function criarObjetos(paredeId) {
+  if (paredeId === 'esquerda') {
+    return svg('svg', { class: 'objetos objetos-lado objetos-janela pc-ligado', viewBox: '0 0 1024 572', 'aria-hidden': 'true', focusable: 'false' }, [gabineteJanela()]);
+  }
+  if (paredeId === 'tras') {
+    const defs = svg('defs', {}, [
+      svg('linearGradient', { id: 'moldura-quadro', x1: 0, y1: 0, x2: 0, y2: 1 }, [
+        svg('stop', { offset: 0, 'stop-color': '#3A3A3E' }), svg('stop', { offset: 1, 'stop-color': '#18181A' }),
+      ]),
+      svg('filter', { id: 'sombra-quadro', x: '-10%', y: '-10%', width: '130%', height: '140%' }, [svg('feGaussianBlur', { stdDeviation: 0.9 })]),
+    ]);
+    return svg('svg', { class: 'objetos objetos-tras', viewBox: '0 0 1024 572', 'aria-hidden': 'true', focusable: 'false' }, [defs, quadroDigital()]);
+  }
   if (paredeId === 'direita') {
     const defs = svg('defs', {}, [
       svg('clipPath', { id: 'vidro-lado' }, [ret(VIDRO_LADO.x, VIDRO_LADO.y, VIDRO_LADO.w, VIDRO_LADO.h, '#000')]),

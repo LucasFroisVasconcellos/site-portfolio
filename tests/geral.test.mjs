@@ -217,10 +217,12 @@ test('SEO: dados estruturados válidos e páginas em texto com h1 e canonical', 
 test('Post-its de lado: áreas de clique batem com a perspectiva calculada', async () => {
   const { pontoNaLateral } = await import('../site/js/lateral.js');
   const { POSTITS } = await import('../site/js/objetos.js');
-  for (const p of POSTITS) {
-    const cantos = [[p.x, p.y], [p.x + 14.5, p.y], [p.x + 14.5, p.y + 14.5], [p.x, p.y + 14.5]].map(([x, y]) => pontoNaLateral(x, y));
+  for (const [vista, sufixo] of [['direita', 'lado'], ['esquerda', 'janela']]) for (const p of POSTITS) {
+    const it = ITENS.find((i) => i.id === `postit-${p.n}-${sufixo}`);
+    if (!it) { assert.equal(`${vista}:${p.n}`, 'esquerda:4', 'só o post-it 4 da janela fica sem área (fora do desenho)'); continue; }
+    const cantos = [[p.x, p.y], [p.x + 14.5, p.y], [p.x + 14.5, p.y + 14.5], [p.x, p.y + 14.5]].map(([x, y]) => pontoNaLateral(x, y, vista));
     const xs = cantos.map((c) => c[0]); const ys = cantos.map((c) => c[1]);
-    const a = ITENS.find((i) => i.id === `postit-${p.n}-lado`).area;
+    const a = it.area;
     assert.ok(Math.abs(a.x - (Math.min(...xs) - 0.5)) < 0.15 && Math.abs(a.y - (Math.min(...ys) - 0.5)) < 0.15, `postit ${p.n}`);
     assert.ok(Math.abs(a.x + a.w - (Math.max(...xs) + 0.5)) < 0.15 && Math.abs(a.y + a.h - (Math.max(...ys) + 0.5)) < 0.15, `postit ${p.n}`);
   }
