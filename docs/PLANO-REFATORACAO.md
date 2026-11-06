@@ -7,14 +7,18 @@ Ponto de partida: `main` em `555cef8`, 69 testes unitários passando e `npm run 
 
 Cada item é uma branch e um pull request pequenos.
 
-1. **A1 – Dividir o `main.js` (562 linhas).** O `montarApp()` tem 46 ligações no grafo. Separar em módulos que já existem como blocos comentados:
-   - `js/app/modos.js` (modos, girar, foco, voltar)
-   - `js/app/menu.js` (menu "Ir para")
-   - `js/app/passeio-app.js` (passeio)
-   - `js/app/blecaute-app.js` (agendamento do blecaute e aviso "Ligue o PC")
-   - `js/app/teclado-gestos.js` (teclado e gestos)
-   - `js/app/fps.js` (contador de quadros)
-   - O `main.js` fica só com `iniciar()` e a ligação entre os módulos.
+1. **A1 – Dividir o `main.js` (562 linhas). FEITO em 05/11/2026 (branch `refatora/a1-dividir-main`).** O `main.js` ficou com 143 linhas: carregamento, ligação dos módulos e início. O resto foi para `site/js/app/`:
+   - `carregamento.js` (arquivos de conteúdo, barra de progresso, erro)
+   - `telas.js` (PC, notebook, parede de trás, tamanho da tela, aba oculta)
+   - `modos.js` (modos, girar, foco, voltar)
+   - `menu.js` (menu "Ir para")
+   - `passeio-app.js` (passeio)
+   - `blecaute-app.js` (blecaute e aviso "Ligue o PC")
+   - `teclado-gestos.js` (teclado e gestos)
+   - `idioma.js` (troca de idioma)
+   - `fps.js` (contador de quadros)
+   - Os módulos conversam por um objeto `ctx` compartilhado (estado em `ctx.estado`); nenhum módulo de `app/` importa outro.
+   - Resultado: `montarApp()` saiu de 46 ligações no grafo; o maior módulo novo (`instalarModos`) tem 14. Sem ciclos. 69 testes unitários, `verificar` e 30 testes no navegador passando.
 2. **A2 – Organizar o CSS.** Criar `estilos/tokens.css` com cores, fontes, espaçamentos, raios e tempos de animação usados nos 6 arquivos, e trocar valores repetidos pelas variáveis. Sem mudar nenhum valor.
 3. **A3 – Conferir.** `npm test`, `npm run verificar`, `npm run test:e2e` e `graphify update .`. O grafo não pode ganhar ciclo de importação.
 

@@ -108,10 +108,10 @@
     "semantic_hash": "c15ef5196b3b18164ebd52aa55fd94e5"
   },
   "site/js/main.js": {
-    "mtime": 1793923496.1992466,
-    "seen": 1793923542.3286126,
-    "ast_hash": "adbe04eeaae479b5927d7177183e545d",
-    "semantic_hash": "adbe04eeaae479b5927d7177183e545d"
+    "mtime": 1793926835.117279,
+    "seen": 1793926895.5710468,
+    "ast_hash": "1b58ad459812b3948deea978b238679e",
+    "semantic_hash": ""
   },
   "site/js/medicao.js": {
     "mtime": 1793923496.1992466,
@@ -214,5 +214,65 @@
     "seen": 1793923542.3286273,
     "ast_hash": "9e987563ae10b21ae19926b82ed83d5b",
     "semantic_hash": "9e987563ae10b21ae19926b82ed83d5b"
+  },
+  ".claude/settings.json": {
+    "mtime": 1793926337.618337,
+    "seen": 1793926895.5709944,
+    "ast_hash": "ad7e526b93c23a4adb26ccad5f09b599",
+    "semantic_hash": ""
+  },
+  "site/js/app/blecaute-app.js": {
+    "mtime": 1793926796.193377,
+    "seen": 1793926895.5710185,
+    "ast_hash": "f088424aa6b18f6313945fe3f0bf53b1",
+    "semantic_hash": ""
+  },
+  "site/js/app/carregamento.js": {
+    "mtime": 1793926744.441374,
+    "seen": 1793926895.5710204,
+    "ast_hash": "48e8c517608f47aa877aee5d7c22d704",
+    "semantic_hash": ""
+  },
+  "site/js/app/fps.js": {
+    "mtime": 1793926810.0893779,
+    "seen": 1793926895.5710216,
+    "ast_hash": "1cadbd645a80ff49d255687123c73603",
+    "semantic_hash": ""
+  },
+  "site/js/app/idioma.js": {
+    "mtime": 1793926806.9933777,
+    "seen": 1793926895.5710235,
+    "ast_hash": "7421f57e30608f01ee550a898e1c6667",
+    "semantic_hash": ""
+  },
+  "site/js/app/menu.js": {
+    "mtime": 1793926780.4413762,
+    "seen": 1793926895.5710244,
+    "ast_hash": "9ffbd8da2db7fee68f717b1b8bb14724",
+    "semantic_hash": ""
+  },
+  "site/js/app/modos.js": {
+    "mtime": 1793926771.7533758,
+    "seen": 1793926895.5710256,
+    "ast_hash": "ffac26b4ded477f92a422790bab05128",
+    "semantic_hash": ""
+  },
+  "site/js/app/passeio-app.js": {
+    "mtime": 1793926787.0453765,
+    "seen": 1793926895.5710282,
+    "ast_hash": "af7e7ab3bad02f1ac9c18cd59a34d38c",
+    "semantic_hash": ""
+  },
+  "site/js/app/teclado-gestos.js": {
+    "mtime": 1793926802.5013776,
+    "seen": 1793926895.5710292,
+    "ast_hash": "030b967f96c89a71c13746f94ec27c3f",
+    "semantic_hash": ""
+  },
+  "site/js/app/telas.js": {
+    "mtime": 1793926758.097375,
+    "seen": 1793926895.5710306,
+    "ast_hash": "d4773ad4347a97f60932a319e46e4ce2",
+    "semantic_hash": ""
   }
 }
