@@ -59,10 +59,7 @@ body.modo-foco #palco { touch-action: none; }
 }
 .objetos .ventoinhas { opacity: .45; transition: opacity .3s ease; }
 .objetos.pc-ligado .ventoinhas { opacity: 1; }
-/* As ventoinhas giram só com o PC ligado e a parede visível (RNF-08: parado não gasta bateria). */
-.objetos.pc-ligado .ventoinha { animation: ventoinha-gira 1.1s linear infinite; }
-.giro[data-oculta] .ventoinha { animation-play-state: paused; }
-@keyframes ventoinha-gira { to { transform: rotate(360deg); } }
+/* O giro é a animação do próprio SVG (objetos.js); quarto.js pausa com o PC desligado. */
 
 /* Camada 3: penumbra do blecaute (cobre ilustração e telas, menos o notebook). */
 .escuro {

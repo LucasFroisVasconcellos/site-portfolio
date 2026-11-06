@@ -116,8 +116,10 @@ function ventoinha(cx, cy) {
     d: `M ${cx} ${cy} C ${cx} ${cy - 5}, ${cx + 3} ${cy - 8}, ${cx + 6} ${cy - 7.2} C ${cx + 4.5} ${cy - 4}, ${cx + 2.5} ${cy - 1.6}, ${cx} ${cy} Z`,
     fill: '#F0565B', transform: `rotate(${a} ${cx} ${cy})`,
   }));
-  const giro = svg('g', { class: 'ventoinha' }, pas);
-  giro.style.transformOrigin = `${cx}px ${cy}px`;
+  // Giro com a animação do próprio SVG: não depende de CSS nem das opções de animação do sistema.
+  const giro = svg('g', { class: 'ventoinha' }, [...pas, svg('animateTransform', {
+    attributeName: 'transform', type: 'rotate', from: `0 ${cx} ${cy}`, to: `360 ${cx} ${cy}`, dur: '1.1s', repeatCount: 'indefinite',
+  })]);
   return svg('g', {}, [
     svg('circle', { cx, cy, r: 9.6, fill: '#5A1A1D', stroke: '#E0393E', 'stroke-width': 1.6 }),
     giro,

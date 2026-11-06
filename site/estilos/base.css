@@ -5,8 +5,9 @@
 }
 /* Paleta da interface (ARQ-002, seção 5.2) e camadas da tela (seção 5.3). */
 :root {
-  /* O site tem cores próprias: o modo escuro automático do navegador não deve mudá-las. */
-  color-scheme: only light;
+  /* O site declara ter modo claro e escuro (com as mesmas cores, abaixo): assim o Samsung
+     Internet e o Chrome não aplicam o escurecimento forçado deles. */
+  color-scheme: light dark;
   --papel: #FAF7F0;
   --texto: #1F2933;
   --texto-2: #52606D;
@@ -20,7 +21,6 @@
   --sombra: 0 6px 24px rgba(0, 0, 0, .28);
   --fonte: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --seguro-baixo: env(safe-area-inset-bottom, 0px);
-  color-scheme: only light;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -39,6 +39,8 @@ html, body {
 }
 
 button { font: inherit; color: inherit; }
+/* Campos de texto sempre claros, mesmo com o sistema no modo escuro. */
+input, textarea, select { color-scheme: light; background-color: #fff; color: #1F2933; }
 [hidden] { display: none !important; }
 a { color: var(--link); }
 
@@ -224,4 +226,11 @@ body.modo-foco .marca-quarto { display: none; }
   .nome-parede { min-width: 0; font-size: 13px; padding: 6px 10px; }
   .seta { width: 52px; height: 52px; }
   .texto-passeio { top: 66px; }
+}
+
+/* "Modo escuro" do site: as mesmas cores do modo claro. Existe só para o navegador
+   não escurecer o quarto por conta própria (o quarto tem cores reais). */
+@media (prefers-color-scheme: dark) {
+  html, body { background: var(--fundo); color: var(--texto); }
+  a { color: var(--link); }
 }

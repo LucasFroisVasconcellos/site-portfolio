@@ -318,7 +318,10 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
     espiar(item) { return moverCamera({ tipo: 'espiada', item }); },
     paredeInteira(animar = true) { return moverCamera({ tipo: 'parede' }, animar); },
     luz,
-    ventoinhas(ligadas) { objetos?.classList.toggle('pc-ligado', ligadas); },
+    ventoinhas(ligadas) {
+      objetos?.classList.toggle('pc-ligado', ligadas);
+      if (ligadas) objetos?.unpauseAnimations?.(); else objetos?.pauseAnimations?.();
+    },
     escreverPostits(i18n) { return escreverPostits(objetos, i18n); },
     repulsar() { mostrarSo(atual); },
     posicaoNaTela,
