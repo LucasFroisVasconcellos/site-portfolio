@@ -1,17 +1,17 @@
 # Graph Report - site-portfolio  (2026-11-06)
 
 ## Corpus Check
-- 47 files · ~25,423 words
+- 47 files · ~25,487 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 13 file(s) not represented in the graph (top: .css 6, (none) 4, .woff2 2)
 
 ## Summary
-- 347 nodes · 828 edges · 16 communities (15 shown, 1 thin omitted)
+- 347 nodes · 829 edges · 16 communities (15 shown, 1 thin omitted)
 - Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 30 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b09ddb62`
+- Built from commit: `13c49987`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -110,7 +110,7 @@ Cohesion: 0.31
 Nodes (4): achar_original(), main(), preparar(), salvar_sem_metadados()
 
 ### Community 13 - "objetos.js"
-Cohesion: 0.36
+Cohesion: 0.37
 Nodes (13): criarObjetos(), escreverPostits(), gabinete(), larguraTexto(), monitor(), notebook(), poli(), postit() (+5 more)
 
 ### Community 14 - "rodar.mjs"
