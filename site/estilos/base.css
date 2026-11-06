@@ -181,6 +181,8 @@ body.modo-foco .marca-quarto { display: none; }
 }
 @keyframes apontar { 50% { margin-top: -10px; } }
 .aviso-gire { top: 50%; transform: translate(-50%, -50%); gap: 8px; }
+.aviso-escuro { top: 50%; transform: translate(-50%, -50%); gap: 8px; z-index: 95; font-family: var(--fonte-ui); }
+.aviso-escuro-dica { font-size: 14px; opacity: .85; }
 .icone-gire {
   width: 34px; height: 56px; border: 3px solid var(--texto); border-radius: 7px;
   animation: girar 2s ease-in-out infinite;

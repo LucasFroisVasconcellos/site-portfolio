@@ -313,6 +313,22 @@ await caso('LADO', 'mesa vista de lado: espelho ao vivo das telas, post-its, lig
   assert.equal(new Set(rotulos).size, rotulos.length, rotulos.join(' | '));
 });
 
+await caso('ESCURO', 'Samsung Internet no tema escuro: aviso com "Abrir no Chrome", fecha e não volta', async (p) => {
+  await abrirPulando(p);
+  assert.equal(await p.isVisible('#aviso-escuro'), true);
+  assert.equal(await p.textContent('#btn-abrir-chrome'), 'Abrir no Chrome');
+  await p.click('#btn-fechar-escuro');
+  assert.equal(await p.isVisible('#aviso-escuro'), false);
+  await p.reload();
+  await p.waitForFunction(() => !document.getElementById('controles').hidden);
+  assert.equal(await p.isVisible('#aviso-escuro'), false); // lembrado
+}, { contexto: { userAgent: 'Mozilla/5.0 (Linux; Android 14; SM-N970F) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/27.0 Chrome/125.0.0.0 Mobile Safari/537.36', colorScheme: 'dark' } });
+
+await caso('ESCURO-2', 'sem aviso no Chrome com tema escuro nem no Samsung com tema claro', async (p) => {
+  await abrirPulando(p);
+  assert.equal(await p.isVisible('#aviso-escuro'), false);
+}, { contexto: { colorScheme: 'dark' } });
+
 await caso('RF-32', 'idioma troca sem recarregar e sem fechar janelas; escolha lembrada', async (p) => {
   await abrirPulando(p);
   await p.click('[data-item=monitor]', { force: true });

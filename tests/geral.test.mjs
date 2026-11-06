@@ -213,3 +213,25 @@ test('SEO: dados estruturados válidos e páginas em texto com h1 e canonical', 
   }
   assert.match(readFileSync(join(SITE, 'robots.txt'), 'utf8'), /Sitemap: https:\/\/lucasfrois\.pages\.dev\/sitemap\.xml/);
 });
+
+test('Post-its de lado: áreas de clique batem com a perspectiva calculada', async () => {
+  const { pontoNaLateral } = await import('../site/js/lateral.js');
+  const { POSTITS } = await import('../site/js/objetos.js');
+  for (const p of POSTITS) {
+    const cantos = [[p.x, p.y], [p.x + 14.5, p.y], [p.x + 14.5, p.y + 14.5], [p.x, p.y + 14.5]].map(([x, y]) => pontoNaLateral(x, y));
+    const xs = cantos.map((c) => c[0]); const ys = cantos.map((c) => c[1]);
+    const a = ITENS.find((i) => i.id === `postit-${p.n}-lado`).area;
+    assert.ok(Math.abs(a.x - (Math.min(...xs) - 0.5)) < 0.15 && Math.abs(a.y - (Math.min(...ys) - 0.5)) < 0.15, `postit ${p.n}`);
+    assert.ok(Math.abs(a.x + a.w - (Math.max(...xs) + 0.5)) < 0.15 && Math.abs(a.y + a.h - (Math.max(...ys) + 0.5)) < 0.15, `postit ${p.n}`);
+  }
+});
+
+test('Aviso de modo escuro: só no Samsung Internet com tema escuro', async () => {
+  const { samsungComTemaEscuro, enderecoNoChrome } = await import('../site/js/app/aviso-escuro.js');
+  const escuro = () => ({ matches: true }); const claro = () => ({ matches: false });
+  const samsung = 'Mozilla/5.0 (Linux; Android 14) SamsungBrowser/27.0 Chrome/125.0 Mobile Safari/537.36';
+  assert.equal(samsungComTemaEscuro(samsung, escuro), true);
+  assert.equal(samsungComTemaEscuro(samsung, claro), false);
+  assert.equal(samsungComTemaEscuro('Mozilla/5.0 (Linux; Android 14) Chrome/125.0 Mobile Safari/537.36', escuro), false);
+  assert.equal(enderecoNoChrome({ host: 'lucasfrois.pages.dev', pathname: '/' }), 'intent://lucasfrois.pages.dev/#Intent;scheme=https;package=com.android.chrome;end');
+});

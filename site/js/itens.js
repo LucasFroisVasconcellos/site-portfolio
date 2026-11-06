@@ -77,22 +77,22 @@ export const ITENS = Object.freeze([
   // (monitor e notebook: vira para a parede do PC e abre; gabinete: liga e desliga ali mesmo).
   // Ficam fora da região essencial: no celular estreito podem ficar fora da tela.
   // Post-its de lado: caixas dos post-its da frente levadas à lateral pela perspectiva do monitor
-  // (lateral.js, pontoNaLateral).
+  // e recuadas até a parede (lateral.js, pontoNaLateral e RECUO_PAREDE).
   {
     id: 'postit-1-lado', parede: 'direita', tipo: 'atalho', atalho: 'postit-1',
-    area: { x: 163.9, y: 251.8, w: 7.0, h: 16.8 },
+    area: { x: 117.9, y: 251.8, w: 7.0, h: 16.8 },
   },
   {
     id: 'postit-2-lado', parede: 'direita', tipo: 'atalho', atalho: 'postit-2',
-    area: { x: 171.9, y: 260.8, w: 6.8, h: 16.3 },
+    area: { x: 125.9, y: 260.8, w: 6.8, h: 16.3 },
   },
   {
     id: 'postit-3-lado', parede: 'direita', tipo: 'atalho', atalho: 'postit-3',
-    area: { x: 180.4, y: 250.0, w: 6.5, h: 16.1 },
+    area: { x: 134.4, y: 250.0, w: 6.5, h: 16.1 },
   },
   {
     id: 'postit-4-lado', parede: 'direita', tipo: 'atalho', atalho: 'postit-4',
-    area: { x: 189.5, y: 259.3, w: 6.2, h: 15.6 },
+    area: { x: 143.5, y: 259.3, w: 6.2, h: 15.6 },
   },
   {
     id: 'monitor-lado', parede: 'direita', tipo: 'atalho', atalho: 'monitor',

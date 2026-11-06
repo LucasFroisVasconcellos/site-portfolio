@@ -1,23 +1,22 @@
 # Graph Report - site-portfolio  (2026-11-06)
 
 ## Corpus Check
-- 48 files · ~27,511 words
+- 49 files · ~28,067 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 13 file(s) not represented in the graph (top: .css 6, (none) 4, .woff2 2)
 
 ## Summary
-- 369 nodes · 889 edges · 18 communities (17 shown, 1 thin omitted)
+- 374 nodes · 904 edges · 16 communities (15 shown, 1 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 31 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `9ff9a833`
+- Built from commit: `f106cf7a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - Geometria e enquadramento
-- Notebook e DOM
 - Cliente GitHub e cache
 - instalarModos
 - instantaneo.mjs
@@ -32,7 +31,6 @@
 - rodar.mjs
 - servidor.mjs
 - objetos.js
-- instalarMenu
 
 ## God Nodes (most connected - your core abstractions)
 1. `criarQuarto()` - 38 edges
@@ -55,49 +53,45 @@
   tests/github.test.mjs → site/js/armazenamento.js
 - `cliente()` --calls--> `criarClienteGitHub()`  [EXTRACTED]
   tests/github.test.mjs → site/js/github/cliente.js
-- `instalarBlecaute()` --calls--> `itemPorId()`  [EXTRACTED]
-  site/js/app/blecaute-app.js → site/js/itens.js
+- `montarApp()` --calls--> `instalarBlecaute()`  [EXTRACTED]
+  site/js/main.js → site/js/app/blecaute-app.js
 
 ## Import Cycles
 - None detected.
 
-## Communities (18 total, 1 thin omitted)
+## Communities (16 total, 1 thin omitted)
 
 ### Community 0 - "Geometria e enquadramento"
 Cohesion: 0.11
-Nodes (38): caixaDoQuad(), enquadrarEspiada(), enquadrarFoco(), enquadrarParede(), matrix3dCSS(), matrizTela(), transformCSS(), indiceParede() (+30 more)
-
-### Community 1 - "Notebook e DOM"
-Cohesion: 0.26
-Nodes (20): icone(), criarSistema(), abrir(), alternarMenu(), aplicarResolucao(), arrastar(), atualizarRelogio(), atualizarTarefas() (+12 more)
+Nodes (38): caixaDoQuad(), enquadrarEspiada(), enquadrarFoco(), enquadrarParede(), matrix3dCSS(), matrizTela(), transformCSS(), itensDaParede() (+30 more)
 
 ### Community 2 - "Cliente GitHub e cache"
 Cohesion: 0.14
 Nodes (30): criarArmazenamento(), VERSAO_ARMAZENAMENTO, criarClienteGitHub(), atualizarAgora(), chamar(), lerCache(), reserva(), rodada() (+22 more)
 
 ### Community 3 - "instalarModos"
-Cohesion: 0.31
-Nodes (9): instalarModos(), atualizarAvisoGire(), atualizarNomeParede(), definirModo(), focar(), girar(), precisaGirar(), voltar() (+1 more)
+Cohesion: 0.36
+Nodes (8): instalarModos(), atualizarAvisoGire(), atualizarNomeParede(), definirModo(), focar(), girar(), precisaGirar(), voltar()
 
 ### Community 4 - "instantaneo.mjs"
 Cohesion: 0.20
 Nodes (4): cliente, DESTINO, MUTANTES, RAIZ
 
 ### Community 5 - "Links seguros e WhatsApp"
-Cohesion: 0.13
-Nodes (38): CONFIG, botao(), el(), tempoRelativo(), abrirExterno(), analisar(), criarLink(), destinoPermitido() (+30 more)
+Cohesion: 0.09
+Nodes (60): CONFIG, botao(), el(), icone(), tempoRelativo(), abrirExterno(), analisar(), criarLink() (+52 more)
 
 ### Community 6 - "main.js"
 Cohesion: 0.08
-Nodes (35): ARQUIVOS, carregarJSON(), mostrarErroCarregamento(), progresso(), criarContadorFps(), instalarIdioma(), instalarPasseio(), instalarTelas() (+27 more)
+Nodes (37): enderecoNoChrome(), instalarAvisoEscuro(), samsungComTemaEscuro(), ARQUIVOS, carregarJSON(), mostrarErroCarregamento(), progresso(), criarContadorFps() (+29 more)
 
 ### Community 7 - "Verificação do build"
 Cohesion: 0.10
 Nodes (19): achados, arquivos, cab, comMeta, faltando, gz, leves, PADROES (+11 more)
 
 ### Community 8 - "Energia e blecaute"
-Cohesion: 0.14
-Nodes (17): instalarBlecaute(), agendarBlecaute(), atualizarSetaLigue(), condicoesBlecaute(), entrada(), executarBlecaute(), mostrarLigue(), reavaliarBlecaute() (+9 more)
+Cohesion: 0.11
+Nodes (23): instalarBlecaute(), agendarBlecaute(), atualizarSetaLigue(), condicoesBlecaute(), entrada(), executarBlecaute(), mostrarLigue(), reavaliarBlecaute() (+15 more)
 
 ### Community 9 - "package.json"
 Cohesion: 0.13
@@ -127,10 +121,6 @@ Nodes (3): PORTA, RAIZ, TIPOS
 Cohesion: 0.25
 Nodes (20): criarObjetos(), criarPostitsSvg(), ELIPSE_LADO, escreverPostits(), filtroSombra(), gabinete(), gabineteLado(), larguraTexto() (+12 more)
 
-### Community 17 - "instalarMenu"
-Cohesion: 0.70
-Nodes (5): instalarMenu(), abrirMenu(), fecharMenu(), irParaItem(), montarMenu()
-
 ## Knowledge Gaps
 - **1 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -138,16 +128,16 @@ Nodes (5): instalarMenu(), abrirMenu(), fecharMenu(), irParaItem(), montarMenu()
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `criarQuarto()` connect `Geometria e enquadramento` to `objetos.js`, `main.js`?**
-  _High betweenness centrality (0.122) - this node is a cross-community bridge._
+  _High betweenness centrality (0.112) - this node is a cross-community bridge._
 - **Are the 8 inferred relationships involving `criarQuarto()` (e.g. with `carregarImagens()` and `encaixarTela()`) actually correct?**
   _`criarQuarto()` has 8 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Geometria e enquadramento` be split into smaller, more focused modules?**
-  _Cohesion score 0.10808080808080808 - nodes in this community are weakly interconnected._
-- **Why does `criarSistema()` connect `Notebook e DOM` to `Links seguros e WhatsApp`, `main.js`?**
-  _High betweenness centrality (0.068) - this node is a cross-community bridge._
+  _Cohesion score 0.10606060606060606 - nodes in this community are weakly interconnected._
+- **Why does `criarSistema()` connect `Links seguros e WhatsApp` to `main.js`?**
+  _High betweenness centrality (0.067) - this node is a cross-community bridge._
 - **Are the 4 inferred relationships involving `criarSistema()` (e.g. with `abrir()` and `fechar()`) actually correct?**
   _`criarSistema()` has 4 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Cliente GitHub e cache` be split into smaller, more focused modules?**
   _Cohesion score 0.1380952380952381 - nodes in this community are weakly interconnected._
-- **Why does `instalarTelas()` connect `main.js` to `Notebook e DOM`, `Cliente GitHub e cache`, `Links seguros e WhatsApp`, `Energia e blecaute`, `Medalhas 3D`?**
-  _High betweenness centrality (0.065) - this node is a cross-community bridge._
+- **Why does `instalarTelas()` connect `main.js` to `Energia e blecaute`, `Cliente GitHub e cache`, `Medalhas 3D`, `Links seguros e WhatsApp`?**
+  _High betweenness centrality (0.062) - this node is a cross-community bridge._

@@ -12,11 +12,16 @@ export const QUAD_NOTEBOOK_LADO = [[127.3, 342], [139, 338.8], [149.4, 371], [13
 // Tela do monitor na frente (telaQuad do item monitor): base para levar os post-its à lateral.
 const MONITOR_FRENTE = { x: 454, y: 314, w: 91, h: 54 };
 
-// Ponto da parede da frente → ponto da lateral, pela perspectiva do monitor (os post-its estão
-// no mesmo plano, logo acima dele).
+// Ponto da parede da frente → ponto da lateral. A tela do monitor é paralela à parede da mesa,
+// então a perspectiva é a mesma (homografia monitor da frente → monitor de lado). A parede fica
+// atrás do monitor: na vista lateral a câmera olha para a parede do guarda-roupa, e "para trás"
+// (em direção à parede da mesa) é um deslocamento só para a esquerda na imagem, sem mudar o
+// tamanho. RECUO_PAREDE é esse deslocamento, em unidades da parede.
+export const RECUO_PAREDE = 46;
 const { aplicar: frenteParaLado } = matrizTela(MONITOR_FRENTE.w, MONITOR_FRENTE.h, QUAD_MONITOR_LADO);
 export function pontoNaLateral(x, y) {
-  return frenteParaLado(x - MONITOR_FRENTE.x, y - MONITOR_FRENTE.y);
+  const [X, Y] = frenteParaLado(x - MONITOR_FRENTE.x, y - MONITOR_FRENTE.y);
+  return [X - RECUO_PAREDE, Y];
 }
 
 function caixa(classe) {

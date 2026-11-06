@@ -147,5 +147,10 @@
   "dica.postit": "click to read",
   "dica.quadro": "handball photos",
   "dica.medalhas": "my medals in 3D",
-  "ig.soNoApp": "see on Instagram"
+  "ig.soNoApp": "see on Instagram",
+  "aviso.escuro": "Colors darkened by the browser",
+  "aviso.escuro.texto": "Samsung Internet darkens websites in dark theme, and the site can't turn that off.",
+  "aviso.escuro.chrome": "Open in Chrome",
+  "aviso.escuro.dica": "Or in Samsung Internet: Settings → Labs → Use website dark theme.",
+  "aviso.escuro.fechar": "Keep it this way"
 }

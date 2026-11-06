@@ -46,16 +46,17 @@
   </script>
   <link rel="icon" href="img/icones/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="img/paredes/frente-leve-v3.webp" as="image">
-  <link rel="stylesheet" href="estilos/base.css?v=15">
-  <link rel="stylesheet" href="estilos/quarto.css?v=15">
-  <link rel="stylesheet" href="estilos/pc.css?v=15">
-  <link rel="stylesheet" href="estilos/notebook.css?v=15">
-  <link rel="stylesheet" href="estilos/parede.css?v=15">
+  <link rel="stylesheet" href="estilos/base.css?v=17">
+  <link rel="stylesheet" href="estilos/quarto.css?v=17">
+  <link rel="stylesheet" href="estilos/pc.css?v=17">
+  <link rel="stylesheet" href="estilos/notebook.css?v=17">
+  <link rel="stylesheet" href="estilos/parede.css?v=17">
   <!-- Pré-carrega toda a árvore de módulos de uma vez, sem cascata (auditoria de 17/10/2026). -->
   <link rel="modulepreload" href="js/main.js">
   <link rel="modulepreload" href="js/config.js">
   <link rel="modulepreload" href="js/itens.js">
   <link rel="modulepreload" href="js/lateral.js">
+  <link rel="modulepreload" href="js/app/aviso-escuro.js">
   <link rel="modulepreload" href="js/armazenamento.js">
   <link rel="modulepreload" href="js/i18n.js">
   <link rel="modulepreload" href="js/medicao.js">
@@ -154,6 +155,13 @@
       <strong data-i18n="aviso.gire">Gire o celular</strong>
       <span data-i18n="aviso.gire.texto">A tela fica maior com o celular deitado.</span>
       <button id="btn-continuar-pe" class="ctrl" type="button" data-i18n="aviso.gire.continuar">Continuar em pé</button>
+    </div>
+    <div id="aviso-escuro" class="aviso aviso-escuro" role="dialog" aria-modal="false" aria-labelledby="aviso-escuro-titulo" hidden>
+      <strong id="aviso-escuro-titulo" data-i18n="aviso.escuro">Cores escurecidas pelo navegador</strong>
+      <span data-i18n="aviso.escuro.texto">O Samsung Internet escurece os sites no tema escuro, e o site não consegue desligar isso.</span>
+      <button id="btn-abrir-chrome" class="ctrl ctrl-principal" type="button" data-i18n="aviso.escuro.chrome">Abrir no Chrome</button>
+      <span class="aviso-escuro-dica" data-i18n="aviso.escuro.dica">Ou no Samsung Internet: Configurações → Labs → Usar tema escuro do site.</span>
+      <button id="btn-fechar-escuro" class="ctrl" type="button" data-i18n="aviso.escuro.fechar">Continuar assim</button>
     </div>
     <div id="fps" class="fps" hidden></div>
   </div>

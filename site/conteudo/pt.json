@@ -147,5 +147,10 @@
   "dica.postit": "clique para ler",
   "dica.quadro": "fotos do handebol",
   "dica.medalhas": "minhas medalhas em 3D",
-  "ig.soNoApp": "ver no Instagram"
+  "ig.soNoApp": "ver no Instagram",
+  "aviso.escuro": "Cores escurecidas pelo navegador",
+  "aviso.escuro.texto": "O Samsung Internet escurece os sites no tema escuro, e o site não consegue desligar isso.",
+  "aviso.escuro.chrome": "Abrir no Chrome",
+  "aviso.escuro.dica": "Ou no Samsung Internet: Configurações → Labs → Usar tema escuro do site.",
+  "aviso.escuro.fechar": "Continuar assim"
 }

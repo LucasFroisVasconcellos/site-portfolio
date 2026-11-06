@@ -18,6 +18,7 @@ import { instalarPasseio } from './app/passeio-app.js';
 import { instalarBlecaute } from './app/blecaute-app.js';
 import { instalarTecladoEGestos } from './app/teclado-gestos.js';
 import { instalarIdioma } from './app/idioma.js';
+import { instalarAvisoEscuro } from './app/aviso-escuro.js';
 import { criarContadorFps } from './app/fps.js';
 
 const $ = (id) => document.getElementById(id);
@@ -104,6 +105,7 @@ function montarApp({ conteudo, i18n, medicao, quarto }) {
   ctx.alternarFps = criarContadorFps($('fps'));
   instalarTecladoEGestos(ctx);
   instalarIdioma(ctx);
+  instalarAvisoEscuro(ctx);
 
   return {
     comecar: () => comecar(ctx),
@@ -122,6 +124,7 @@ function comecar(ctx) {
   ctx.atualizarNomeParede();
   quarto.enquadrar(false);
   $('controles').hidden = false;
+  ctx.mostrarAvisoEscuro();
   const carregamento = $('carregamento');
   carregamento.classList.add('saindo');
   setTimeout(() => { carregamento.hidden = true; }, 450);
