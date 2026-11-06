@@ -9,6 +9,7 @@ import { criarArmazenamento } from './armazenamento.js';
 import { criarI18n, idiomaInicial, aplicarTextos, IDIOMAS } from './i18n.js';
 import { criarMedicao } from './medicao.js';
 import { criarQuarto } from './quarto.js';
+import { ITENS } from './itens.js';
 import { ARQUIVOS, carregarJSON, progresso, mostrarErroCarregamento } from './app/carregamento.js';
 import { instalarTelas } from './app/telas.js';
 import { instalarModos } from './app/modos.js';
@@ -108,6 +109,8 @@ function montarApp({ conteudo, i18n, medicao, quarto }) {
     comecar: () => comecar(ctx),
     clicarItem: (item) => {
       if (ctx.estado.emBlecaute && item.tipo === 'energia') return; // Regra 3: botão não responde.
+      // Atalho da lateral: monitor e notebook viram para a parede do PC e abrem (como no "Ir para").
+      if (item.tipo === 'atalho') { ctx.irParaItem(ITENS.find((i) => i.id === item.atalho)); return; }
       ctx.focar(item);
     },
   };

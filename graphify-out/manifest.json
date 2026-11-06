@@ -96,9 +96,9 @@
     "semantic_hash": "1fbe4ecba66432dae8eb9e772fe277fa"
   },
   "site/js/itens.js": {
-    "mtime": 1793941092.9883683,
-    "seen": 1793941164.4448967,
-    "ast_hash": "82dcc90fe8b77874f255d3f5dd69238b",
+    "mtime": 1793941696.7941206,
+    "seen": 1793942171.0762837,
+    "ast_hash": "f7275ca659abac76500dad65dca33bcf",
     "semantic_hash": ""
   },
   "site/js/links.js": {
@@ -108,9 +108,9 @@
     "semantic_hash": "c15ef5196b3b18164ebd52aa55fd94e5"
   },
   "site/js/main.js": {
-    "mtime": 1793928700.5287008,
-    "seen": 1793931687.7130418,
-    "ast_hash": "1b58ad459812b3948deea978b238679e",
+    "mtime": 1793941696.7943325,
+    "seen": 1793942171.0762885,
+    "ast_hash": "aaa936bee1156046ffd73d6022071efa",
     "semantic_hash": ""
   },
   "site/js/medicao.js": {
@@ -162,9 +162,9 @@
     "semantic_hash": "4e140d875db63dcf45a8d0a89151a89b"
   },
   "site/js/quarto.js": {
-    "mtime": 1793939208.0849726,
-    "seen": 1793939293.7455075,
-    "ast_hash": "bfa4bfe9838f4071505c152d86228e09",
+    "mtime": 1793942070.0850883,
+    "seen": 1793942171.076307,
+    "ast_hash": "a798f91a1defcdafe3910e1d48fad522",
     "semantic_hash": ""
   },
   "site/js/sem-suporte.js": {
@@ -186,9 +186,9 @@
     "semantic_hash": "7117b1739d20394c38328fa2c4e3042f"
   },
   "tests/e2e/rodar.mjs": {
-    "mtime": 1793941060.5322795,
-    "seen": 1793941164.4449134,
-    "ast_hash": "a88dc376047c581a121f21bc64424072",
+    "mtime": 1793942070.0865288,
+    "seen": 1793942171.076314,
+    "ast_hash": "3ce2f48afc07f53ee0d7fc75fb1ebc86",
     "semantic_hash": ""
   },
   "tests/energia.test.mjs": {
@@ -198,9 +198,9 @@
     "semantic_hash": "e35de9defa0361a3cc0ea1d1d1e75636"
   },
   "tests/geral.test.mjs": {
-    "mtime": 1793938306.2590294,
-    "seen": 1793939015.9722064,
-    "ast_hash": "24f46865673ec29c3e3d6f7590dd0c91",
+    "mtime": 1793941696.7948992,
+    "seen": 1793942171.0763164,
+    "ast_hash": "e918825333dc88d39dfe3637d729501f",
     "semantic_hash": ""
   },
   "tests/github.test.mjs": {
@@ -246,9 +246,9 @@
     "semantic_hash": ""
   },
   "site/js/app/menu.js": {
-    "mtime": 1793928700.5287008,
-    "seen": 1793931687.7130203,
-    "ast_hash": "9ffbd8da2db7fee68f717b1b8bb14724",
+    "mtime": 1793941696.7945118,
+    "seen": 1793942171.076257,
+    "ast_hash": "448425a7a5ee4ed335c76722cb420228",
     "semantic_hash": ""
   },
   "site/js/app/modos.js": {
@@ -270,15 +270,21 @@
     "semantic_hash": ""
   },
   "site/js/app/telas.js": {
-    "mtime": 1793932877.1424205,
-    "seen": 1793932971.5088797,
-    "ast_hash": "dc64e6bbd556c929a3e5cab891cd8a8d",
+    "mtime": 1793942070.085964,
+    "seen": 1793942171.076267,
+    "ast_hash": "59e95facddd4a9d500b7ee707fa5d75a",
     "semantic_hash": ""
   },
   "site/js/objetos.js": {
-    "mtime": 1793941087.7190537,
-    "seen": 1793941164.4449027,
-    "ast_hash": "a382ee292e32aa21c983ff1ebb05c828",
+    "mtime": 1793941682.85288,
+    "seen": 1793942171.0762944,
+    "ast_hash": "b030001a6f1cb87aa05582c67cda7c76",
+    "semantic_hash": ""
+  },
+  "site/js/lateral.js": {
+    "mtime": 1793942070.085672,
+    "seen": 1793942171.0762854,
+    "ast_hash": "0a57fb4b63e9b2d82e460ea20615f093",
     "semantic_hash": ""
   }
 }

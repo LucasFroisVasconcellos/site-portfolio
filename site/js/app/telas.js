@@ -50,6 +50,7 @@ export function instalarTelas(ctx) {
   aoMudarEnergia = ({ estado, motivo }) => {
     sistema.mostrarEstado(estado);
     quarto.ventoinhas(estado === 'ligado' || estado === 'iniciando');
+    quarto.estadoPc(estado);
     if (estado === 'desligado') cliente.cancelarTudo();
     if (estado === 'iniciando') { medicao.evento('pc-ligar'); ctx.esconderLigue(); }
     if (estado === 'desligando' || (estado === 'desligado' && motivo === 'blecaute')) medicao.evento(motivo === 'blecaute' ? 'blecaute' : 'pc-desligar');

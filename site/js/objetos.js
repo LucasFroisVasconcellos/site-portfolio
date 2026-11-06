@@ -143,8 +143,36 @@ function gabinete() {
   ]);
 }
 
+// Ventoinhas vistas de lado, atrás do vidro do gabinete (parede do guarda-roupa).
+// Centros e tamanhos medidos pelos pixels vermelhos da ilustração direita-nitido-v2: cada
+// ventoinha é a da frente achatada na perspectiva (elipse 5 × 11,2) e cortada pela moldura.
+const RAIO_VENTOINHA = 10.4; // anel de 9,6 + metade da borda
+export const VENTOINHAS_LADO = [
+  { cx: 207.2, cy: 438.2 }, { cx: 207.2, cy: 464.6 }, { cx: 207.2, cy: 490.2 },
+];
+const ELIPSE_LADO = { rx: 5, ry: 11.2 };
+export const VIDRO_LADO = { x: 205.4, y: 392, w: 20, h: 118 };
+
+function ventoinhaLado({ cx, cy }) {
+  const sx = ELIPSE_LADO.rx / RAIO_VENTOINHA;
+  const sy = ELIPSE_LADO.ry / RAIO_VENTOINHA;
+  return svg('g', { transform: `translate(${cx} ${cy}) scale(${sx.toFixed(4)} ${sy.toFixed(4)})` }, [ventoinha(0, 0)]);
+}
+
+function gabineteLado() {
+  return svg('g', { class: 'obj-gabinete-lado', 'clip-path': 'url(#vidro-lado)' }, [
+    svg('g', { class: 'ventoinhas' }, VENTOINHAS_LADO.map(ventoinhaLado)),
+  ]);
+}
+
 // Paredes que têm objetos em código. Devolve a camada pronta ou null.
 export function criarObjetos(paredeId) {
+  if (paredeId === 'direita') {
+    const defs = svg('defs', {}, [
+      svg('clipPath', { id: 'vidro-lado' }, [ret(VIDRO_LADO.x, VIDRO_LADO.y, VIDRO_LADO.w, VIDRO_LADO.h, '#000')]),
+    ]);
+    return svg('svg', { class: 'objetos objetos-lado pc-ligado', viewBox: '0 0 1024 572', 'aria-hidden': 'true', focusable: 'false' }, [defs, gabineteLado()]);
+  }
   if (paredeId !== 'frente') return null;
   const defs = svg('defs', {}, [
     svg('filter', { id: 'sombra-postit', x: '-20%', y: '-20%', width: '140%', height: '160%' }, [svg('feGaussianBlur', { stdDeviation: 0.55 })]),

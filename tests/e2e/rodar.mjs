@@ -253,6 +253,43 @@ await caso('RF-05/IG/LI', 'notebook centralizado no foco; Instagram e LinkedIn c
   await p.waitForFunction(() => document.querySelector('.li-rolagem').scrollTop > 0, null, { timeout: 2000 });
 });
 
+await caso('LADO', 'mesa vista de lado: telas em perspectiva, ventoinhas, liga/desliga e cliques como na frente', async (p) => {
+  await abrirPulando(p);
+  await p.keyboard.press('ArrowRight');
+  await esperarGiro(p);
+  assert.equal(await paredeAtual(p), 'Parede do guarda-roupa');
+  // Telas encaixadas nos cantos medidos do desenho lateral.
+  const cantos = await p.evaluate(() => {
+    const pc = document.querySelector('.lado-pc').getBoundingClientRect();
+    const parede = document.querySelector('.giro:not([data-oculta]) .parede').getBoundingClientRect();
+    const s = parede.width / 1024;
+    return [(pc.left - parede.left) / s, (pc.top - parede.top) / s, (pc.right - parede.left) / s, (pc.bottom - parede.top) / s];
+  });
+  [164.6, 293.4, 199.4, 352.4].forEach((v, i) => assert.ok(Math.abs(cantos[i] - v) < 0.6, `canto ${i}: ${cantos[i]} ≠ ${v}`));
+  assert.equal(await p.evaluate(() => document.querySelector('.telas-laterais').dataset.estado), 'ligado');
+  assert.equal(await p.locator('.objetos-lado .ventoinha').count(), 3);
+  // Botão de ligar no gabinete de lado: desliga ali mesmo e a frente acompanha.
+  await p.click('[data-item=energia-lado]', { force: true });
+  await p.waitForFunction(() => document.querySelector('.telas-laterais').dataset.estado === 'desligando', null, { timeout: 8000 });
+  assert.equal(await p.evaluate(() => document.querySelector('.objetos:not(.objetos-lado)').classList.contains('pc-ligado')), false);
+  assert.equal(await paredeAtual(p), 'Parede do guarda-roupa');
+  await p.waitForFunction(() => !document.querySelector('.pc-desligado').hidden, null, { timeout: 10000 }); // espera terminar de desligar
+  await p.click('[data-item=energia-lado]', { force: true });
+  await p.waitForFunction(() => document.querySelector('.telas-laterais').dataset.estado === 'iniciando', null, { timeout: 3000 });
+  await p.waitForFunction(() => document.querySelector('.telas-laterais').dataset.estado === 'ligado', null, { timeout: 8000 });
+  assert.equal(await p.evaluate(() => document.querySelector('.objetos-lado').classList.contains('pc-ligado')), true);
+  // Notebook de lado: vira para a parede do PC e abre o notebook.
+  await p.click('[data-item=notebook-lado]', { force: true });
+  await p.waitForFunction(() => document.body.classList.contains('modo-foco'), null, { timeout: 5000 });
+  assert.equal(await paredeAtual(p), 'Parede do PC');
+  assert.ok(await p.locator('.tela-slot[data-tela=notebook].interativa').count() === 1);
+  // O menu "Ir para" não lista os atalhos da lateral.
+  await p.click('#btn-irpara');
+  const rotulos = await p.evaluate(() => [...document.querySelectorAll('#menu-irpara button')].map((b) => b.textContent));
+  assert.ok(rotulos.length > 5);
+  assert.equal(new Set(rotulos).size, rotulos.length, rotulos.join(' | '));
+});
+
 await caso('RF-32', 'idioma troca sem recarregar e sem fechar janelas; escolha lembrada', async (p) => {
   await abrirPulando(p);
   await p.click('[data-item=monitor]', { force: true });

@@ -10,7 +10,7 @@ export function instalarMenu(ctx) {
 
   function montarMenu() {
     for (const b of menu.querySelectorAll('button')) b.remove();
-    for (const item of ITENS) {
+    for (const item of ITENS.filter((i) => !i.atalho)) { // atalhos da lateral repetiriam a lista
       const rotulo = item.tipo === 'energia'
         ? i18n.t(ctx.energia.estado === 'ligado' ? 'energia.desligar' : 'energia.ligar')
         : i18n.t(`item.${item.id}`);
@@ -59,5 +59,5 @@ export function instalarMenu(ctx) {
     await ctx.focar(item);
   }
 
-  Object.assign(ctx, { montarMenu, fecharMenu, menuAberto });
+  Object.assign(ctx, { montarMenu, fecharMenu, menuAberto, irParaItem });
 }

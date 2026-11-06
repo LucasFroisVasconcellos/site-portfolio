@@ -142,7 +142,7 @@ test('Geometria: a região essencial sempre cabe na tela (RF-01), em pé e deita
       const x0 = tx + e.x * s; const y0 = ty + e.y * s;
       assert.ok(x0 >= -0.5 && y0 >= -0.5 && x0 + e.w * s <= vw + 0.5 && y0 + e.h * s <= vh + 0.5, `${parede.id} ${vw}x${vh}`);
       // E todo item clicável da parede está dentro da essencial.
-      for (const it of ITENS.filter((i) => i.parede === parede.id)) {
+      for (const it of ITENS.filter((i) => i.parede === parede.id && !i.atalho)) {
         assert.ok(it.area.x >= e.x && it.area.y >= e.y && it.area.x + it.area.w <= e.x + e.w && it.area.y + it.area.h <= e.y + e.h, it.id);
       }
     }

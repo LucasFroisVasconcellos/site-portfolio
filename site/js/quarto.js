@@ -9,6 +9,7 @@ import {
   enquadrarParede, enquadrarFoco, enquadrarEspiada, transformCSS,
   matrizTela, matrix3dCSS, caixaDoQuad,
 } from './geometria.js';
+import { criarTelasLaterais } from './lateral.js';
 import { criarObjetos, escreverPostits } from './objetos.js';
 
 const ALVO_MINIMO = 44; // RNF-12: área de toque na tela, em px.
@@ -19,7 +20,10 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
   let camera = null; // { s, tx, ty }
   let alvoCamera = { tipo: 'parede' }; // 'parede' | { tipo:'foco', item } | { tipo:'espiada', item }
   let girando = null;
-  let objetos = null; // Camada SVG com monitor, notebook e gabinete (objetos.js).
+  // Camadas SVG com ventoinhas que acompanham o PC ligado/desligado (frente e lateral).
+  const camadasPc = [];
+  let telasLaterais = null; // Telas do monitor e do notebook vistas de lado (lateral.js).
+  let objetos = null; // Camada SVG da frente (post-its, monitor, notebook, gabinete).
   const telasConfig = new Map(); // tela → { item, w, h, slot, acimaPenumbra }
   let extra = { z: 1, ex: 0, ey: 0 }; // Pinça no foco (RF-24), no espaço da tela.
 
@@ -119,7 +123,12 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
       img.height = ALTURA_PAREDE;
       el.append(img);
       const camadaObjetos = criarObjetos(def.id);
-      if (camadaObjetos) { el.append(camadaObjetos); objetos = camadaObjetos; }
+      if (camadaObjetos) {
+        el.append(camadaObjetos); camadasPc.push(camadaObjetos);
+        if (def.id === 'frente') objetos = camadaObjetos;
+      }
+      const telasLado = criarTelasLaterais(def.id);
+      if (telasLado) { el.append(telasLado); telasLaterais = telasLado; }
       if (def.provisoria) {
         const aviso = document.createElement('p');
         aviso.className = 'aviso-provisoria';
@@ -135,7 +144,8 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
         b.type = 'button';
         b.className = 'item';
         b.dataset.item = item.id;
-        b.dataset.i18nAria = item.tipo === 'energia' ? 'item.energia' : `item.${item.id}`;
+        const ref = item.atalho ?? item.id; // atalho da lateral: mesmo nome do objeto da frente
+        b.dataset.i18nAria = item.tipo === 'energia' ? 'item.energia' : `item.${ref}`;
         Object.assign(b.style, {
           left: `${item.area.x}px`, top: `${item.area.y}px`, width: `${item.area.w}px`, height: `${item.area.h}px`,
         });
@@ -148,7 +158,7 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
         const titulo = document.createElement('strong');
         titulo.dataset.i18n = b.dataset.i18nAria;
         const dica = document.createElement('span');
-        dica.dataset.i18n = `dica.${item.postit ? 'postit' : item.id}`;
+        dica.dataset.i18n = `dica.${item.postit ? 'postit' : ref}`;
         bilhete.append(titulo, dica);
         b.append(alvo, bilhete);
         b.addEventListener('click', (ev) => {
@@ -340,9 +350,13 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
     paredeInteira(animar = true) { return moverCamera({ tipo: 'parede' }, animar); },
     luz,
     ventoinhas(ligadas) {
-      objetos?.classList.toggle('pc-ligado', ligadas);
-      if (ligadas) objetos?.unpauseAnimations?.(); else objetos?.pauseAnimations?.();
+      for (const c of camadasPc) {
+        c.classList.toggle('pc-ligado', ligadas);
+        if (ligadas) c.unpauseAnimations?.(); else c.pauseAnimations?.();
+      }
     },
+    // A tela do monitor vista de lado segue o mesmo estado da frente (ligado, iniciando...).
+    estadoPc(estado) { if (telasLaterais) telasLaterais.dataset.estado = estado; },
     escreverPostits(i18n) { return escreverPostits(objetos, i18n); },
     repulsar() { mostrarSo(atual); },
     posicaoNaTela,

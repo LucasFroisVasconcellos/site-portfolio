@@ -73,6 +73,21 @@ export const ITENS = Object.freeze([
     id: 'energia', parede: 'frente', tipo: 'energia',
     area: { x: 368, y: 408, w: 58, h: 96 },
   },
+  // Atalhos da parede do guarda-roupa: a mesa aparece de lado. Clicar faz o mesmo que na frente
+  // (monitor e notebook: vira para a parede do PC e abre; gabinete: liga e desliga ali mesmo).
+  // Ficam fora da região essencial: no celular estreito podem ficar fora da tela.
+  {
+    id: 'monitor-lado', parede: 'direita', tipo: 'atalho', atalho: 'monitor',
+    area: { x: 157, y: 290, w: 46, h: 70 },
+  },
+  {
+    id: 'notebook-lado', parede: 'direita', tipo: 'atalho', atalho: 'notebook',
+    area: { x: 121, y: 335, w: 32, h: 44 },
+  },
+  {
+    id: 'energia-lado', parede: 'direita', tipo: 'energia', atalho: 'energia',
+    area: { x: 201, y: 392, w: 27, h: 120 },
+  },
   {
     id: 'quadro', parede: 'tras', tipo: 'foco', evento: 'abrir-quadro', tela: 'quadro',
     area: { x: 266, y: 176, w: 254, h: 164 },
