@@ -8,13 +8,13 @@ export const ALTURA_PAREDE = 572;
 export const PAREDES = Object.freeze([
   {
     id: 'frente',
-    imagem: { leve: 'img/paredes/frente-leve.webp', nitido: 'img/paredes/frente-nitido.webp' },
+    imagem: { leve: 'img/paredes/frente-leve-v2.webp', nitido: 'img/paredes/frente-nitido-v2.webp' },
     // Região que precisa caber na tela no enquadramento da parede inteira (seção 3.8).
     essencial: { x: 300, y: 250, w: 340, h: 270 },
   },
   {
     id: 'direita',
-    imagem: { leve: 'img/paredes/direita-leve.webp', nitido: 'img/paredes/direita-nitido.webp' },
+    imagem: { leve: 'img/paredes/direita-leve-v2.webp', nitido: 'img/paredes/direita-nitido-v2.webp' },
     essencial: { x: 470, y: 120, w: 420, h: 380 },
   },
   {

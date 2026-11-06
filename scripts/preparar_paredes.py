@@ -3,6 +3,8 @@
 Uso:  python scripts/preparar_paredes.py
 Lê:   originais/<parede>.png|jpg|webp   (pasta fora do Git: fica só no seu PC)
 Grava: site/img/paredes/<parede>-nitido.webp e <parede>-leve.webp
+       (ao trocar uma imagem que já está no ar, mude o nome, ex.: -v3, porque o
+       navegador guarda as imagens por 7 dias: _headers)
 
 O script só recorta, redimensiona e converte. Não desenha nada.
 - Nítido: até 2560 px de largura (nunca amplia a imagem).
