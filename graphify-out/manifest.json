@@ -1,0 +1,218 @@
+{
+  "package.json": {
+    "mtime": 1793923496.1971712,
+    "seen": 1793923542.3285906,
+    "ast_hash": "1bdc046ae01eaff6bb4ed57f8a0e7139",
+    "semantic_hash": "1bdc046ae01eaff6bb4ed57f8a0e7139"
+  },
+  "scripts/instantaneo.mjs": {
+    "mtime": 1793923496.1971712,
+    "seen": 1793923542.3285956,
+    "ast_hash": "82d3d0c42a20ee6114ac551837936f5c",
+    "semantic_hash": "82d3d0c42a20ee6114ac551837936f5c"
+  },
+  "scripts/mutacao.mjs": {
+    "mtime": 1793923496.1976306,
+    "seen": 1793923542.3285983,
+    "ast_hash": "b92a46e0921d8c1f5da5835f618b2d4b",
+    "semantic_hash": "b92a46e0921d8c1f5da5835f618b2d4b"
+  },
+  "scripts/preparar_paredes.py": {
+    "mtime": 1793923496.1976306,
+    "seen": 1793923542.3285992,
+    "ast_hash": "ded1dc1aab5e947e86e07abcdec0b2b7",
+    "semantic_hash": "ded1dc1aab5e947e86e07abcdec0b2b7"
+  },
+  "scripts/servidor.mjs": {
+    "mtime": 1793923496.1976306,
+    "seen": 1793923542.3286006,
+    "ast_hash": "c2852fd0deee4e15b151ec6fd5089205",
+    "semantic_hash": "c2852fd0deee4e15b151ec6fd5089205"
+  },
+  "scripts/verificar-build.mjs": {
+    "mtime": 1793923496.1976306,
+    "seen": 1793923542.3286016,
+    "ast_hash": "af6419348431f041fb10e0551afadb63",
+    "semantic_hash": "af6419348431f041fb10e0551afadb63"
+  },
+  "site/github-instantaneo.json": {
+    "mtime": 1793923496.1980784,
+    "seen": 1793923542.3286026,
+    "ast_hash": "621b53d9973b2cfc4021837125dabd78",
+    "semantic_hash": "621b53d9973b2cfc4021837125dabd78"
+  },
+  "site/js/armazenamento.js": {
+    "mtime": 1793923496.198485,
+    "seen": 1793923542.3286037,
+    "ast_hash": "a9aee2ec9adbc5b919487dee634e5cd4",
+    "semantic_hash": "a9aee2ec9adbc5b919487dee634e5cd4"
+  },
+  "site/js/blecaute.js": {
+    "mtime": 1793923496.1990874,
+    "seen": 1793923542.3286045,
+    "ast_hash": "37b9a7eea7f2e431aead049a04635a2e",
+    "semantic_hash": "37b9a7eea7f2e431aead049a04635a2e"
+  },
+  "site/js/config.js": {
+    "mtime": 1793923496.1990874,
+    "seen": 1793923542.3286052,
+    "ast_hash": "c09d53623ed077568ac1639ce9b46dc5",
+    "semantic_hash": "c09d53623ed077568ac1639ce9b46dc5"
+  },
+  "site/js/dom.js": {
+    "mtime": 1793923496.1990874,
+    "seen": 1793923542.328606,
+    "ast_hash": "701ee8f6108b1e8855a97b1f2110ae53",
+    "semantic_hash": "701ee8f6108b1e8855a97b1f2110ae53"
+  },
+  "site/js/geometria.js": {
+    "mtime": 1793923496.1990874,
+    "seen": 1793923542.328607,
+    "ast_hash": "e59e65ea25326fdce6155da4b1a0c3d9",
+    "semantic_hash": "e59e65ea25326fdce6155da4b1a0c3d9"
+  },
+  "site/js/gestos.js": {
+    "mtime": 1793923496.1990874,
+    "seen": 1793923542.328608,
+    "ast_hash": "6fd0f7a9197c6a50b0e19b3156b72321",
+    "semantic_hash": "6fd0f7a9197c6a50b0e19b3156b72321"
+  },
+  "site/js/github/cliente.js": {
+    "mtime": 1793923496.1990874,
+    "seen": 1793923542.3286088,
+    "ast_hash": "0ec47271a38503028a862f39de68fda0",
+    "semantic_hash": "0ec47271a38503028a862f39de68fda0"
+  },
+  "site/js/github/validar.js": {
+    "mtime": 1793923496.1992466,
+    "seen": 1793923542.3286095,
+    "ast_hash": "eb7ab6e748e4aaee74a32cf0ffa1e5c9",
+    "semantic_hash": "eb7ab6e748e4aaee74a32cf0ffa1e5c9"
+  },
+  "site/js/i18n.js": {
+    "mtime": 1793923496.1992466,
+    "seen": 1793923542.3286104,
+    "ast_hash": "1fbe4ecba66432dae8eb9e772fe277fa",
+    "semantic_hash": "1fbe4ecba66432dae8eb9e772fe277fa"
+  },
+  "site/js/itens.js": {
+    "mtime": 1793923496.1992466,
+    "seen": 1793923542.328611,
+    "ast_hash": "d3d267276cc0074f76ff36d7ebb79a19",
+    "semantic_hash": "d3d267276cc0074f76ff36d7ebb79a19"
+  },
+  "site/js/links.js": {
+    "mtime": 1793923496.1992466,
+    "seen": 1793923542.3286119,
+    "ast_hash": "c15ef5196b3b18164ebd52aa55fd94e5",
+    "semantic_hash": "c15ef5196b3b18164ebd52aa55fd94e5"
+  },
+  "site/js/main.js": {
+    "mtime": 1793923496.1992466,
+    "seen": 1793923542.3286126,
+    "ast_hash": "adbe04eeaae479b5927d7177183e545d",
+    "semantic_hash": "adbe04eeaae479b5927d7177183e545d"
+  },
+  "site/js/medicao.js": {
+    "mtime": 1793923496.1992466,
+    "seen": 1793923542.3286133,
+    "ast_hash": "eb9e9f4572edee98bf916e924e0ab9e1",
+    "semantic_hash": "eb9e9f4572edee98bf916e924e0ab9e1"
+  },
+  "site/js/notebook/notebook.js": {
+    "mtime": 1793923496.1992466,
+    "seen": 1793923542.3286145,
+    "ast_hash": "a7f977afcf1d80389f4c83f67a9e2cdd",
+    "semantic_hash": "a7f977afcf1d80389f4c83f67a9e2cdd"
+  },
+  "site/js/parede/medalhas.js": {
+    "mtime": 1793923496.1992466,
+    "seen": 1793923542.3286152,
+    "ast_hash": "e5a545a5753d115006a2f558979e7b54",
+    "semantic_hash": "e5a545a5753d115006a2f558979e7b54"
+  },
+  "site/js/parede/parede.js": {
+    "mtime": 1793923496.1996236,
+    "seen": 1793923542.3286164,
+    "ast_hash": "e6907ab87e0f1b18cdd73684ef3f238f",
+    "semantic_hash": "e6907ab87e0f1b18cdd73684ef3f238f"
+  },
+  "site/js/passeio.js": {
+    "mtime": 1793923496.1996236,
+    "seen": 1793923542.3286173,
+    "ast_hash": "41482882ae497642ccd62519f509158d",
+    "semantic_hash": "41482882ae497642ccd62519f509158d"
+  },
+  "site/js/pc/apps.js": {
+    "mtime": 1793923496.1996236,
+    "seen": 1793923542.328618,
+    "ast_hash": "61e1e03942eecdc6fa6c63fda5301837",
+    "semantic_hash": "61e1e03942eecdc6fa6c63fda5301837"
+  },
+  "site/js/pc/energia.js": {
+    "mtime": 1793923496.1997418,
+    "seen": 1793923542.3286188,
+    "ast_hash": "4aed025fb264d20feb6dc2b4780dad1e",
+    "semantic_hash": "4aed025fb264d20feb6dc2b4780dad1e"
+  },
+  "site/js/pc/sistema.js": {
+    "mtime": 1793923496.1997418,
+    "seen": 1793923542.3286197,
+    "ast_hash": "4e140d875db63dcf45a8d0a89151a89b",
+    "semantic_hash": "4e140d875db63dcf45a8d0a89151a89b"
+  },
+  "site/js/quarto.js": {
+    "mtime": 1793923496.1997418,
+    "seen": 1793923542.3286204,
+    "ast_hash": "ffd31e43e80ee749f90a3bc506879f53",
+    "semantic_hash": "ffd31e43e80ee749f90a3bc506879f53"
+  },
+  "site/js/sem-suporte.js": {
+    "mtime": 1793923496.1997418,
+    "seen": 1793923542.3286216,
+    "ast_hash": "3cf27fa4ab383ffa86c31f2d637f0782",
+    "semantic_hash": "3cf27fa4ab383ffa86c31f2d637f0782"
+  },
+  "site/js/whatsapp.js": {
+    "mtime": 1793923496.1997418,
+    "seen": 1793923542.3286223,
+    "ast_hash": "46bd2e32e6792a5c1ccf9152d6a6139f",
+    "semantic_hash": "46bd2e32e6792a5c1ccf9152d6a6139f"
+  },
+  "tests/blecaute.test.mjs": {
+    "mtime": 1793923496.2000573,
+    "seen": 1793923542.3286233,
+    "ast_hash": "7117b1739d20394c38328fa2c4e3042f",
+    "semantic_hash": "7117b1739d20394c38328fa2c4e3042f"
+  },
+  "tests/e2e/rodar.mjs": {
+    "mtime": 1793923496.2047682,
+    "seen": 1793923542.328624,
+    "ast_hash": "51e67388e98a8f742c06c9ccd7bbd85f",
+    "semantic_hash": "51e67388e98a8f742c06c9ccd7bbd85f"
+  },
+  "tests/energia.test.mjs": {
+    "mtime": 1793923496.2047682,
+    "seen": 1793923542.328625,
+    "ast_hash": "e35de9defa0361a3cc0ea1d1d1e75636",
+    "semantic_hash": "e35de9defa0361a3cc0ea1d1d1e75636"
+  },
+  "tests/geral.test.mjs": {
+    "mtime": 1793923496.2047682,
+    "seen": 1793923542.3286257,
+    "ast_hash": "73920f44a298f516d6de2b4d7867ca22",
+    "semantic_hash": "73920f44a298f516d6de2b4d7867ca22"
+  },
+  "tests/github.test.mjs": {
+    "mtime": 1793923496.2047682,
+    "seen": 1793923542.3286266,
+    "ast_hash": "089c311402b0c18f90971a3727cfcce8",
+    "semantic_hash": "089c311402b0c18f90971a3727cfcce8"
+  },
+  "tests/whatsapp-links.test.mjs": {
+    "mtime": 1793923496.2047682,
+    "seen": 1793923542.3286273,
+    "ast_hash": "9e987563ae10b21ae19926b82ed83d5b",
+    "semantic_hash": "9e987563ae10b21ae19926b82ed83d5b"
+  }
+}

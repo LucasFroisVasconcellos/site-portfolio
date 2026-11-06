@@ -38,3 +38,17 @@ exports/
 Thumbs.db
 .vscode/
 .idea/
+# Graphify: cache e arquivos locais (o grafo em si, graph.json e GRAPH_REPORT.md, vai para o Git)
+graphify-out/cache/
+graphify-out/.graphify_*
+graphify-out/graph.html
+graphify-out/*.tmp
+
+# --- adicionado pelo auditor-seguranca ---
+.auditor/logs/
+.auditor/invasao/
+.auditor/baseline-carga.json
+.auditor/*.md
+.auditor/ultimo-resumo.*
+.auditor/ultima-invasao.json
+.auditor/*.bat

@@ -1,0 +1,4 @@
+nivel=2
+data=2026-11-05
+respostas=login:nao;dados_pessoais:nao;dinheiro:nao;usuarios:dezenas;publico:sim
+nao_aplicavel=LGPD (não coleta nem guarda dados pessoais; o WhatsApp só abre o wa.me com o texto digitado, sem enviar nada a servidor); Supabase/banco (site estático, sem banco - ver SEGURANCA.md); auth/sessão (sem login); teste de carga k6 (site estático no Cloudflare Pages, sem servidor próprio; a API do GitHub é chamada pelo navegador do visitante)
