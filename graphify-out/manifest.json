@@ -18,10 +18,10 @@
     "semantic_hash": "b92a46e0921d8c1f5da5835f618b2d4b"
   },
   "scripts/preparar_paredes.py": {
-    "mtime": 1793923496.1976306,
-    "seen": 1793923542.3285992,
-    "ast_hash": "ded1dc1aab5e947e86e07abcdec0b2b7",
-    "semantic_hash": "ded1dc1aab5e947e86e07abcdec0b2b7"
+    "mtime": 1793929825.8558998,
+    "seen": 1793931687.7130053,
+    "ast_hash": "9a8b67491be8d036aa8619154ee2d569",
+    "semantic_hash": ""
   },
   "scripts/servidor.mjs": {
     "mtime": 1793923496.1976306,
@@ -30,10 +30,10 @@
     "semantic_hash": "c2852fd0deee4e15b151ec6fd5089205"
   },
   "scripts/verificar-build.mjs": {
-    "mtime": 1793923496.1976306,
-    "seen": 1793923542.3286016,
-    "ast_hash": "af6419348431f041fb10e0551afadb63",
-    "semantic_hash": "af6419348431f041fb10e0551afadb63"
+    "mtime": 1793931502.186039,
+    "seen": 1793931687.7130096,
+    "ast_hash": "6e6f934f129b06ef0246b053d61cf9b7",
+    "semantic_hash": ""
   },
   "site/github-instantaneo.json": {
     "mtime": 1793923496.1980784,
@@ -96,10 +96,10 @@
     "semantic_hash": "1fbe4ecba66432dae8eb9e772fe277fa"
   },
   "site/js/itens.js": {
-    "mtime": 1793923496.1992466,
-    "seen": 1793923542.328611,
-    "ast_hash": "d3d267276cc0074f76ff36d7ebb79a19",
-    "semantic_hash": "d3d267276cc0074f76ff36d7ebb79a19"
+    "mtime": 1793931644.3941264,
+    "seen": 1793931687.7130392,
+    "ast_hash": "55d40ddf2d306dbcc0bdda2aea31520b",
+    "semantic_hash": ""
   },
   "site/js/links.js": {
     "mtime": 1793923496.1992466,
@@ -108,8 +108,8 @@
     "semantic_hash": "c15ef5196b3b18164ebd52aa55fd94e5"
   },
   "site/js/main.js": {
-    "mtime": 1793926835.117279,
-    "seen": 1793926895.5710468,
+    "mtime": 1793928700.5287008,
+    "seen": 1793931687.7130418,
     "ast_hash": "1b58ad459812b3948deea978b238679e",
     "semantic_hash": ""
   },
@@ -132,16 +132,16 @@
     "semantic_hash": "e5a545a5753d115006a2f558979e7b54"
   },
   "site/js/parede/parede.js": {
-    "mtime": 1793923496.1996236,
-    "seen": 1793923542.3286164,
-    "ast_hash": "e6907ab87e0f1b18cdd73684ef3f238f",
-    "semantic_hash": "e6907ab87e0f1b18cdd73684ef3f238f"
+    "mtime": 1793931464.9863708,
+    "seen": 1793931687.7130482,
+    "ast_hash": "19f914fe6898c803481bd613ec0485c4",
+    "semantic_hash": ""
   },
   "site/js/passeio.js": {
-    "mtime": 1793923496.1996236,
-    "seen": 1793923542.3286173,
-    "ast_hash": "41482882ae497642ccd62519f509158d",
-    "semantic_hash": "41482882ae497642ccd62519f509158d"
+    "mtime": 1793931464.9858804,
+    "seen": 1793931687.7130494,
+    "ast_hash": "6d4ae8cd99eb3009f8f5fd616ae2fec9",
+    "semantic_hash": ""
   },
   "site/js/pc/apps.js": {
     "mtime": 1793923496.1996236,
@@ -162,10 +162,10 @@
     "semantic_hash": "4e140d875db63dcf45a8d0a89151a89b"
   },
   "site/js/quarto.js": {
-    "mtime": 1793923496.1997418,
-    "seen": 1793923542.3286204,
-    "ast_hash": "ffd31e43e80ee749f90a3bc506879f53",
-    "semantic_hash": "ffd31e43e80ee749f90a3bc506879f53"
+    "mtime": 1793931473.4534223,
+    "seen": 1793931687.713054,
+    "ast_hash": "57bec30b3bcbad093ce0674db772d9fb",
+    "semantic_hash": ""
   },
   "site/js/sem-suporte.js": {
     "mtime": 1793923496.1997418,
@@ -186,10 +186,10 @@
     "semantic_hash": "7117b1739d20394c38328fa2c4e3042f"
   },
   "tests/e2e/rodar.mjs": {
-    "mtime": 1793923496.2047682,
-    "seen": 1793923542.328624,
-    "ast_hash": "51e67388e98a8f742c06c9ccd7bbd85f",
-    "semantic_hash": "51e67388e98a8f742c06c9ccd7bbd85f"
+    "mtime": 1793931566.5725105,
+    "seen": 1793931687.713058,
+    "ast_hash": "bfd95482e181b60fe1da1fdd96b2e833",
+    "semantic_hash": ""
   },
   "tests/energia.test.mjs": {
     "mtime": 1793923496.2047682,
@@ -222,57 +222,63 @@
     "semantic_hash": ""
   },
   "site/js/app/blecaute-app.js": {
-    "mtime": 1793926796.193377,
-    "seen": 1793926895.5710185,
+    "mtime": 1793928700.523603,
+    "seen": 1793931687.7130136,
     "ast_hash": "f088424aa6b18f6313945fe3f0bf53b1",
     "semantic_hash": ""
   },
   "site/js/app/carregamento.js": {
-    "mtime": 1793926744.441374,
-    "seen": 1793926895.5710204,
+    "mtime": 1793928700.5287008,
+    "seen": 1793931687.7130156,
     "ast_hash": "48e8c517608f47aa877aee5d7c22d704",
     "semantic_hash": ""
   },
   "site/js/app/fps.js": {
-    "mtime": 1793926810.0893779,
-    "seen": 1793926895.5710216,
+    "mtime": 1793928700.5287008,
+    "seen": 1793931687.7130172,
     "ast_hash": "1cadbd645a80ff49d255687123c73603",
     "semantic_hash": ""
   },
   "site/js/app/idioma.js": {
-    "mtime": 1793926806.9933777,
-    "seen": 1793926895.5710235,
+    "mtime": 1793928700.5287008,
+    "seen": 1793931687.713019,
     "ast_hash": "7421f57e30608f01ee550a898e1c6667",
     "semantic_hash": ""
   },
   "site/js/app/menu.js": {
-    "mtime": 1793926780.4413762,
-    "seen": 1793926895.5710244,
+    "mtime": 1793928700.5287008,
+    "seen": 1793931687.7130203,
     "ast_hash": "9ffbd8da2db7fee68f717b1b8bb14724",
     "semantic_hash": ""
   },
   "site/js/app/modos.js": {
-    "mtime": 1793926771.7533758,
-    "seen": 1793926895.5710256,
-    "ast_hash": "ffac26b4ded477f92a422790bab05128",
+    "mtime": 1793931464.986631,
+    "seen": 1793931687.7130225,
+    "ast_hash": "b36b2728414a9e457b5eaea621a1108b",
     "semantic_hash": ""
   },
   "site/js/app/passeio-app.js": {
-    "mtime": 1793926787.0453765,
-    "seen": 1793926895.5710282,
+    "mtime": 1793928700.5287008,
+    "seen": 1793931687.713024,
     "ast_hash": "af7e7ab3bad02f1ac9c18cd59a34d38c",
     "semantic_hash": ""
   },
   "site/js/app/teclado-gestos.js": {
-    "mtime": 1793926802.5013776,
-    "seen": 1793926895.5710292,
+    "mtime": 1793928700.5287008,
+    "seen": 1793931687.713025,
     "ast_hash": "030b967f96c89a71c13746f94ec27c3f",
     "semantic_hash": ""
   },
   "site/js/app/telas.js": {
-    "mtime": 1793926758.097375,
-    "seen": 1793926895.5710306,
+    "mtime": 1793928700.5287008,
+    "seen": 1793931687.7130263,
     "ast_hash": "d4773ad4347a97f60932a319e46e4ce2",
+    "semantic_hash": ""
+  },
+  "site/js/objetos.js": {
+    "mtime": 1793931450.5663462,
+    "seen": 1793931687.7130458,
+    "ast_hash": "bb83c91e956424e01300f11a2600ffa5",
     "semantic_hash": ""
   }
 }

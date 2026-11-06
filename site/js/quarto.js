@@ -2,13 +2,14 @@
 // telas em HTML encaixadas e penumbra. Não decide regras: só obedece ao main.js.
 
 import {
-  PAREDES, ITENS, LARGURA_PAREDE, ALTURA_PAREDE, PAREDE_INICIAL, VENTOINHAS,
+  PAREDES, ITENS, LARGURA_PAREDE, ALTURA_PAREDE, PAREDE_INICIAL,
   itensDaParede, indiceParede,
 } from './itens.js';
 import {
   enquadrarParede, enquadrarFoco, enquadrarEspiada, transformCSS,
   matrizTela, matrix3dCSS, caixaDoQuad,
 } from './geometria.js';
+import { criarObjetos } from './objetos.js';
 
 const ALVO_MINIMO = 44; // RNF-12: área de toque na tela, em px.
 
@@ -18,7 +19,7 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
   let camera = null; // { s, tx, ty }
   let alvoCamera = { tipo: 'parede' }; // 'parede' | { tipo:'foco', item } | { tipo:'espiada', item }
   let girando = null;
-  let ventoinhas = null;
+  let objetos = null; // Camada SVG com monitor, notebook e gabinete (objetos.js).
   const telasConfig = new Map(); // tela → { item, w, h, slot, acimaPenumbra }
   let extra = { z: 1, ex: 0, ey: 0 }; // Pinça no foco (RF-24), no espaço da tela.
 
@@ -105,6 +106,8 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
       img.width = LARGURA_PAREDE;
       img.height = ALTURA_PAREDE;
       el.append(img);
+      const camadaObjetos = criarObjetos(def.id);
+      if (camadaObjetos) { el.append(camadaObjetos); objetos = camadaObjetos; }
       if (def.provisoria) {
         const aviso = document.createElement('p');
         aviso.className = 'aviso-provisoria';
@@ -129,20 +132,22 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
         const contorno = document.createElement('span');
         contorno.className = 'contorno';
         b.append(alvo, contorno);
+        if (item.postit) {
+          // O post-it é o próprio botão, com o título escrito nele (legível sem clicar).
+          b.classList.add('postit-parede');
+          b.style.setProperty('--giro', `${item.giro ?? 0}deg`);
+          b.dataset.cor = String(item.postit);
+          const texto = document.createElement('span');
+          texto.className = 'postit-texto';
+          texto.dataset.i18n = `postit.${item.postit}.titulo`;
+          b.append(texto);
+        }
         b.addEventListener('click', (ev) => {
           ev.stopPropagation();
           aoClicarItem(item);
         });
         el.append(b);
         botoes.set(item.id, { el: b, alvo, item });
-      }
-      if (VENTOINHAS.parede === def.id) {
-        ventoinhas = document.createElement('div');
-        ventoinhas.className = 'ventoinhas-off ligado';
-        Object.assign(ventoinhas.style, {
-          left: `${VENTOINHAS.x}px`, top: `${VENTOINHAS.y}px`, width: `${VENTOINHAS.w}px`, height: `${VENTOINHAS.h}px`,
-        });
-        el.append(ventoinhas);
       }
       giro.append(el);
       raiz.append(giro);
@@ -325,7 +330,7 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
     espiar(item) { return moverCamera({ tipo: 'espiada', item }); },
     paredeInteira(animar = true) { return moverCamera({ tipo: 'parede' }, animar); },
     luz,
-    ventoinhas(ligadas) { ventoinhas?.classList.toggle('ligado', ligadas); },
+    ventoinhas(ligadas) { objetos?.classList.toggle('pc-ligado', ligadas); },
     repulsar() { mostrarSo(atual); },
     posicaoNaTela,
     botao(itemId) {

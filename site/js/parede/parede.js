@@ -4,14 +4,12 @@ import { el, botao } from '../dom.js';
 
 const CORES_POSTIT = ['#FEF08A', '#F9A8D4', '#86EFAC', '#93C5FD'];
 
-export function desenharPostits(i18n) {
-  const lista = el('div', { classe: 'postits-foco', attrs: { role: 'list' } });
-  for (let i = 1; i <= 4; i++) {
-    lista.append(el('article', { classe: 'postit', attrs: { role: 'listitem', tabindex: '0' }, estilo: { background: CORES_POSTIT[i - 1], '--giro': `${[-2.5, 1.8, -1.2, 2.2][i - 1]}deg` } },
-      el('h2', { texto: i18n.t(`postit.${i}.titulo`) }),
-      el('p', { texto: i18n.t(`postit.${i}.texto`) })));
-  }
-  return el('div', { classe: 'postits-camada' }, lista);
+// Um post-it grande no foco, com o texto completo (RF-29).
+export function desenharPostit(i18n, n) {
+  const nota = el('article', { classe: 'postit', attrs: { tabindex: '0' }, estilo: { background: CORES_POSTIT[n - 1], '--giro': `${[-2.5, 1.8, -1.2, 2.2][n - 1]}deg` } },
+    el('h2', { texto: i18n.t(`postit.${n}.titulo`) }),
+    el('p', { texto: i18n.t(`postit.${n}.texto`) }));
+  return el('div', { classe: 'postits-camada' }, el('div', { classe: 'postits-foco' }, nota));
 }
 
 export const TELA_QUADRO = Object.freeze({ w: 960, h: 600 });

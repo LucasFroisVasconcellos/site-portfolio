@@ -35,3 +35,9 @@ O que mudou em relação ao ARQ-002 v1.1 e por quê. Todo controle deixado de fo
 19. **Repositório continua público** (decisão do Lucas, 17/10/2026), como exceção à regra de repositório privado, porque o portfólio mostra o próprio código.
 20. **Sem banco de dados**: não é necessário; o motivo está em `SEGURANCA.md`.
 21. **Testes no navegador ficam fora do GitHub Actions.** O CI roda os testes unitários e a conferência do build sem instalar nada, então não entra código de terceiros no pipeline. Os 30 testes do Playwright rodam no PC (`npm run test:e2e`).
+
+## Visual, novembro de 2026
+
+22. **Paredes em alta resolução com IA.** Frente e direita ampliadas 3× com Real-ESRGAN (`realesr-animevideov3`) e servidas em 2560 px. Arquivos com versão no nome (`-v2`, `-v3`) porque o `_headers` guarda `/img/*` por 7 dias.
+23. **Objetos da parede do PC feitos em código** (`objetos.js`): monitor, notebook e gabinete em SVG, copiando forma, cor e posição da ilustração; o fundo da frente não tem mais esses objetos. Os 4 post-its viraram itens separados, com o título escrito neles (legível sem clicar); clicar abre aquele post-it grande.
+24. **Exceção consciente ao RNF-08:** as ventoinhas do gabinete giram com o PC ligado. Param com o PC desligado, com a parede fora da tela, com a aba oculta e com "reduzir movimento".

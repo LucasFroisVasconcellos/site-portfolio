@@ -113,7 +113,8 @@ await caso('RF-06', 'menu “Ir para” leva ao foco da parede de trás só pelo
   await p.focus('#btn-irpara');
   await p.keyboard.press('Enter');
   await p.waitForSelector('#menu-irpara:not([hidden])');
-  for (let i = 0; i < 4; i++) await p.keyboard.press('ArrowDown');
+  // Desce pelo teclado até o quadro (a posição muda quando entram itens novos, como os 4 post-its).
+  for (let i = 0; i < 15 && await p.evaluate(() => document.activeElement.textContent) !== 'Quadro digital'; i++) await p.keyboard.press('ArrowDown');
   assert.equal(await p.evaluate(() => document.activeElement.textContent), 'Quadro digital');
   await p.keyboard.press('Enter');
   await p.waitForFunction(() => document.body.classList.contains('modo-foco'));

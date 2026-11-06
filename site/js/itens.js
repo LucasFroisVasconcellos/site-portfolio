@@ -8,7 +8,7 @@ export const ALTURA_PAREDE = 572;
 export const PAREDES = Object.freeze([
   {
     id: 'frente',
-    imagem: { leve: 'img/paredes/frente-leve-v2.webp', nitido: 'img/paredes/frente-nitido-v2.webp' },
+    imagem: { leve: 'img/paredes/frente-leve-v3.webp', nitido: 'img/paredes/frente-nitido-v3.webp' },
     // Região que precisa caber na tela no enquadramento da parede inteira (seção 3.8).
     essencial: { x: 300, y: 250, w: 340, h: 270 },
   },
@@ -34,12 +34,28 @@ export const PAREDES = Object.freeze([
 export const PAREDE_INICIAL = 'frente';
 
 // tipo: o que acontece ao clicar. foco: área enquadrada no modo Foco.
+// postit: número do post-it (o texto fica escrito nele, legível sem clicar). giro: inclinação em graus.
 // tela: quadrilátero da tela na ilustração (sup. esq., sup. dir., inf. dir., inf. esq.).
 export const ITENS = Object.freeze([
   {
-    id: 'postits', parede: 'frente', tipo: 'foco', evento: 'abrir-postit',
-    area: { x: 446, y: 265, w: 96, h: 40 },
-    foco: { x: 430, y: 255, w: 130, h: 60 },
+    id: 'postit-1', parede: 'frente', tipo: 'foco', evento: 'abrir-postit', postit: 1, giro: -3,
+    area: { x: 400, y: 256, w: 46, h: 44 },
+    foco: { x: 350, y: 226, w: 300, h: 130 },
+  },
+  {
+    id: 'postit-2', parede: 'frente', tipo: 'foco', evento: 'abrir-postit', postit: 2, giro: 2,
+    area: { x: 451, y: 262, w: 46, h: 44 },
+    foco: { x: 350, y: 226, w: 300, h: 130 },
+  },
+  {
+    id: 'postit-3', parede: 'frente', tipo: 'foco', evento: 'abrir-postit', postit: 3, giro: -2,
+    area: { x: 502, y: 254, w: 46, h: 44 },
+    foco: { x: 350, y: 226, w: 300, h: 130 },
+  },
+  {
+    id: 'postit-4', parede: 'frente', tipo: 'foco', evento: 'abrir-postit', postit: 4, giro: 3,
+    area: { x: 553, y: 261, w: 46, h: 44 },
+    foco: { x: 350, y: 226, w: 300, h: 130 },
   },
   {
     id: 'monitor', parede: 'frente', tipo: 'foco', evento: 'abrir-pc', tela: 'pc',
@@ -70,8 +86,6 @@ export const ITENS = Object.freeze([
   },
 ]);
 
-// Partes do gabinete que apagam com o PC desligado (as ventoinhas vermelhas).
-export const VENTOINHAS = Object.freeze({ parede: 'frente', x: 383, y: 433, w: 23, h: 66 });
 
 export function itemPorId(id) {
   return ITENS.find((i) => i.id === id) ?? null;

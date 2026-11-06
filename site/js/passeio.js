@@ -5,7 +5,7 @@ import { itemPorId } from './itens.js';
 export const PASSOS = Object.freeze([
   { acao: 'inicial', texto: 'passeio.bemvindo', ms: 2000 },
   { acao: 'parada', texto: 'passeio.setas', ms: 2000, realce: 'setas' },
-  { acao: 'espiar', item: 'postits', texto: 'passeio.brilho', ms: 2000 },
+  { acao: 'espiar', item: 'postit-1', texto: 'passeio.brilho', ms: 2000 },
   { acao: 'espiar', item: 'monitor', texto: 'passeio.pc', ms: 2000 },
   { acao: 'espiar', item: 'notebook', texto: 'passeio.notebook', ms: 2000 },
   { acao: 'parede', parede: 'tras', texto: 'passeio.tras', ms: 3000 },
