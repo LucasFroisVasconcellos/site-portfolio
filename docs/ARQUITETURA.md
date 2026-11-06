@@ -4,7 +4,7 @@ Desenho feito a partir do grafo do Graphify (`graphify-out/`). Para ver o grafo 
 
 ```mermaid
 flowchart TD
-    CF["Cloudflare Pages<br/>pasta site/ estática + _headers (CSP)"] --> MAIN["main.js<br/>montarApp(): orquestra tudo"]
+    CF["Cloudflare Pages<br/>pasta site/ estática + _headers (CSP)"] --> MAIN["main.js<br/>carrega e liga os módulos de js/app/ (ctx)"]
     MAIN --> Q["Quarto<br/>quarto.js · itens.js · geometria.js<br/>gestos.js · passeio.js"]
     MAIN --> PC["PC (FroisOS)<br/>energia.js · blecaute.js<br/>pc/sistema.js · pc/apps.js<br/>github/cliente.js · validar.js"]
     MAIN --> NB["Notebook<br/>notebook/notebook.js<br/>whatsapp.js · links.js"]
@@ -24,7 +24,7 @@ flowchart TD
 
 | Ponto | O que quer dizer |
 |---|---|
-| `montarApp()` em `main.js` tem 46 ligações (a função mais conectada) | O `main.js` concentra quase toda a orquestração. É o primeiro alvo de uma refatoração de código. |
+| Até 05/11/2026, `montarApp()` em `main.js` tinha 46 ligações | Foi dividido em 9 módulos em `site/js/app/` (A1); o maior, `instalarModos()`, tem 14. Os módulos se falam pelo objeto `ctx`, sem importar uns aos outros. |
 | `el()`, `botao()` e `icone()` (em `dom.js`) vêm logo depois | Toda a interface é montada por essas três funções. Uma mudança visual passa por elas. |
 | Nenhum ciclo de importação | Os módulos dependem só "para baixo" (da base). Isso precisa continuar assim. |
 | Módulos sem tela (`energia`, `blecaute`, `whatsapp`, `links`, `github/`, `armazenamento`) têm testes no Node | A refatoração do front-end pode mexer nas telas sem quebrar essas regras, desde que os testes continuem verdes. |

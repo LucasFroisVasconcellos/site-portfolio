@@ -43,6 +43,8 @@ graphify-out/cache/
 graphify-out/.graphify_*
 graphify-out/graph.html
 graphify-out/*.tmp
+# cópia do grafo anterior que o graphify update guarda por data
+graphify-out/20*/
 
 # --- adicionado pelo auditor-seguranca ---
 .auditor/logs/
