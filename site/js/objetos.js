@@ -23,10 +23,11 @@ export const POSTITS = Object.freeze([
 const LADO = 14.5;
 const FONTE = '"Caveat", "Segoe Print", "Bradley Hand", cursive';
 
-function postit(p) {
+function postit(p, sufixo = '') {
   const { x, y } = p;
+  const papel = `papel-${p.n}${sufixo}`;
   const meio = `${x + LADO / 2} ${y + LADO / 2}`;
-  const grad = svg('linearGradient', { id: `papel-${p.n}`, x1: 0, y1: 0, x2: 0, y2: 1 }, [
+  const grad = svg('linearGradient', { id: papel, x1: 0, y1: 0, x2: 0, y2: 1 }, [
     svg('stop', { offset: '0', 'stop-color': p.cola }), svg('stop', { offset: '0.13', 'stop-color': p.cola }),
     svg('stop', { offset: '0.17', 'stop-color': p.cor }), svg('stop', { offset: '1', 'stop-color': p.cor }),
   ]);
@@ -34,13 +35,29 @@ function postit(p) {
   return svg('g', { transform: `rotate(${p.giro} ${meio})` }, [
     grad,
     // Sombra de papel: colado em cima, descolando embaixo.
-    svg('rect', { x: x + 0.25, y: y + 0.6, width: LADO, height: LADO, fill: '#000', opacity: 0.16, filter: 'url(#sombra-postit)' }),
-    svg('path', { d: `M ${x} ${y} H ${x + LADO} V ${y + LADO - 2.2} L ${x + LADO - 2.2} ${y + LADO} H ${x} Z`, fill: `url(#papel-${p.n})` }),
+    svg('rect', { x: x + 0.25, y: y + 0.6, width: LADO, height: LADO, fill: '#000', opacity: 0.16, filter: `url(#sombra-postit${sufixo})` }),
+    svg('path', { d: `M ${x} ${y} H ${x + LADO} V ${y + LADO - 2.2} L ${x + LADO - 2.2} ${y + LADO} H ${x} Z`, fill: `url(#${papel})` }),
     // Canto levantado.
     svg('path', { d: `M ${x + LADO} ${y + LADO - 2.2} L ${x + LADO - 2.2} ${y + LADO} L ${x + LADO - 1.7} ${y + LADO - 1.7} Z`, fill: '#FFFFFF', opacity: 0.55 }),
     svg('path', { d: `M ${x + LADO} ${y + LADO - 2.2} L ${x + LADO - 2.2} ${y + LADO}`, stroke: '#000', 'stroke-opacity': 0.18, 'stroke-width': 0.2 }),
     texto,
   ]);
+}
+
+function filtroSombra(sufixo) {
+  return svg('filter', { id: `sombra-postit${sufixo}`, x: '-20%', y: '-20%', width: '140%', height: '160%' }, [svg('feGaussianBlur', { stdDeviation: 0.55 })]);
+}
+
+// Retângulo da parede da frente que contém os quatro post-its (com folga para o giro).
+export const POSTITS_REGIAO = Object.freeze({ x: 450, y: 268, w: 87, h: 32 });
+
+// Os mesmos post-its num SVG só deles (usado na vista lateral, que o põe em perspectiva).
+// sufixo deixa os ids dos gradientes únicos na página.
+export function criarPostitsSvg(sufixo, R = POSTITS_REGIAO) {
+  return svg('svg', {
+    class: 'postits-copia', viewBox: `${R.x} ${R.y} ${R.w} ${R.h}`, width: R.w, height: R.h,
+    'aria-hidden': 'true', focusable: 'false',
+  }, [svg('defs', {}, [filtroSombra(sufixo)]), ...POSTITS.map((p) => postit(p, sufixo))]);
 }
 
 // Quebra o texto em linhas que cabem na largura (medida real da fonte, num canvas).
@@ -174,11 +191,9 @@ export function criarObjetos(paredeId) {
     return svg('svg', { class: 'objetos objetos-lado pc-ligado', viewBox: '0 0 1024 572', 'aria-hidden': 'true', focusable: 'false' }, [defs, gabineteLado()]);
   }
   if (paredeId !== 'frente') return null;
-  const defs = svg('defs', {}, [
-    svg('filter', { id: 'sombra-postit', x: '-20%', y: '-20%', width: '140%', height: '160%' }, [svg('feGaussianBlur', { stdDeviation: 0.55 })]),
-  ]);
+  const defs = svg('defs', {}, [filtroSombra('')]);
   const camada = svg('svg', { class: 'objetos pc-ligado', viewBox: '0 0 1024 572', 'aria-hidden': 'true', focusable: 'false' }, [
-    defs, ...POSTITS.map(postit), monitor(), notebook(), gabinete(),
+    defs, ...POSTITS.map((p) => postit(p)), monitor(), notebook(), gabinete(),
   ]);
   return camada;
 }

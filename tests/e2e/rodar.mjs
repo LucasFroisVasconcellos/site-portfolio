@@ -253,12 +253,27 @@ await caso('RF-05/IG/LI', 'notebook centralizado no foco; Instagram e LinkedIn c
   await p.waitForFunction(() => document.querySelector('.li-rolagem').scrollTop > 0, null, { timeout: 2000 });
 });
 
-await caso('LADO', 'mesa vista de lado: telas em perspectiva, ventoinhas, liga/desliga e cliques como na frente', async (p) => {
+await caso('LADO', 'mesa vista de lado: espelho ao vivo das telas, post-its, liga/desliga e cliques como na frente', async (p) => {
   await abrirPulando(p);
+  // Muda as telas pela frente: notebook no Instagram e pasta Projetos aberta no PC.
+  await p.click('[data-item=notebook]', { force: true });
+  await p.waitForTimeout(900);
+  await p.click('.nb-app[data-app=instagram]');
+  await p.click('#btn-voltar');
+  await p.waitForTimeout(800);
+  await p.click('[data-item=monitor]', { force: true });
+  await p.waitForTimeout(900);
+  await p.click('.pc-icone-app[data-app=projetos]');
+  await p.click('#btn-voltar');
+  await p.waitForTimeout(800);
   await p.keyboard.press('ArrowRight');
   await esperarGiro(p);
   assert.equal(await paredeAtual(p), 'Parede do guarda-roupa');
-  // Telas encaixadas nos cantos medidos do desenho lateral.
+  // De lado aparece o mesmo que na frente.
+  assert.equal(await p.locator('.lado-nb .ig').count(), 1);
+  assert.equal(await p.locator('.lado-pc .pc-janela').count(), 1);
+  assert.equal(await p.locator('.lado-tela [id]').count(), 0); // cópia das telas sem ids repetidos
+  // Tela do monitor encaixada nos cantos medidos do desenho lateral.
   const cantos = await p.evaluate(() => {
     const pc = document.querySelector('.lado-pc').getBoundingClientRect();
     const parede = document.querySelector('.giro:not([data-oculta]) .parede').getBoundingClientRect();
@@ -266,23 +281,31 @@ await caso('LADO', 'mesa vista de lado: telas em perspectiva, ventoinhas, liga/d
     return [(pc.left - parede.left) / s, (pc.top - parede.top) / s, (pc.right - parede.left) / s, (pc.bottom - parede.top) / s];
   });
   [164.6, 293.4, 199.4, 352.4].forEach((v, i) => assert.ok(Math.abs(cantos[i] - v) < 0.6, `canto ${i}: ${cantos[i]} ≠ ${v}`));
-  assert.equal(await p.evaluate(() => document.querySelector('.telas-laterais').dataset.estado), 'ligado');
+  // Post-its de lado, com o texto escrito.
+  assert.equal(await p.locator('.lado-postits .postit-texto text').count() > 8, true);
   assert.equal(await p.locator('.objetos-lado .ventoinha').count(), 3);
-  // Botão de ligar no gabinete de lado: desliga ali mesmo e a frente acompanha.
+  // Gabinete de lado: desliga ali mesmo; o espelho e as ventoinhas acompanham ao vivo.
   await p.click('[data-item=energia-lado]', { force: true });
-  await p.waitForFunction(() => document.querySelector('.telas-laterais').dataset.estado === 'desligando', null, { timeout: 8000 });
-  assert.equal(await p.evaluate(() => document.querySelector('.objetos:not(.objetos-lado)').classList.contains('pc-ligado')), false);
+  await p.waitForFunction(() => document.querySelector('.lado-pc .pc-desligado:not([hidden])'), null, { timeout: 8000 });
+  assert.equal(await p.evaluate(() => document.querySelector('.objetos-lado').classList.contains('pc-ligado')), false);
   assert.equal(await paredeAtual(p), 'Parede do guarda-roupa');
-  await p.waitForFunction(() => !document.querySelector('.pc-desligado').hidden, null, { timeout: 10000 }); // espera terminar de desligar
+  await p.waitForFunction(() => !document.querySelector('.pc-desligado').hidden, null, { timeout: 10000 });
   await p.click('[data-item=energia-lado]', { force: true });
-  await p.waitForFunction(() => document.querySelector('.telas-laterais').dataset.estado === 'iniciando', null, { timeout: 3000 });
-  await p.waitForFunction(() => document.querySelector('.telas-laterais').dataset.estado === 'ligado', null, { timeout: 8000 });
-  assert.equal(await p.evaluate(() => document.querySelector('.objetos-lado').classList.contains('pc-ligado')), true);
-  // Notebook de lado: vira para a parede do PC e abre o notebook.
+  await p.waitForFunction(() => document.querySelector('.lado-pc .pc-boot:not([hidden])'), null, { timeout: 3000 });
+  await p.waitForFunction(() => document.querySelector('.lado-pc .pc-desktop:not([hidden])'), null, { timeout: 8000 });
+  // Post-it de lado: vira para a parede do PC e aproxima o post-it.
+  await p.click('[data-item=postit-2-lado]', { force: true });
+  await p.waitForFunction(() => document.body.classList.contains('modo-foco'), null, { timeout: 5000 });
+  assert.equal(await paredeAtual(p), 'Parede do PC');
+  await p.click('#btn-voltar');
+  await p.waitForTimeout(800);
+  // Notebook de lado: vira e abre o notebook.
+  await p.keyboard.press('ArrowRight');
+  await esperarGiro(p);
   await p.click('[data-item=notebook-lado]', { force: true });
   await p.waitForFunction(() => document.body.classList.contains('modo-foco'), null, { timeout: 5000 });
   assert.equal(await paredeAtual(p), 'Parede do PC');
-  assert.ok(await p.locator('.tela-slot[data-tela=notebook].interativa').count() === 1);
+  assert.equal(await p.locator('.tela-slot[data-tela=notebook].interativa').count(), 1);
   // O menu "Ir para" não lista os atalhos da lateral.
   await p.click('#btn-irpara');
   const rotulos = await p.evaluate(() => [...document.querySelectorAll('#menu-irpara button')].map((b) => b.textContent));

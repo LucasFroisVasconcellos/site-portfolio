@@ -107,29 +107,15 @@ body.foco-tela #fundo-foco { opacity: 1; }
 }
 #conteudo-foco > * { pointer-events: auto; }
 
-/* Telas vistas de lado na parede do guarda-roupa (lateral.js): o mesmo da frente, em perspectiva. */
+/* Mesa vista de lado na parede do guarda-roupa (lateral.js): espelho ao vivo das telas da frente
+   e os post-its, em perspectiva. A cópia é inerte; o clique é dos botões de atalho. */
 .objetos-lado .ventoinhas { opacity: .45; transition: opacity .3s ease; }
 .objetos-lado.pc-ligado .ventoinhas { opacity: 1; }
 .telas-laterais { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-.lado-tela {
+.lado-tela, .lado-postits {
   position: absolute; left: 0; top: 0; transform-origin: 0 0;
-  overflow: hidden; backface-visibility: hidden;
+  overflow: hidden; overflow: clip; backface-visibility: hidden;
 }
 .lado-pc { background: #050506; }
-.lado-pc img { display: block; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .4s ease; }
-.lado-pc-barra { position: absolute; left: 0; right: 0; bottom: 0; height: 16px; background: #F7F2DF; border-top: 2px solid #1F1A17; opacity: 0; transition: opacity .4s ease; }
-.lado-pc-menu { position: absolute; left: 4px; top: 2px; width: 30px; height: 9px; background: #F3DE6A; border: 1.5px solid #1F1A17; border-radius: 3px; }
-.lado-pc-boot { position: absolute; inset: 0; background: #EFEEE9; opacity: 0; transition: opacity .3s ease; }
-.telas-laterais[data-estado="ligado"] .lado-pc img, .telas-laterais[data-estado="ligado"] .lado-pc-barra { opacity: 1; }
-.telas-laterais[data-estado="iniciando"] .lado-pc-boot { opacity: 1; }
-.lado-nb {
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
-  background: linear-gradient(145deg, #334155 0%, #1e3a5f 60%, #0f766e 100%); color: #fff;
-}
-.lado-nb-hora { margin: 0; font: 800 46px/1 system-ui, sans-serif; }
-.lado-nb-apps { display: flex; gap: 18px; }
-.lado-nb-app { width: 42px; height: 42px; border-radius: 10px; border: 3px solid rgba(0, 0, 0, .35); }
-.lado-nb-wa { background: #25A35A; }
-.lado-nb-ig { background: #E1306C; }
-.lado-nb-li { background: #0A66C2; }
-.lado-nb-doca { position: absolute; left: 0; right: 0; bottom: 0; height: 22px; background: #0f172a; }
+.lado-postits { overflow: visible; }
+.lado-postits svg { display: block; overflow: visible; }

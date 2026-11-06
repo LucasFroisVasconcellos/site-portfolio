@@ -9,7 +9,7 @@ import {
   enquadrarParede, enquadrarFoco, enquadrarEspiada, transformCSS,
   matrizTela, matrix3dCSS, caixaDoQuad,
 } from './geometria.js';
-import { criarTelasLaterais } from './lateral.js';
+import { criarTelasLaterais, espelhar } from './lateral.js';
 import { criarObjetos, escreverPostits } from './objetos.js';
 
 const ALVO_MINIMO = 44; // RNF-12: área de toque na tela, em px.
@@ -22,7 +22,7 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
   let girando = null;
   // Camadas SVG com ventoinhas que acompanham o PC ligado/desligado (frente e lateral).
   const camadasPc = [];
-  let telasLaterais = null; // Telas do monitor e do notebook vistas de lado (lateral.js).
+  let lateral = null; // Mesa vista de lado: espelhos das telas e post-its (lateral.js).
   let objetos = null; // Camada SVG da frente (post-its, monitor, notebook, gabinete).
   const telasConfig = new Map(); // tela → { item, w, h, slot, acimaPenumbra }
   let extra = { z: 1, ex: 0, ey: 0 }; // Pinça no foco (RF-24), no espaço da tela.
@@ -127,8 +127,8 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
         el.append(camadaObjetos); camadasPc.push(camadaObjetos);
         if (def.id === 'frente') objetos = camadaObjetos;
       }
-      const telasLado = criarTelasLaterais(def.id);
-      if (telasLado) { el.append(telasLado); telasLaterais = telasLado; }
+      const lado = criarTelasLaterais(def.id);
+      if (lado) { el.append(lado.camada); lateral = { ...lado, parede: def.id }; }
       if (def.provisoria) {
         const aviso = document.createElement('p');
         aviso.className = 'aviso-provisoria';
@@ -158,7 +158,7 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
         const titulo = document.createElement('strong');
         titulo.dataset.i18n = b.dataset.i18nAria;
         const dica = document.createElement('span');
-        dica.dataset.i18n = `dica.${item.postit ? 'postit' : ref}`;
+        dica.dataset.i18n = `dica.${item.postit || ref.startsWith('postit') ? 'postit' : ref}`;
         bilhete.append(titulo, dica);
         b.append(alvo, bilhete);
         b.addEventListener('click', (ev) => {
@@ -233,7 +233,36 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
     cfg.slot.textContent = '';
     cfg.slot.append(conteudo);
     posicionarTela(cfg, false);
+    observarTela(item.tela, cfg.slot);
+    marcarSuja(item.tela);
     return cfg.slot;
+  }
+
+  // ---------- Espelho das telas na vista lateral ----------
+  // A cópia só é refeita quando a lateral está (ou vai ficar) na tela: com a frente à vista,
+  // as mudanças só marcam a tela como "suja" e a cópia sai na hora de virar.
+  const sujas = new Set();
+  let agendado = null;
+  function atualizarEspelho(tela) {
+    const cfg = telasConfig.get(tela);
+    const espelho = lateral?.espelhos[tela];
+    const fonte = cfg?.slot.firstElementChild;
+    if (!espelho || !fonte) return;
+    espelhar(espelho, fonte, cfg.w, cfg.h);
+    sujas.delete(tela);
+  }
+  function atualizarEspelhos() { for (const tela of [...sujas]) atualizarEspelho(tela); }
+  function marcarSuja(tela) {
+    sujas.add(tela);
+    if (atual !== lateral?.parede || agendado) return;
+    agendado = setTimeout(() => { agendado = null; atualizarEspelhos(); }, 200);
+  }
+  function observarTela(tela, slot) {
+    if (!lateral?.espelhos[tela] || slot.dataset.espelhada) return;
+    slot.dataset.espelhada = '1';
+    new MutationObserver(() => marcarSuja(tela)).observe(slot, { subtree: true, childList: true, attributes: true, characterData: true });
+    slot.addEventListener('scroll', () => marcarSuja(tela), { capture: true, passive: true });
+    slot.addEventListener('input', () => marcarSuja(tela), { capture: true, passive: true });
   }
 
   function redimensionarTela(tela, w, h) {
@@ -241,6 +270,7 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
     if (!cfg) return;
     cfg.w = w; cfg.h = h;
     posicionarTela(cfg, alvoCamera.tipo === 'foco' && alvoCamera.item.tela === tela);
+    marcarSuja(tela);
   }
 
   function escalaTela(tela) {
@@ -339,7 +369,11 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
     get parede() { return atual; },
     get alvo() { return alvoCamera; },
     get girando() { return Boolean(girando); },
-    irParaParede(id, direcao = 1) { extra = { z: 1, ex: 0, ey: 0 }; return girar(direcao, id); },
+    irParaParede(id, direcao = 1) {
+      extra = { z: 1, ex: 0, ey: 0 };
+      if (id === lateral?.parede) atualizarEspelhos(); // a cópia já entra certa no giro
+      return girar(direcao, id);
+    },
     get extra() { return { ...extra }; },
     definirExtra(novo) {
       extra = { ...novo };
@@ -355,9 +389,10 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
         if (ligadas) c.unpauseAnimations?.(); else c.pauseAnimations?.();
       }
     },
-    // A tela do monitor vista de lado segue o mesmo estado da frente (ligado, iniciando...).
-    estadoPc(estado) { if (telasLaterais) telasLaterais.dataset.estado = estado; },
-    escreverPostits(i18n) { return escreverPostits(objetos, i18n); },
+    async escreverPostits(i18n) {
+      await escreverPostits(objetos, i18n);
+      if (lateral) await escreverPostits(lateral.svgPostits, i18n);
+    },
     repulsar() { mostrarSo(atual); },
     posicaoNaTela,
     botao(itemId) {
