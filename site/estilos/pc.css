@@ -93,7 +93,7 @@
 .pc-jbtn-fechar::after { transform: translate(-50%, -50%) rotate(-45deg); }
 .pc-jbtn:hover { filter: brightness(.94); }
 .pc-jbtn:active { transform: translate(1px, 1px); }
-.pc-janela-corpo { flex: 1; overflow: auto; padding: 14px 16px; user-select: text; -webkit-user-select: text; overscroll-behavior: contain; }
+.pc-janela-corpo { flex: 1; overflow: auto; background: #FBFAF6; padding: 14px 16px; user-select: text; -webkit-user-select: text; overscroll-behavior: contain; }
 
 .pc-barra {
   position: absolute; left: 0; right: 0; bottom: 0; height: var(--barra);

@@ -55,7 +55,7 @@
   background: var(--destaque); color: #1b1f24; font-weight: 800; border: 2px solid #1b1f24;
 }
 .wa-status { font-size: 13px; opacity: .85; }
-.wa-conversa { flex: 1; overflow: auto; padding: 8px 14px; display: flex; flex-direction: column; gap: 8px; }
+.wa-conversa { flex: 1; overflow: auto; background: #efe7dc; padding: 8px 14px; display: flex; flex-direction: column; gap: 8px; }
 .wa-balao { align-self: flex-start; max-width: 78%; padding: 8px 12px; border-radius: 4px 14px 14px 14px; background: #fff; border: 1.5px solid #c9bfae; }
 .wa-balao p { margin: 0; }
 .wa-rodape { display: flex; gap: 8px; padding: 8px 10px; background: #e2d8c9; border-top: 2px solid #1b1f24; }
@@ -80,7 +80,7 @@
 /* Instagram emulado */
 .ig { background: #fff; }
 .ig-cab { background: #fff; }
-.ig-rolagem { flex: 1; overflow: auto; overscroll-behavior: contain; }
+.ig-rolagem { flex: 1; overflow: auto; background: #fff; overscroll-behavior: contain; }
 .ig-perfil { display: flex; gap: 22px; align-items: center; padding: 14px 18px 6px; }
 .ig-avatar { width: 84px; height: 84px; border-radius: 50%; border: 3px solid #e1306c; object-fit: cover; }
 .ig-usuario { margin: 0; font-size: 19px; font-weight: 700; }
@@ -100,7 +100,7 @@
 /* LinkedIn emulado */
 .li { background: #f3f2ef; }
 .li-cab { background: #fff; }
-.li-rolagem { flex: 1; overflow: auto; overscroll-behavior: contain; padding-bottom: 12px; }
+.li-rolagem { flex: 1; overflow: auto; background: #f3f2ef; overscroll-behavior: contain; padding-bottom: 12px; }
 .li-cartao { margin: 10px 12px 0; background: #fff; border: 1.5px solid #d6d3cc; border-radius: 10px; overflow: hidden; }
 .li-capa { display: block; width: 100%; height: 90px; object-fit: cover; }
 .li-local, .li-inst { margin: 2px 0 0; font-size: 14px; color: var(--texto-2); }
@@ -121,3 +121,6 @@
 .nb.minima .nb-apps { gap: 12px; }
 .nb.minima .nb-app { width: 116px; }
 .nb.minima .nb-app-icone { width: 62px; height: 62px; }
+
+/* Áreas que rolam (Instagram, LinkedIn, conversa) têm fundo sólido de propósito: com fundo
+   transparente o Chrome entrega a roda do mouse à ilustração atrás da tela e nada rola. */

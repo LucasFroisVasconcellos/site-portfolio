@@ -108,8 +108,12 @@ function notebook() {
     // Tampa reta: a tela em HTML encaixa exatamente na parte escura (telaQuad do notebook).
     ret(379.8, 348.3, 54.4, 37.4, '#C8CBD0', { rx: 1.4, stroke: TINTA, 'stroke-width': 1.1 }),
     ret(382.5, 351, 49, 31.5, '#0F1E30'),
-    poli('381.3,385.7 436.3,384.7 449.7,389.7 386.3,393', '#B9BCC2'),
-    svg('line', { x1: 390, y1: 389.3, x2: 440, y2: 388, stroke: '#8C9096', 'stroke-width': 0.8 }),
+    // Base presa na dobradiça (mesma largura da tampa atrás) e um pouco mais larga na frente,
+    // simétrica, como um notebook visto de frente sobre a mesa.
+    poli('373.3,393.6 440.7,393.6 440.3,395.8 373.7,395.8', '#9EA2A8', { 'stroke-width': 1 }),
+    poli('379.8,385.7 434.2,385.7 440.7,393.6 373.3,393.6', '#C8CBD0', { 'stroke-width': 1.1 }),
+    poli('384.2,387.2 429.8,387.2 432.6,390.6 381.4,390.6', '#A9ADB3', { stroke: 'none' }),
+    ret(400.5, 391.4, 13, 1.6, '#B5B9BF', { rx: 0.5 }),
   ]);
 }
 

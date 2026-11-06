@@ -245,6 +245,12 @@ await caso('RF-05/IG/LI', 'notebook centralizado no foco; Instagram e LinkedIn c
   assert.equal(await p.locator('img.li-capa').count(), 1);
   assert.equal(await p.locator('img.li-avatar').count(), 1);
   assert.deepEqual(await rola('.li-rolagem'), ['auto', true]);
+  // Roda do mouse de verdade no vão entre as caixas (antes não rolava ali).
+  await p.evaluate(() => document.querySelector('.li-rolagem').scrollTo({ top: 0, behavior: 'instant' }));
+  const caixaLi = await p.locator('.li-rolagem').boundingBox();
+  await p.mouse.move(caixaLi.x + 4, caixaLi.y + caixaLi.height / 2);
+  await p.mouse.wheel(0, 150);
+  await p.waitForFunction(() => document.querySelector('.li-rolagem').scrollTop > 0, null, { timeout: 2000 });
 });
 
 await caso('RF-32', 'idioma troca sem recarregar e sem fechar janelas; escolha lembrada', async (p) => {

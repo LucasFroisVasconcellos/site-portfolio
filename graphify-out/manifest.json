@@ -96,9 +96,9 @@
     "semantic_hash": "1fbe4ecba66432dae8eb9e772fe277fa"
   },
   "site/js/itens.js": {
-    "mtime": 1793937991.7061582,
-    "seen": 1793938071.2814376,
-    "ast_hash": "4c6316fb080107cab1f3a864d6d2431e",
+    "mtime": 1793941092.9883683,
+    "seen": 1793941164.4448967,
+    "ast_hash": "82dcc90fe8b77874f255d3f5dd69238b",
     "semantic_hash": ""
   },
   "site/js/links.js": {
@@ -186,9 +186,9 @@
     "semantic_hash": "7117b1739d20394c38328fa2c4e3042f"
   },
   "tests/e2e/rodar.mjs": {
-    "mtime": 1793940229.9404087,
-    "seen": 1793940367.963119,
-    "ast_hash": "c95edcd68df73bebefd7e0465d4b4e01",
+    "mtime": 1793941060.5322795,
+    "seen": 1793941164.4449134,
+    "ast_hash": "a88dc376047c581a121f21bc64424072",
     "semantic_hash": ""
   },
   "tests/energia.test.mjs": {
@@ -276,9 +276,9 @@
     "semantic_hash": ""
   },
   "site/js/objetos.js": {
-    "mtime": 1793937991.7081752,
-    "seen": 1793938071.2814429,
-    "ast_hash": "a521622e651ad392264e8dc722fbf260",
+    "mtime": 1793941087.7190537,
+    "seen": 1793941164.4449027,
+    "ast_hash": "a382ee292e32aa21c983ff1ebb05c828",
     "semantic_hash": ""
   }
 }
