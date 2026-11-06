@@ -1,5 +1,18 @@
+/* Letra da interface (Shantell Sans, licença OFL: fontes/OFL-shantell.txt). */
+@font-face {
+  font-family: "Shantell Sans"; src: url("../fontes/shantell-v1.woff2") format("woff2");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+/* Letra à mão dos post-its (Caveat, licença OFL: fontes/OFL-caveat.txt). */
+@font-face {
+  font-family: "Caveat"; src: url("../fontes/caveat-v1.woff2") format("woff2");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
 /* Paleta da interface (ARQ-002, seção 5.2) e camadas da tela (seção 5.3). */
 :root {
+  /* O site declara ter modo claro e escuro (com as mesmas cores, abaixo): assim o Samsung
+     Internet e o Chrome não aplicam o escurecimento forçado deles. */
+  color-scheme: light dark;
   --papel: #FAF7F0;
   --texto: #1F2933;
   --texto-2: #52606D;
@@ -13,7 +26,6 @@
   --sombra: 0 6px 24px rgba(0, 0, 0, .28);
   --fonte: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --seguro-baixo: env(safe-area-inset-bottom, 0px);
-  color-scheme: light;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -32,6 +44,8 @@ html, body {
 }
 
 button { font: inherit; color: inherit; }
+/* Campos de texto sempre claros, mesmo com o sistema no modo escuro. */
+input, textarea, select { color-scheme: light; background-color: #fff; color: #1F2933; }
 [hidden] { display: none !important; }
 a { color: var(--link); }
 
@@ -204,6 +218,85 @@ body.modo-foco .marca-quarto { display: none; }
 .sem-suporte li { margin: 10px 0; font-size: 18px; }
 .sem-suporte-privacidade { color: var(--texto-2); font-size: 14px; max-width: 640px; }
 
+/* ---------- Interface nova (entrega 3): a mesma tinta e os mesmos objetos do desenho ---------- */
+:root {
+  --tinta: #1F1A17; --parede: #EFEEE9; --papel-fita: #F7F2DF; --postit-amarelo: #F3DE6A;
+  --fonte-ui: "Shantell Sans", system-ui, sans-serif;
+}
+#controles, .aviso, .texto-passeio, .menu-irpara { font-family: var(--fonte-ui); }
+.ctrl {
+  border: 2px solid var(--tinta); color: var(--tinta); background: var(--parede);
+  border-radius: 12px 5px 12px 6px; box-shadow: 3px 3px 0 var(--tinta);
+  font-weight: 600;
+}
+.ctrl:hover { background: #fff; }
+.ctrl:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--tinta); }
+.ctrl:focus-visible { outline: 3px solid var(--tinta); outline-offset: 3px; }
+.ctrl-principal { background: var(--postit-amarelo); }
+.ctrl-redondo, #btn-ajuda { border-radius: 50% 46% 52% 48%; background: var(--postit-amarelo); font-size: 21px; }
+/* Idioma: o escolhido fica em tinta, como um carimbo. */
+.idiomas { border: 2px solid var(--tinta); border-radius: 6px 12px 6px 12px; box-shadow: 3px 3px 0 var(--tinta); overflow: hidden; }
+.idiomas .ctrl, .idiomas .ctrl:first-child, .idiomas .ctrl:last-child { border: 0; border-radius: 0; box-shadow: none; min-width: 48px; }
+.idiomas .ctrl[aria-pressed="true"] { background: var(--tinta); color: var(--parede); }
+/* Nome numa fita crepe colada na parede. */
+.marca-quarto {
+  top: 16px; left: 16px;
+  padding: 10px 18px 10px 16px; transform: rotate(-2deg);
+  background: var(--papel-fita); border: 2px solid var(--tinta);
+  border-radius: 3px 14px 4px 10px / 10px 4px 12px 3px; box-shadow: 4px 4px 0 var(--tinta);
+  font-family: var(--fonte-ui);
+}
+.marca-quarto::before {
+  content: ""; position: absolute; left: 50%; top: -11px; width: 70px; height: 20px; margin-left: -35px;
+  background: rgba(214, 200, 150, .85); transform: rotate(3deg);
+}
+.marca-quarto h1 { font-size: 22px; line-height: 1.15; }
+.marca-sub { display: block; font-size: 14px; font-weight: 600; color: var(--tinta); opacity: .8; }
+.marca-links a { color: var(--tinta); }
+/* Setas com contorno de caneta e o nome da parede num post-it. */
+.setas { gap: 18px; }
+.seta { border-radius: 48% 52% 50% 46%; border-width: 2.5px; }
+.seta + .nome-parede + .seta { border-radius: 52% 46% 48% 54%; }
+.nome-parede {
+  min-width: 9em; padding: 9px 22px 10px; border-radius: 0;
+  background: var(--postit-amarelo); color: var(--tinta);
+  border: 2px solid var(--tinta); box-shadow: 3px 3px 0 var(--tinta);
+  transform: rotate(-1.5deg); font-size: 18px; font-weight: 600;
+}
+@keyframes realce { 50% { background: var(--postit-amarelo); transform: scale(1.08); } }
+.aviso { border: 2px solid var(--tinta); border-radius: 4px; background: #FFFDF4; box-shadow: 4px 4px 0 var(--tinta); }
+.menu-irpara { border: 2px solid var(--tinta); border-radius: 6px; box-shadow: 4px 4px 0 var(--tinta); }
+.menu-irpara button:hover, .menu-irpara button:focus-visible { background: var(--postit-amarelo); }
+
+/* Bilhete a lápis que aparece ao passar o mouse num objeto (só em telas com mouse). */
+.item .bilhete { display: none; }
+@media (hover: hover) {
+  .item .bilhete {
+    position: absolute; left: 100%; top: 0; z-index: 7;
+    display: block; width: max-content; max-width: calc(220px / var(--s, 1));
+    margin-left: calc(10px / var(--s, 1)); padding: calc(7px / var(--s, 1)) calc(12px / var(--s, 1));
+    background: #FFFDF4; color: var(--tinta);
+    border: calc(2px / var(--s, 1)) solid var(--tinta); border-radius: calc(3px / var(--s, 1));
+    box-shadow: calc(3px / var(--s, 1)) calc(3px / var(--s, 1)) 0 var(--tinta);
+    font-family: var(--fonte-ui); text-align: left; line-height: 1.2;
+    transform: rotate(2deg); transform-origin: left top;
+    opacity: 0; visibility: hidden; transition: opacity .15s ease, visibility 0s linear .15s;
+    pointer-events: none;
+  }
+  .item .bilhete strong { display: block; font-size: calc(16px / var(--s, 1)); font-weight: 600; }
+  .item .bilhete span { display: block; font-size: calc(13px / var(--s, 1)); margin-top: calc(2px / var(--s, 1)); }
+  .item:hover .bilhete, .item:focus-visible .bilhete { opacity: 1; visibility: visible; transition: opacity .15s ease; }
+  body.modo-foco .item .bilhete, body.modo-passeio .item .bilhete { display: none; }
+}
+
+@media (max-width: 520px) {
+  .marca-quarto { top: 14px; left: 12px; padding: 7px 11px; max-width: none; }
+  .marca-quarto h1 { font-size: 17px; white-space: nowrap; }
+  /* No celular estreito só o nome: "Sobre" e "Privacidade" continuam no menu "Ir para". */
+  .marca-sub, .marca-links { display: none; }
+  .nome-parede { font-size: 15px; padding: 7px 14px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
 }
@@ -217,4 +310,11 @@ body.modo-foco .marca-quarto { display: none; }
   .nome-parede { min-width: 0; font-size: 13px; padding: 6px 10px; }
   .seta { width: 52px; height: 52px; }
   .texto-passeio { top: 66px; }
+}
+
+/* "Modo escuro" do site: as mesmas cores do modo claro. Existe só para o navegador
+   não escurecer o quarto por conta própria (o quarto tem cores reais). */
+@media (prefers-color-scheme: dark) {
+  html, body { background: var(--fundo); color: var(--texto); }
+  a { color: var(--link); }
 }

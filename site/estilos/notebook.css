@@ -21,7 +21,6 @@
 .nb-inicio-tela {
   align-items: center; justify-content: center; gap: 26px;
   background:
-    radial-gradient(circle at 20% 15%, rgba(250, 204, 21, .35) 0 14%, transparent 15%),
     linear-gradient(145deg, #334155 0%, #1e3a5f 60%, #0f766e 100%);
   color: #fff;
 }

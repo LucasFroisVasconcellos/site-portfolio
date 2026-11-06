@@ -8,13 +8,13 @@ export const ALTURA_PAREDE = 572;
 export const PAREDES = Object.freeze([
   {
     id: 'frente',
-    imagem: { leve: 'img/paredes/frente-leve.webp', nitido: 'img/paredes/frente-nitido.webp' },
+    imagem: { leve: 'img/paredes/frente-leve-v3.webp', nitido: 'img/paredes/frente-nitido-v3.webp' },
     // Região que precisa caber na tela no enquadramento da parede inteira (seção 3.8).
     essencial: { x: 300, y: 250, w: 340, h: 270 },
   },
   {
     id: 'direita',
-    imagem: { leve: 'img/paredes/direita-leve.webp', nitido: 'img/paredes/direita-nitido.webp' },
+    imagem: { leve: 'img/paredes/direita-leve-v2.webp', nitido: 'img/paredes/direita-nitido-v2.webp' },
     essencial: { x: 470, y: 120, w: 420, h: 380 },
   },
   {
@@ -34,12 +34,28 @@ export const PAREDES = Object.freeze([
 export const PAREDE_INICIAL = 'frente';
 
 // tipo: o que acontece ao clicar. foco: área enquadrada no modo Foco.
+// postit: número do post-it (desenhado em objetos.js, com o texto escrito nele; o clique aproxima a câmera).
 // tela: quadrilátero da tela na ilustração (sup. esq., sup. dir., inf. dir., inf. esq.).
 export const ITENS = Object.freeze([
   {
-    id: 'postits', parede: 'frente', tipo: 'foco', evento: 'abrir-postit',
-    area: { x: 446, y: 265, w: 96, h: 40 },
-    foco: { x: 430, y: 255, w: 130, h: 60 },
+    id: 'postit-1', parede: 'frente', tipo: 'foco', evento: 'abrir-postit', postit: 1,
+    area: { x: 452, y: 273, w: 17.5, h: 17.5 },
+    foco: { x: 451, y: 272, w: 19.5, h: 19.5 },
+  },
+  {
+    id: 'postit-2', parede: 'frente', tipo: 'foco', evento: 'abrir-postit', postit: 2,
+    area: { x: 471.5, y: 281, w: 17.5, h: 17.5 },
+    foco: { x: 470.5, y: 280, w: 19.5, h: 19.5 },
+  },
+  {
+    id: 'postit-3', parede: 'frente', tipo: 'foco', evento: 'abrir-postit', postit: 3,
+    area: { x: 493, y: 270, w: 17.5, h: 17.5 },
+    foco: { x: 492, y: 269, w: 19.5, h: 19.5 },
+  },
+  {
+    id: 'postit-4', parede: 'frente', tipo: 'foco', evento: 'abrir-postit', postit: 4,
+    area: { x: 517, y: 278.5, w: 17.5, h: 17.5 },
+    foco: { x: 516, y: 277.5, w: 19.5, h: 19.5 },
   },
   {
     id: 'monitor', parede: 'frente', tipo: 'foco', evento: 'abrir-pc', tela: 'pc',
@@ -70,8 +86,6 @@ export const ITENS = Object.freeze([
   },
 ]);
 
-// Partes do gabinete que apagam com o PC desligado (as ventoinhas vermelhas).
-export const VENTOINHAS = Object.freeze({ parede: 'frente', x: 383, y: 433, w: 23, h: 66 });
 
 export function itemPorId(id) {
   return ITENS.find((i) => i.id === id) ?? null;

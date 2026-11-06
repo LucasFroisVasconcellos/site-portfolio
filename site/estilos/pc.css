@@ -44,7 +44,6 @@
 
 .pc-desktop {
   background:
-    radial-gradient(circle at 78% 30%, rgba(250, 204, 21, .18) 0 18%, transparent 19%),
     linear-gradient(160deg, #1d3557 0%, #274c77 55%, #3f6e8c 100%);
 }
 .pc-icones {

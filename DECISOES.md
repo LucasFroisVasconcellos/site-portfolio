@@ -35,3 +35,15 @@ O que mudou em relação ao ARQ-002 v1.1 e por quê. Todo controle deixado de fo
 19. **Repositório continua público** (decisão do Lucas, 17/10/2026), como exceção à regra de repositório privado, porque o portfólio mostra o próprio código.
 20. **Sem banco de dados**: não é necessário; o motivo está em `SEGURANCA.md`.
 21. **Testes no navegador ficam fora do GitHub Actions.** O CI roda os testes unitários e a conferência do build sem instalar nada, então não entra código de terceiros no pipeline. Os 30 testes do Playwright rodam no PC (`npm run test:e2e`).
+
+## Visual, novembro de 2026
+
+22. **Paredes em alta resolução com IA.** Frente e direita ampliadas 3× com Real-ESRGAN (`realesr-animevideov3`) e servidas em 2560 px. Arquivos com versão no nome (`-v2`, `-v3`) porque o `_headers` guarda `/img/*` por 7 dias.
+23. **Objetos da parede do PC feitos em código** (`objetos.js`): monitor, notebook e gabinete em SVG, copiando forma, cor e posição da ilustração; o fundo da frente não tem mais esses objetos. Os 4 post-its viraram itens separados, com o título escrito neles (legível sem clicar); clicar abre aquele post-it grande.
+24. **Exceção consciente ao RNF-08:** as ventoinhas do gabinete giram com o PC ligado. Param com o PC desligado, com a parede fora da tela, com a aba oculta e com "reduzir movimento".
+25. **Sem contorno amarelo nos itens.** O próprio objeto (monitor, notebook, gabinete, post-its, quadro, medalhas) é o botão; só quem navega pelo teclado vê um contorno, para saber onde está (WCAG 2.4.7). Substitui o RF-04 e a decisão 16.
+26. **Post-its realistas, no tamanho do desenho:** desenhados em SVG (`objetos.js`) com papel, faixa de cola, canto levantado, sombra e letra à mão (Caveat, licença OFL, em `fontes/`). O título e o texto inteiro ficam escritos neles, pequenos na parede; o clique aproxima a câmera até dar para ler (sem cartão por cima).
+27. **Cores fixas:** `color-scheme: only light` (meta e CSS) contra o modo escuro automático do navegador. Como o Samsung Internet pode ignorar isso, as cores importantes do quarto ficam em SVG, que ele não escurece. CSS e JS com `no-cache` para ninguém ver visual antigo guardado.
+28. **Interface nova (entrega 3):** a mesma tinta preta e os mesmos objetos do desenho. Nome numa fita crepe, nome da parede num post-it, botões e setas com contorno de caneta e sombra chapada, idioma escolhido em tinta. Letra da interface: Shantell Sans (OFL, em `fontes/`). No celular estreito, só o nome na fita (Sobre e Privacidade ficam no menu "Ir para").
+29. **Bilhete ao passar o mouse:** cada objeto mostra um bilhete com o nome e o que ele faz. Só em telas com mouse; no toque, o clique já abre o objeto.
+30. **Projetos no PC:** ERP Associações (o principal, com link do GitHub) e o Auditor de segurança (repositório privado, sem link) entram na pasta Projetos.

@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
+  <meta name="color-scheme" content="light dark">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Quarto do Lucas · Portfólio interativo</title>
   <meta name="description" content="Entre no quarto do Lucas Frois Vasconcellos: ligue o PC, veja os projetos no GitHub, fale com ele pelo notebook e conheça o handebol na parede de trás.">
@@ -44,12 +45,12 @@
   }
   </script>
   <link rel="icon" href="img/icones/favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="img/paredes/frente-leve.webp" as="image">
-  <link rel="stylesheet" href="estilos/base.css">
-  <link rel="stylesheet" href="estilos/quarto.css">
-  <link rel="stylesheet" href="estilos/pc.css">
-  <link rel="stylesheet" href="estilos/notebook.css">
-  <link rel="stylesheet" href="estilos/parede.css">
+  <link rel="preload" href="img/paredes/frente-leve-v3.webp" as="image">
+  <link rel="stylesheet" href="estilos/base.css?v=6">
+  <link rel="stylesheet" href="estilos/quarto.css?v=6">
+  <link rel="stylesheet" href="estilos/pc.css?v=6">
+  <link rel="stylesheet" href="estilos/notebook.css?v=6">
+  <link rel="stylesheet" href="estilos/parede.css?v=6">
   <!-- Pré-carrega toda a árvore de módulos de uma vez, sem cascata (auditoria de 17/10/2026). -->
   <link rel="modulepreload" href="js/main.js">
   <link rel="modulepreload" href="js/config.js">
@@ -70,6 +71,7 @@
   <link rel="modulepreload" href="js/gestos.js">
   <link rel="modulepreload" href="js/dom.js">
   <link rel="modulepreload" href="js/geometria.js">
+  <link rel="modulepreload" href="js/objetos.js">
   <link rel="modulepreload" href="js/links.js">
   <link rel="modulepreload" href="js/github/validar.js">
   <link rel="modulepreload" href="js/whatsapp.js">
@@ -98,7 +100,7 @@
   <!-- Camada 5: controles -->
   <div id="controles" hidden>
     <header class="marca-quarto">
-      <h1><span translate="no">Lucas Frois</span> <span class="marca-sub" data-i18n="marca.sub">· portfólio interativo</span></h1>
+      <h1><span translate="no">Lucas Frois</span> <span class="marca-sub" data-i18n="marca.sub">portfólio interativo</span></h1>
       <nav class="marca-links" data-i18n-aria="marca.paginas" aria-label="Páginas">
         <a href="sobre/" data-i18n="marca.sobre">Sobre</a>
         <a href="privacidade/" data-i18n="marca.privacidade">Privacidade</a>

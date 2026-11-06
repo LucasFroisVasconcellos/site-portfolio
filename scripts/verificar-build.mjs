@@ -52,7 +52,7 @@ registrar('SG-06', comMeta.length === 0, comMeta.join('; ') || 'nenhuma imagem c
 const primeiro = arquivos.filter((p) => ['.js', '.css'].includes(extname(p)) && !rel(p).startsWith('vendor/') && !rel(p).endsWith('sem-suporte.js'));
 const gz = primeiro.reduce((t, p) => t + gzipSync(readFileSync(p)).length, 0);
 registrar('RNF-04 (código)', gz <= 300 * 1024, `${(gz / 1024).toFixed(1)} kB gzip em ${primeiro.length} arquivos`);
-const leves = arquivos.filter((p) => /img\/paredes\/.*(-leve\.webp|\.svg)$/.test(rel(p)));
+const leves = arquivos.filter((p) => /img\/paredes\/.*(-leve(-v\d+)?\.webp|\.svg)$/.test(rel(p)));
 const pesoLeves = leves.reduce((t, p) => t + statSync(p).size, 0);
 registrar('RNF-04 (imagens leves)', pesoLeves <= 1.2 * 1024 * 1024, `${(pesoLeves / 1024).toFixed(1)} kB`);
 const three = arquivos.filter((p) => rel(p).startsWith('vendor/three-r186/') && extname(p) === '.js').reduce((t, p) => t + gzipSync(readFileSync(p)).length, 0);

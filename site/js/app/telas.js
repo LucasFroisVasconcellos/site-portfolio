@@ -15,6 +15,9 @@ import { carregarJSON } from './carregamento.js';
 export function instalarTelas(ctx) {
   const { L, i18n, medicao, quarto, armazenamento, conteudo } = ctx;
 
+  // ---------- Post-its (texto escrito neles) ----------
+  quarto.escreverPostits(i18n);
+
   // ---------- PC ----------
   let aoMudarEnergia = () => {};
   const energia = criarEnergia({
