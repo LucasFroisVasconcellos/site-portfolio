@@ -120,9 +120,9 @@
     "semantic_hash": "eb9e9f4572edee98bf916e924e0ab9e1"
   },
   "site/js/notebook/notebook.js": {
-    "mtime": 1793938306.2596328,
-    "seen": 1793939015.9721916,
-    "ast_hash": "0f6b96c17f4e7fa403f6491a75eb31ab",
+    "mtime": 1793939575.3972523,
+    "seen": 1793939728.6727936,
+    "ast_hash": "66b301dccf792acdc80e4300ee962327",
     "semantic_hash": ""
   },
   "site/js/parede/medalhas.js": {
@@ -186,9 +186,9 @@
     "semantic_hash": "7117b1739d20394c38328fa2c4e3042f"
   },
   "tests/e2e/rodar.mjs": {
-    "mtime": 1793938782.181353,
-    "seen": 1793939015.9722042,
-    "ast_hash": "219717a66fa19f1585e181b5e6a25b7d",
+    "mtime": 1793939652.9915771,
+    "seen": 1793939728.672804,
+    "ast_hash": "0b7de6116fde747d04faaae95f338d07",
     "semantic_hash": ""
   },
   "tests/energia.test.mjs": {

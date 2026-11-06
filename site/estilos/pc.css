@@ -43,18 +43,18 @@
 }
 @keyframes pc-gira { to { transform: rotate(360deg); } }
 
-.pc-desktop { background: var(--parede); }
+.pc-desktop { background: linear-gradient(160deg, #1d3557 0%, #274c77 55%, #3f6e8c 100%); }
 .pc-icones {
   position: absolute; left: 16px; top: 16px; bottom: calc(var(--barra) + 12px);
   display: flex; flex-direction: column; flex-wrap: wrap; gap: 10px; align-content: flex-start;
 }
 .pc-icone-app {
   width: 104px; padding: 8px 4px; border: 2px solid transparent; border-radius: 10px 5px 10px 6px;
-  background: transparent; color: var(--tinta); cursor: pointer; font-family: var(--fonte-ui); font-weight: 600;
+  background: transparent; color: #fff; cursor: pointer; font-family: var(--fonte-ui); font-weight: 600;
   display: flex; flex-direction: column; align-items: center; gap: 6px;
-  text-align: center;
+  text-align: center; text-shadow: 0 1px 2px rgba(0, 0, 0, .7);
 }
-.pc-icone-app:hover, .pc-icone-app:focus-visible { background: var(--postit-amarelo); border-color: var(--tinta); box-shadow: 2px 2px 0 var(--tinta); outline: none; }
+.pc-icone-app:hover, .pc-icone-app:focus-visible { color: var(--tinta); text-shadow: none; background: var(--postit-amarelo); border-color: var(--tinta); box-shadow: 2px 2px 0 var(--tinta); outline: none; }
 .pc-icone-app .icone { width: 52px; height: 52px; }
 .pc.compacta .pc-icone-app { width: 96px; }
 

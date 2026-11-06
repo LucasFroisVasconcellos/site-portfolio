@@ -208,14 +208,15 @@ await caso('WA-01/07/08', 'WhatsApp: confirmação, cancelar mantém o texto, li
   assert.equal((await p.inputValue('.wa-campo')).length, 500); // WA-06
 });
 
-await caso('SG-02/SG-07', 'links externos com noopener e telas emuladas com “Simulação”', async (p) => {
+await caso('SG-02', 'links externos com noopener; apps do notebook sem aviso de simulação', async (p) => {
   await abrirPulando(p);
   await p.click('[data-item=notebook]', { force: true });
   await p.waitForTimeout(700);
   for (const app of ['whatsapp', 'instagram', 'linkedin']) {
     if (await p.isVisible('.nb-inicio')) await p.click('.nb-inicio');
     await p.click(`.nb-app[data-app=${app}]`);
-    assert.ok(await p.locator('.nb-selo').first().isVisible(), app);
+    assert.ok(await p.locator('.nb-cab').first().isVisible(), app);
+    assert.equal(await p.locator('.nb-selo, .nb-aviso, .wa-aviso').count(), 0, app); // decisão 35
   }
   const links = await p.evaluate(() => [...document.querySelectorAll('a[href^="http"]')].map((a) => ({ rel: a.rel, target: a.target, href: a.href })));
   for (const l of links) assert.ok(l.rel.includes('noopener') && l.rel.includes('noreferrer') && l.target === '_blank', l.href);

@@ -37,9 +37,6 @@ export function criarNotebook({ i18n, conteudo, medicao }) {
     if (grande) grande.textContent = horaAgora();
   }
 
-  function selo() {
-    return el('span', { classe: 'nb-selo', texto: t('nb.simulacao') });
-  }
 
   function telaInicio() {
     const bruta = new Date().toLocaleDateString(i18n.idioma === 'pt' ? 'pt-BR' : 'en-US', { weekday: 'long', day: 'numeric', month: 'long' });
@@ -58,7 +55,7 @@ export function criarNotebook({ i18n, conteudo, medicao }) {
   }
 
   function cabecalhoApp(classe, titulo, botaoReal) {
-    return el('header', { classe: `nb-cab ${classe}` }, titulo, selo(), botaoReal);
+    return el('header', { classe: `nb-cab ${classe}` }, titulo, botaoReal);
   }
 
   function telaWhatsApp() {
@@ -102,7 +99,6 @@ export function criarNotebook({ i18n, conteudo, medicao }) {
           el('div', {}, el('strong', { texto: t('wa.nome'), attrs: { translate: 'no' } }), el('span', { classe: 'wa-status', texto: t('wa.status') }))),
         null),
       el('div', { classe: 'wa-conversa' },
-        el('p', { classe: 'wa-aviso', texto: t('wa.simulacao') }),
         el('div', { classe: 'wa-balao' }, el('p', { texto: t('wa.boasvindas') }))),
       el('div', { classe: 'wa-rodape' }, campo, el('div', { classe: 'wa-lado' }, contador, enviar)),
       confirmar);
@@ -146,7 +142,6 @@ export function criarNotebook({ i18n, conteudo, medicao }) {
             el('p', { classe: 'ig-nome', texto: ig.nome, attrs: { translate: 'no' } }),
             ig.posts ? el('p', { classe: 'ig-num', texto: `${ig.posts} ${t('ig.posts')}` }) : null,
             ig.bio ? el('p', { classe: 'ig-bio', texto: i18n.campo(ig.bio) }) : null)),
-        el('p', { classe: 'nb-aviso', texto: t('ig.simulacao') }),
         grade),
       ampliada);
   }
@@ -165,7 +160,6 @@ export function criarNotebook({ i18n, conteudo, medicao }) {
             el('p', { classe: 'li-titulo', texto: i18n.campo(li.titulo) }),
             el('p', { classe: 'li-local', texto: i18n.campo(li.local) }),
             el('p', { classe: 'li-inst', texto: li.instituicao, attrs: { translate: 'no' } }))),
-        el('p', { classe: 'nb-aviso', texto: t('li.simulacao') }),
         el('section', { classe: 'li-sec' }, el('h3', { texto: t('li.sobre') }), el('p', { texto: i18n.campo(li.sobre) })),
         el('section', { classe: 'li-sec' }, el('h3', { texto: t('li.formacao') }), el('ul', {}, li.formacao.map((f) => el('li', { texto: i18n.campo(f) })))),
         el('section', { classe: 'li-sec' }, el('h3', { texto: t('li.competencias') }),
