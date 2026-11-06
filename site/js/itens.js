@@ -66,7 +66,7 @@ export const ITENS = Object.freeze([
   {
     id: 'notebook', parede: 'frente', tipo: 'foco', evento: 'abrir-notebook', tela: 'notebook',
     area: { x: 374, y: 344, w: 74, h: 50 },
-    telaQuad: [[381.5, 352], [429, 351.5], [432, 381.5], [384.5, 382]],
+    telaQuad: [[382.5, 351], [431.5, 351], [431.5, 382.5], [382.5, 382.5]],
     foco: { x: 381, y: 351, w: 52, h: 32 },
   },
   {

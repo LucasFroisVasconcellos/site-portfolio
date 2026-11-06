@@ -112,9 +112,15 @@ export function criarNotebook({ i18n, conteudo, medicao }) {
 
   function telaInstagram() {
     const ig = conteudo.instagram;
+    const abrirReal = () => { if (abrirExterno(CONFIG.instagram)) medicao.evento('sair-instagram'); };
     const ampliada = el('div', { classe: 'ig-ampliada', attrs: { hidden: true, role: 'dialog', 'aria-modal': 'true' } });
     const grade = el('div', { classe: 'ig-grade' });
     ig.fotos.forEach((f) => {
+      if (!f.arquivo) {
+        // Posição da grade com foto que só aparece no Instagram de verdade.
+        grade.append(el('button', { classe: 'ig-foto ig-so-app', attrs: { type: 'button' }, texto: t('ig.soNoApp'), on: { click: abrirReal } }));
+        return;
+      }
       grade.append(el('button', {
         classe: 'ig-foto', attrs: { type: 'button', 'aria-label': i18n.campo(f.legenda) },
         on: {
@@ -122,28 +128,26 @@ export function criarNotebook({ i18n, conteudo, medicao }) {
             ampliada.textContent = '';
             const fechar = botao('×', () => { ampliada.hidden = true; }, 'ig-fechar', { 'aria-label': t('ig.fechar') });
             ampliada.append(el('figure', {},
-              el('img', { attrs: { src: f.arquivo, alt: i18n.campo(f.legenda), width: 600, height: 600 } }),
-              el('figcaption', { texto: i18n.campo(f.legenda) })), fechar);
+              el('img', { attrs: { src: f.arquivo, alt: i18n.campo(f.legenda), width: 300, height: 400 } })), fechar);
             ampliada.hidden = false;
             fechar.focus();
           },
         },
-      }, el('img', { attrs: { src: f.arquivo, alt: '', loading: 'lazy', width: 600, height: 600 } })));
+      }, el('img', { attrs: { src: f.arquivo, alt: '', loading: 'lazy', width: 300, height: 400 } })));
     });
     return el('div', { classe: 'nb-tela ig' },
       cabecalhoApp('ig-cab', el('strong', { texto: ig.usuario, attrs: { translate: 'no' } }),
-        botao(t('ig.abrir'), () => { if (abrirExterno(CONFIG.instagram)) medicao.evento('sair-instagram'); }, 'nb-botao-real')),
+        botao(t('ig.abrir'), abrirReal, 'nb-botao-real')),
       el('div', { classe: 'ig-rolagem' },
         el('div', { classe: 'ig-perfil' },
-          el('img', { classe: 'ig-avatar', attrs: { src: ig.avatar, alt: '', width: 320, height: 320 } }),
+          el('img', { classe: 'ig-avatar', attrs: { src: ig.avatar, alt: '', width: 160, height: 160 } }),
           el('div', {},
+            el('p', { classe: 'ig-usuario', texto: ig.usuario, attrs: { translate: 'no' } }),
             el('p', { classe: 'ig-nome', texto: ig.nome, attrs: { translate: 'no' } }),
-            ig.bio ? el('p', { classe: 'ig-bio', texto: i18n.campo(ig.bio) }) : null,
-            ig.fotos.length ? el('p', { classe: 'ig-num', texto: `${ig.fotos.length} ${t('ig.posts')}` }) : null)),
+            ig.posts ? el('p', { classe: 'ig-num', texto: `${ig.posts} ${t('ig.posts')}` }) : null,
+            ig.bio ? el('p', { classe: 'ig-bio', texto: i18n.campo(ig.bio) }) : null)),
         el('p', { classe: 'nb-aviso', texto: t('ig.simulacao') }),
-        ig.fotos.length ? grade : el('div', { classe: 'ig-vazio' },
-          el('p', { texto: t('ig.verNoApp') }),
-          botao(t('ig.abrir'), () => { if (abrirExterno(CONFIG.instagram)) medicao.evento('sair-instagram'); }, 'nb-botao-real'))),
+        grade),
       ampliada);
   }
 
@@ -153,11 +157,14 @@ export function criarNotebook({ i18n, conteudo, medicao }) {
       cabecalhoApp('li-cab', el('strong', { texto: 'LinkedIn', attrs: { translate: 'no' } }),
         botao(t('li.abrir'), () => { if (abrirExterno(CONFIG.linkedin)) medicao.evento('sair-linkedin'); }, 'nb-botao-real')),
       el('div', { classe: 'li-rolagem' },
-        el('div', { classe: 'li-capa' }),
-        el('div', { classe: 'li-topo' },
-          el('span', { classe: 'li-avatar', texto: 'LF', attrs: { 'aria-hidden': 'true' } }),
-          el('h2', { texto: li.nome, attrs: { translate: 'no' } }),
-          el('p', { classe: 'li-titulo', texto: i18n.campo(li.titulo) })),
+        el('div', { classe: 'li-cartao' },
+          el('img', { classe: 'li-capa', attrs: { src: li.capa, alt: '', width: 591, height: 140 } }),
+          el('div', { classe: 'li-topo' },
+            el('img', { classe: 'li-avatar', attrs: { src: li.avatar, alt: '', width: 160, height: 160 } }),
+            el('h2', { texto: li.nome, attrs: { translate: 'no' } }),
+            el('p', { classe: 'li-titulo', texto: i18n.campo(li.titulo) }),
+            el('p', { classe: 'li-local', texto: i18n.campo(li.local) }),
+            el('p', { classe: 'li-inst', texto: li.instituicao, attrs: { translate: 'no' } }))),
         el('p', { classe: 'nb-aviso', texto: t('li.simulacao') }),
         el('section', { classe: 'li-sec' }, el('h3', { texto: t('li.sobre') }), el('p', { texto: i18n.campo(li.sobre) })),
         el('section', { classe: 'li-sec' }, el('h3', { texto: t('li.formacao') }), el('ul', {}, li.formacao.map((f) => el('li', { texto: i18n.campo(f) })))),

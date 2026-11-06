@@ -63,6 +63,18 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
     }
     el.style.transform = transformCSS(cam);
     ajustarAlvos(p, cam.s);
+    vazarFundo(cam);
+  }
+
+  // O fundo escurecido do foco tem um buraco do tamanho da tela em HTML: escurece só em volta.
+  function vazarFundo(cam) {
+    const fundo = document.getElementById('fundo-foco');
+    if (!fundo || alvoCamera.tipo !== 'foco' || !alvoCamera.item.telaQuad) return;
+    const c = caixaDoQuad(alvoCamera.item.telaQuad);
+    fundo.style.setProperty('--fx', `${(c.x * cam.s + cam.tx).toFixed(1)}px`);
+    fundo.style.setProperty('--fy', `${(c.y * cam.s + cam.ty).toFixed(1)}px`);
+    fundo.style.setProperty('--fw', `${(c.w * cam.s).toFixed(1)}px`);
+    fundo.style.setProperty('--fh', `${(c.h * cam.s).toFixed(1)}px`);
   }
 
   // Cada item tem área de toque de no mínimo 44 × 44 px na tela.

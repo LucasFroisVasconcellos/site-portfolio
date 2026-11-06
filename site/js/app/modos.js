@@ -71,7 +71,8 @@ export function instalarModos(ctx) {
     await movimento;
     if (estado.itemEmFoco !== item) return;
     const alvoTeclado = item.tela ? document.querySelector(`.tela-slot[data-tela="${item.tela}"] button, .tela-slot[data-tela="${item.tela}"] textarea`) : conteudoFoco.querySelector('[tabindex], button');
-    (alvoTeclado ?? btnVoltar).focus({ preventScroll: true });
+    // Foco pronto para o teclado, sem contorno até a pessoa usar o Tab.
+    (alvoTeclado ?? btnVoltar).focus({ preventScroll: true, focusVisible: false });
   }
 
   async function voltar() {
@@ -85,7 +86,8 @@ export function instalarModos(ctx) {
     $('aviso-gire').hidden = true;
     definirModo('quarto');
     await quarto.paredeInteira();
-    if (item) quarto.botao(item.id)?.focus({ preventScroll: true });
+    // Devolve o foco ao objeto sem desenhar contorno (o Tab seguinte volta a mostrar).
+    if (item) quarto.botao(item.id)?.focus({ preventScroll: true, focusVisible: false });
     ctx.atualizarSetaLigue();
   }
   btnVoltar.addEventListener('click', voltar);

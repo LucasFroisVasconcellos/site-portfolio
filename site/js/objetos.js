@@ -94,7 +94,8 @@ const poli = (pontos, fill, extra = {}) => svg('polygon', { points: pontos, fill
 function monitor() {
   return svg('g', { class: 'obj-monitor' }, [
     ret(450, 311.3, 98, 59.4, '#222', { rx: 0.8, stroke: TINTA, 'stroke-width': 1.2 }),
-    ret(452.4, 313.6, 93.2, 52.6, '#0F1E30'),
+    // A tela em HTML encaixa exatamente aqui (telaQuad do monitor em itens.js).
+    ret(454, 314, 91, 54, '#0F1E30'),
     ...[531, 535, 539].map((x) => ret(x, 367.6, 2, 1.2, '#666')),
     ret(543, 367.6, 2, 1.2, '#C33'),
     ret(493.2, 370.7, 11.6, 12, '#2A2A2A', { stroke: TINTA, 'stroke-width': 1 }),
@@ -104,8 +105,9 @@ function monitor() {
 
 function notebook() {
   return svg('g', { class: 'obj-notebook' }, [
-    poli('380.7,348 431.3,347.3 434,384 383,386.3', '#C8CBD0'),
-    svg('polygon', { points: '383.2,350.4 429,349.8 431.3,381.8 385.4,383.8', fill: '#0F1E30' }),
+    // Tampa reta: a tela em HTML encaixa exatamente na parte escura (telaQuad do notebook).
+    ret(379.8, 348.3, 54.4, 37.4, '#C8CBD0', { rx: 1.4, stroke: TINTA, 'stroke-width': 1.1 }),
+    ret(382.5, 351, 49, 31.5, '#0F1E30'),
     poli('381.3,385.7 436.3,384.7 449.7,389.7 386.3,393', '#B9BCC2'),
     svg('line', { x1: 390, y1: 389.3, x2: 440, y2: 388, stroke: '#8C9096', 'stroke-width': 0.8 }),
   ]);
