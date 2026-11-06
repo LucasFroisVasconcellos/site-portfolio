@@ -19,14 +19,15 @@
 .nb-hora { position: absolute; right: 14px; font-variant-numeric: tabular-nums; font-size: 15px; }
 
 .nb-inicio-tela {
-  align-items: center; justify-content: center; gap: 26px;
-  background:
-    linear-gradient(145deg, #334155 0%, #1e3a5f 60%, #0f766e 100%);
+  /* Papel de parede do FroisOS: relógio no canto e apps embaixo, para o logo ficar à vista. */
+  align-items: stretch; justify-content: space-between; gap: 16px; padding: 18px 24px 22px;
+  background: #0b1630 url("../img/fundos/frois-os-v1.webp") center / cover no-repeat;
   color: #fff;
 }
-.nb-relogio { text-align: center; text-shadow: 0 2px 6px rgba(0, 0, 0, .45); }
-.nb-relogio-grande { margin: 0; font-size: 76px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
-.nb-data { margin: 6px 0 0; font-size: 19px; }
+.nb-relogio { text-align: left; text-shadow: 0 2px 6px rgba(0, 0, 0, .6); }
+.nb-inicio-tela .nb-apps { justify-content: center; }
+.nb-relogio-grande { margin: 0; font-size: 48px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.nb-data { margin: 4px 0 0; font-size: 16px; }
 .nb-apps { display: flex; gap: 22px; }
 .nb-app {
   width: 128px; padding: 12px 6px; border: 2px solid transparent; border-radius: 16px;

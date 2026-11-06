@@ -43,7 +43,7 @@
 }
 @keyframes pc-gira { to { transform: rotate(360deg); } }
 
-.pc-desktop { background: linear-gradient(160deg, #1d3557 0%, #274c77 55%, #3f6e8c 100%); }
+.pc-desktop { background: #0b1630 url("../img/fundos/frois-os-v1.webp") center / cover no-repeat; }
 .pc-icones {
   position: absolute; left: 16px; top: 16px; bottom: calc(var(--barra) + 12px);
   display: flex; flex-direction: column; flex-wrap: wrap; gap: 10px; align-content: flex-start;
