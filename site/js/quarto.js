@@ -9,7 +9,7 @@ import {
   enquadrarParede, enquadrarFoco, enquadrarEspiada, transformCSS,
   matrizTela, matrix3dCSS, caixaDoQuad,
 } from './geometria.js';
-import { criarObjetos } from './objetos.js';
+import { criarObjetos, escreverPostits } from './objetos.js';
 
 const ALVO_MINIMO = 44; // RNF-12: área de toque na tela, em px.
 
@@ -130,16 +130,6 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
         const alvo = document.createElement('span');
         alvo.className = 'alvo';
         b.append(alvo);
-        if (item.postit) {
-          // O post-it é o próprio botão, com o título escrito nele (legível sem clicar).
-          b.classList.add('postit-parede');
-          b.style.setProperty('--giro', `${item.giro ?? 0}deg`);
-          b.dataset.cor = String(item.postit);
-          const texto = document.createElement('span');
-          texto.className = 'postit-texto';
-          texto.dataset.i18n = `postit.${item.postit}.titulo`;
-          b.append(texto);
-        }
         b.addEventListener('click', (ev) => {
           ev.stopPropagation();
           aoClicarItem(item);
@@ -329,6 +319,7 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
     paredeInteira(animar = true) { return moverCamera({ tipo: 'parede' }, animar); },
     luz,
     ventoinhas(ligadas) { objetos?.classList.toggle('pc-ligado', ligadas); },
+    escreverPostits(i18n) { return escreverPostits(objetos, i18n); },
     repulsar() { mostrarSo(atual); },
     posicaoNaTela,
     botao(itemId) {

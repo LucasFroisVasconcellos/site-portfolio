@@ -65,36 +65,6 @@ body.modo-foco #palco { touch-action: none; }
 @keyframes ventoinha-gira { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .objetos .ventoinha { animation: none; } }
 
-/* Post-its da parede: o botão é o próprio post-it de papel, com o título escrito à mão. */
-.item.postit-parede {
-  --cor: #FFF06A; --cola: #EBD94F;
-  display: flex; align-items: center; justify-content: center;
-  box-sizing: border-box; padding: 6px 3px 3px;
-  border: 0; border-radius: 0 0 1px 4px / 0 0 1px 2px;
-  /* Faixa de cola mais escura no topo, papel levemente mais claro embaixo. */
-  background: linear-gradient(180deg, var(--cola) 0, var(--cola) 13%, var(--cor) 17%, var(--cor) 70%, color-mix(in srgb, var(--cor), #fff 18%) 100%);
-  /* Sombra de papel: colado em cima, descolando embaixo. */
-  box-shadow: 0 .4px .6px rgba(0, 0, 0, .18), 0 3px 3.5px -2px rgba(0, 0, 0, .32);
-  transform: rotate(var(--giro, 0deg));
-  color: #23262B; text-align: center;
-}
-/* Canto de baixo levantado. */
-.item.postit-parede::after {
-  content: ""; position: absolute; right: 0; bottom: 0; width: 9px; height: 9px;
-  background: linear-gradient(315deg, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, .14) 50%, color-mix(in srgb, var(--cor), #fff 30%) 56%);
-  pointer-events: none;
-}
-.item.postit-parede[data-cor="1"] { --cor: #FFF06A; --cola: #EBDA4C; }
-.item.postit-parede[data-cor="2"] { --cor: #FF9DC9; --cola: #EE86B5; }
-.item.postit-parede[data-cor="3"] { --cor: #B5EE7C; --cola: #9FDB62; }
-.item.postit-parede[data-cor="4"] { --cor: #95D8F7; --cola: #7CC5E8; }
-.postit-texto {
-  position: relative;
-  font-family: "Caveat", "Segoe Print", "Bradley Hand", cursive;
-  font-size: 10.6px; font-weight: 600; line-height: .95;
-  overflow-wrap: break-word; hyphens: manual; pointer-events: none;
-}
-
 /* Camada 3: penumbra do blecaute (cobre ilustração e telas, menos o notebook). */
 .escuro {
   position: absolute; inset: -2px; z-index: 5;

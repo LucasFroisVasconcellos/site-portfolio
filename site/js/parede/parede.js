@@ -1,16 +1,6 @@
-// Parede: post-its (RF-29) e quadro digital com fotos por ano (RF-30).
+// Parede de trás: quadro digital com fotos por ano (RF-30). Os post-its estão em objetos.js.
 
 import { el, botao } from '../dom.js';
-
-const CORES_POSTIT = ['#FFF06A', '#FF9DC9', '#B5EE7C', '#95D8F7'];
-
-// Um post-it grande no foco, com o texto completo (RF-29).
-export function desenharPostit(i18n, n) {
-  const nota = el('article', { classe: 'postit', attrs: { tabindex: '0' }, estilo: { background: CORES_POSTIT[n - 1], '--giro': `${[-2.5, 1.8, -1.2, 2.2][n - 1]}deg` } },
-    el('h2', { texto: i18n.t(`postit.${n}.titulo`) }),
-    el('p', { texto: i18n.t(`postit.${n}.texto`) }));
-  return el('div', { classe: 'postits-camada' }, el('div', { classe: 'postits-foco' }, nota));
-}
 
 export const TELA_QUADRO = Object.freeze({ w: 960, h: 600 });
 

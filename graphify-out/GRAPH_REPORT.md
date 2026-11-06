@@ -1,17 +1,17 @@
 # Graph Report - site-portfolio  (2026-11-05)
 
 ## Corpus Check
-- 47 files · ~24,807 words
+- 47 files · ~25,334 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 12 file(s) not represented in the graph (top: .css 6, (none) 4, .woff2 1)
 
 ## Summary
-- 345 nodes · 825 edges · 16 communities (15 shown, 1 thin omitted)
+- 347 nodes · 828 edges · 16 communities (15 shown, 1 thin omitted)
 - Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 30 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `32c625f7`
+- Built from commit: `5663ccb0`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -28,21 +28,21 @@
 - package.json
 - Medalhas 3D
 - Preparo das ilustrações
-- geral.test.mjs
+- objetos.js
 - rodar.mjs
 - servidor.mjs
 
 ## God Nodes (most connected - your core abstractions)
-1. `el()` - 31 edges
-2. `criarQuarto()` - 30 edges
+1. `criarQuarto()` - 31 edges
+2. `el()` - 30 edges
 3. `criarSistema()` - 23 edges
 4. `criarNotebook()` - 20 edges
 5. `botao()` - 17 edges
 6. `criarClienteGitHub()` - 16 edges
-7. `instalarModos()` - 14 edges
-8. `icone()` - 14 edges
-9. `instalarBlecaute()` - 13 edges
-10. `iniciar()` - 13 edges
+7. `icone()` - 14 edges
+8. `instalarBlecaute()` - 13 edges
+9. `iniciar()` - 13 edges
+10. `registrarApps()` - 13 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `simular()` --calls--> `criarBlecaute()`  [EXTRACTED]
@@ -62,8 +62,8 @@
 ## Communities (16 total, 1 thin omitted)
 
 ### Community 0 - "Geometria e enquadramento"
-Cohesion: 0.14
-Nodes (30): caixaDoQuad(), enquadrarEspiada(), enquadrarFoco(), enquadrarParede(), matrix3dCSS(), matrizTela(), transformCSS(), itensDaParede() (+22 more)
+Cohesion: 0.08
+Nodes (38): instalarMenu(), abrirMenu(), fecharMenu(), irParaItem(), montarMenu(), caixaDoQuad(), enquadrarEspiada(), enquadrarFoco() (+30 more)
 
 ### Community 1 - "Notebook e DOM"
 Cohesion: 0.26
@@ -74,16 +74,16 @@ Cohesion: 0.14
 Nodes (30): criarArmazenamento(), VERSAO_ARMAZENAMENTO, criarClienteGitHub(), atualizarAgora(), chamar(), lerCache(), reserva(), rodada() (+22 more)
 
 ### Community 3 - "instalarModos"
-Cohesion: 0.28
-Nodes (11): instalarModos(), atualizarAvisoGire(), atualizarNomeParede(), definirModo(), focar(), girar(), precisaGirar(), redesenharPostits() (+3 more)
+Cohesion: 0.31
+Nodes (9): instalarModos(), atualizarAvisoGire(), atualizarNomeParede(), definirModo(), focar(), girar(), precisaGirar(), voltar() (+1 more)
 
 ### Community 4 - "instantaneo.mjs"
 Cohesion: 0.20
 Nodes (4): cliente, DESTINO, MUTANTES, RAIZ
 
 ### Community 5 - "Links seguros e WhatsApp"
-Cohesion: 0.12
-Nodes (43): CONFIG, botao(), el(), icone(), tempoRelativo(), abrirExterno(), analisar(), criarLink() (+35 more)
+Cohesion: 0.13
+Nodes (40): CONFIG, botao(), el(), icone(), tempoRelativo(), abrirExterno(), analisar(), criarLink() (+32 more)
 
 ### Community 6 - "Gestos, idioma e main"
 Cohesion: 0.12
@@ -94,8 +94,8 @@ Cohesion: 0.10
 Nodes (19): achados, arquivos, cab, comMeta, faltando, gz, leves, PADROES (+11 more)
 
 ### Community 8 - "Energia e blecaute"
-Cohesion: 0.12
-Nodes (21): instalarBlecaute(), agendarBlecaute(), atualizarSetaLigue(), condicoesBlecaute(), entrada(), executarBlecaute(), mostrarLigue(), reavaliarBlecaute() (+13 more)
+Cohesion: 0.11
+Nodes (23): instalarBlecaute(), agendarBlecaute(), atualizarSetaLigue(), condicoesBlecaute(), entrada(), executarBlecaute(), mostrarLigue(), reavaliarBlecaute() (+15 more)
 
 ### Community 9 - "package.json"
 Cohesion: 0.13
@@ -109,9 +109,9 @@ Nodes (13): criarPainelMedalhas(), ajustarTamanho(), aplicarTexturas(), desenhar
 Cohesion: 0.31
 Nodes (4): achar_original(), main(), preparar(), salvar_sem_metadados()
 
-### Community 13 - "geral.test.mjs"
-Cohesion: 0.12
-Nodes (16): instalarMenu(), abrirMenu(), fecharMenu(), irParaItem(), montarMenu(), formatar(), ALTURA_PAREDE, indiceParede() (+8 more)
+### Community 13 - "objetos.js"
+Cohesion: 0.36
+Nodes (13): criarObjetos(), escreverPostits(), gabinete(), larguraTexto(), monitor(), notebook(), poli(), postit() (+5 more)
 
 ### Community 14 - "rodar.mjs"
 Cohesion: 0.17
@@ -127,12 +127,12 @@ Nodes (3): PORTA, RAIZ, TIPOS
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `criarQuarto()` connect `Geometria e enquadramento` to `geral.test.mjs`, `Gestos, idioma e main`?**
-  _High betweenness centrality (0.093) - this node is a cross-community bridge._
+- **Why does `criarQuarto()` connect `Geometria e enquadramento` to `objetos.js`, `Gestos, idioma e main`?**
+  _High betweenness centrality (0.096) - this node is a cross-community bridge._
 - **Are the 8 inferred relationships involving `criarQuarto()` (e.g. with `carregarImagens()` and `encaixarTela()`) actually correct?**
   _`criarQuarto()` has 8 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Geometria e enquadramento` be split into smaller, more focused modules?**
-  _Cohesion score 0.13813813813813813 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.08176100628930817 - nodes in this community are weakly interconnected._
 - **Why does `criarSistema()` connect `Notebook e DOM` to `Links seguros e WhatsApp`, `Gestos, idioma e main`?**
   _High betweenness centrality (0.071) - this node is a cross-community bridge._
 - **Are the 4 inferred relationships involving `criarSistema()` (e.g. with `abrir()` and `fechar()`) actually correct?**
@@ -140,4 +140,4 @@ _Questions this graph is uniquely positioned to answer:_
 - **Should `Cliente GitHub e cache` be split into smaller, more focused modules?**
   _Cohesion score 0.1380952380952381 - nodes in this community are weakly interconnected._
 - **Why does `instalarTelas()` connect `Gestos, idioma e main` to `Notebook e DOM`, `Cliente GitHub e cache`, `Links seguros e WhatsApp`, `Energia e blecaute`, `Medalhas 3D`?**
-  _High betweenness centrality (0.064) - this node is a cross-community bridge._
+  _High betweenness centrality (0.067) - this node is a cross-community bridge._

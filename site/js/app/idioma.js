@@ -27,7 +27,7 @@ export function instalarIdioma(ctx) {
     ctx.quadro.traduzir();
     ctx.medalhas.traduzir();
     if (ctx.menuAberto()) ctx.montarMenu();
-    ctx.redesenharPostits();
+    ctx.quarto.escreverPostits(i18n);
   });
 
   Object.assign(ctx, { marcarIdioma });

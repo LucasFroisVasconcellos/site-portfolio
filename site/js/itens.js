@@ -34,28 +34,28 @@ export const PAREDES = Object.freeze([
 export const PAREDE_INICIAL = 'frente';
 
 // tipo: o que acontece ao clicar. foco: área enquadrada no modo Foco.
-// postit: número do post-it (o texto fica escrito nele, legível sem clicar). giro: inclinação em graus.
+// postit: número do post-it (desenhado em objetos.js, com o texto escrito nele; o clique aproxima a câmera).
 // tela: quadrilátero da tela na ilustração (sup. esq., sup. dir., inf. dir., inf. esq.).
 export const ITENS = Object.freeze([
   {
-    id: 'postit-1', parede: 'frente', tipo: 'foco', evento: 'abrir-postit', postit: 1, giro: -3,
-    area: { x: 400, y: 256, w: 46, h: 44 },
-    foco: { x: 350, y: 226, w: 300, h: 130 },
+    id: 'postit-1', parede: 'frente', tipo: 'foco', evento: 'abrir-postit', postit: 1,
+    area: { x: 452, y: 273, w: 17.5, h: 17.5 },
+    foco: { x: 451, y: 272, w: 19.5, h: 19.5 },
   },
   {
-    id: 'postit-2', parede: 'frente', tipo: 'foco', evento: 'abrir-postit', postit: 2, giro: 2,
-    area: { x: 451, y: 262, w: 46, h: 44 },
-    foco: { x: 350, y: 226, w: 300, h: 130 },
+    id: 'postit-2', parede: 'frente', tipo: 'foco', evento: 'abrir-postit', postit: 2,
+    area: { x: 471.5, y: 281, w: 17.5, h: 17.5 },
+    foco: { x: 470.5, y: 280, w: 19.5, h: 19.5 },
   },
   {
-    id: 'postit-3', parede: 'frente', tipo: 'foco', evento: 'abrir-postit', postit: 3, giro: -2,
-    area: { x: 502, y: 254, w: 46, h: 44 },
-    foco: { x: 350, y: 226, w: 300, h: 130 },
+    id: 'postit-3', parede: 'frente', tipo: 'foco', evento: 'abrir-postit', postit: 3,
+    area: { x: 493, y: 270, w: 17.5, h: 17.5 },
+    foco: { x: 492, y: 269, w: 19.5, h: 19.5 },
   },
   {
-    id: 'postit-4', parede: 'frente', tipo: 'foco', evento: 'abrir-postit', postit: 4, giro: 3,
-    area: { x: 553, y: 261, w: 46, h: 44 },
-    foco: { x: 350, y: 226, w: 300, h: 130 },
+    id: 'postit-4', parede: 'frente', tipo: 'foco', evento: 'abrir-postit', postit: 4,
+    area: { x: 517, y: 278.5, w: 17.5, h: 17.5 },
+    foco: { x: 516, y: 277.5, w: 19.5, h: 19.5 },
   },
   {
     id: 'monitor', parede: 'frente', tipo: 'foco', evento: 'abrir-pc', tela: 'pc',

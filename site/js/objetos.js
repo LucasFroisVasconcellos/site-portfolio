@@ -1,5 +1,5 @@
-// Objetos da parede do PC feitos em código (SVG), no lugar do desenho: monitor, notebook e
-// gabinete. Coordenadas em unidades da parede (1024 × 572), copiadas da ilustração.
+// Objetos da parede do PC feitos em código (SVG), no lugar do desenho: post-its, monitor,
+// notebook e gabinete. Em SVG o modo escuro do navegador não muda as cores. Coordenadas em unidades da parede (1024 × 572), copiadas da ilustração.
 // Ficam numa camada abaixo das telas em HTML; o clique é dos botões de quarto.js.
 
 const NS = 'http://www.w3.org/2000/svg';
@@ -10,6 +10,82 @@ function svg(tag, attrs = {}, filhos = []) {
   for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, String(v));
   for (const f of filhos) e.append(f);
   return e;
+}
+
+// Post-its no tamanho e na posição do desenho original. O texto inteiro fica escrito neles
+// (pequeno na parede); ao clicar, a câmera aproxima até dar para ler.
+export const POSTITS = Object.freeze([
+  { n: 1, x: 453.5, y: 274.5, giro: -4, cor: '#FFF06A', cola: '#EBDA4C' },
+  { n: 2, x: 473, y: 282.5, giro: 3, cor: '#FF9DC9', cola: '#EE86B5' },
+  { n: 3, x: 494.5, y: 271.5, giro: -3, cor: '#B5EE7C', cola: '#9FDB62' },
+  { n: 4, x: 518.5, y: 280, giro: 4, cor: '#95D8F7', cola: '#7CC5E8' },
+]);
+const LADO = 14.5;
+const FONTE = '"Caveat", "Segoe Print", "Bradley Hand", cursive';
+
+function postit(p) {
+  const { x, y } = p;
+  const meio = `${x + LADO / 2} ${y + LADO / 2}`;
+  const grad = svg('linearGradient', { id: `papel-${p.n}`, x1: 0, y1: 0, x2: 0, y2: 1 }, [
+    svg('stop', { offset: '0', 'stop-color': p.cola }), svg('stop', { offset: '0.13', 'stop-color': p.cola }),
+    svg('stop', { offset: '0.17', 'stop-color': p.cor }), svg('stop', { offset: '1', 'stop-color': p.cor }),
+  ]);
+  const texto = svg('g', { class: 'postit-texto', 'data-postit': p.n, fill: '#23262B', 'font-family': FONTE, 'font-weight': 600 });
+  return svg('g', { transform: `rotate(${p.giro} ${meio})` }, [
+    grad,
+    // Sombra de papel: colado em cima, descolando embaixo.
+    svg('rect', { x: x + 0.25, y: y + 0.6, width: LADO, height: LADO, fill: '#000', opacity: 0.16, filter: 'url(#sombra-postit)' }),
+    svg('path', { d: `M ${x} ${y} H ${x + LADO} V ${y + LADO - 2.2} L ${x + LADO - 2.2} ${y + LADO} H ${x} Z`, fill: `url(#papel-${p.n})` }),
+    // Canto levantado.
+    svg('path', { d: `M ${x + LADO} ${y + LADO - 2.2} L ${x + LADO - 2.2} ${y + LADO} L ${x + LADO - 1.7} ${y + LADO - 1.7} Z`, fill: '#FFFFFF', opacity: 0.55 }),
+    svg('path', { d: `M ${x + LADO} ${y + LADO - 2.2} L ${x + LADO - 2.2} ${y + LADO}`, stroke: '#000', 'stroke-opacity': 0.18, 'stroke-width': 0.2 }),
+    texto,
+  ]);
+}
+
+// Quebra o texto em linhas que cabem na largura (medida real da fonte, num canvas).
+let medidor = null;
+function larguraTexto(t, tamanho) {
+  medidor ??= document.createElement('canvas').getContext('2d');
+  medidor.font = `600 100px ${FONTE}`;
+  return (medidor.measureText(t).width / 100) * tamanho;
+}
+function quebrar(texto, tamanho, largura) {
+  const linhas = [];
+  let atual = '';
+  for (const palavra of texto.split(/\s+/)) {
+    const tentativa = atual ? `${atual} ${palavra}` : palavra;
+    if (atual && larguraTexto(tentativa, tamanho) > largura) { linhas.push(atual); atual = palavra; } else atual = tentativa;
+  }
+  if (atual) linhas.push(atual);
+  return linhas;
+}
+
+// Escreve título e texto em cada post-it, no idioma atual. Diminui a letra até caber.
+export async function escreverPostits(camada, i18n) {
+  if (!camada) return;
+  try { await document.fonts?.load(`600 10px ${FONTE}`); } catch { /* segue com a fonte reserva */ }
+  const margem = 1.1;
+  const largura = LADO - margem * 2;
+  for (const p of POSTITS) {
+    const g = camada.querySelector(`.postit-texto[data-postit="${p.n}"]`);
+    if (!g) continue;
+    const titulo = i18n.t(`postit.${p.n}.titulo`);
+    const corpo = i18n.t(`postit.${p.n}.texto`);
+    let fT = 1.7; let fC = 1.25; let lt; let lc;
+    for (;;) {
+      lt = quebrar(titulo, fT, largura);
+      lc = quebrar(corpo, fC, largura);
+      const altura = lt.length * fT * 0.95 + 0.5 + lc.length * fC * 1.05;
+      if (altura <= LADO - 3.2 || fC <= 0.6) break;
+      fT *= 0.94; fC *= 0.94;
+    }
+    g.textContent = '';
+    let yy = p.y + 2.6 + fT * 0.8;
+    for (const l of lt) { g.append(svg('text', { x: p.x + margem, y: yy, 'font-size': fT.toFixed(3) }, [l])); yy += fT * 0.95; }
+    yy += 0.5 + fC * 0.1;
+    for (const l of lc) { g.append(svg('text', { x: p.x + margem, y: yy, 'font-size': fC.toFixed(3) }, [l])); yy += fC * 1.05; }
+  }
 }
 
 const ret = (x, y, w, h, fill, extra = {}) => svg('rect', { x, y, width: w, height: h, fill, ...extra });
@@ -62,8 +138,11 @@ function gabinete() {
 // Paredes que têm objetos em código. Devolve a camada pronta ou null.
 export function criarObjetos(paredeId) {
   if (paredeId !== 'frente') return null;
+  const defs = svg('defs', {}, [
+    svg('filter', { id: 'sombra-postit', x: '-20%', y: '-20%', width: '140%', height: '160%' }, [svg('feGaussianBlur', { stdDeviation: 0.55 })]),
+  ]);
   const camada = svg('svg', { class: 'objetos pc-ligado', viewBox: '0 0 1024 572', 'aria-hidden': 'true', focusable: 'false' }, [
-    monitor(), notebook(), gabinete(),
+    defs, ...POSTITS.map(postit), monitor(), notebook(), gabinete(),
   ]);
   return camada;
 }

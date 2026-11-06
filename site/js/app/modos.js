@@ -1,7 +1,6 @@
 // Modos do quarto (quarto, foco, passeio), troca de parede e foco nos itens (RF-03 a RF-05).
 
 import { paredeVizinha } from '../itens.js';
-import { desenharPostit } from '../parede/parede.js';
 
 export function instalarModos(ctx) {
   const { $, body, i18n, medicao, quarto, estado } = ctx;
@@ -66,7 +65,6 @@ export function instalarModos(ctx) {
     conteudoFoco.hidden = false;
     medicao.evento(item.evento);
     const movimento = quarto.focar(item);
-    if (item.postit) conteudoFoco.append(desenharPostit(i18n, item.postit));
     if (item.id === 'quadro') { ctx.quadro.abrir(); conteudoFoco.append(ctx.quadro.legenda); }
     if (item.id === 'medalhas') { conteudoFoco.append(ctx.medalhas.el); ctx.medalhas.abrir(); }
     atualizarAvisoGire();
@@ -102,13 +100,5 @@ export function instalarModos(ctx) {
     body.classList.remove('foco-tela');
   }
 
-  // Postits mostrados no foco precisam ser redesenhados ao trocar o idioma.
-  function redesenharPostits() {
-    const n = estado.itemEmFoco?.postit;
-    if (!n) return;
-    conteudoFoco.textContent = '';
-    conteudoFoco.append(desenharPostit(i18n, n));
-  }
-
-  Object.assign(ctx, { definirModo, atualizarNomeParede, girar, atualizarAvisoGire, focar, voltar, voltarImediato, redesenharPostits });
+  Object.assign(ctx, { definirModo, atualizarNomeParede, girar, atualizarAvisoGire, focar, voltar, voltarImediato });
 }
