@@ -120,10 +120,10 @@
     "semantic_hash": "eb9e9f4572edee98bf916e924e0ab9e1"
   },
   "site/js/notebook/notebook.js": {
-    "mtime": 1793923496.1992466,
-    "seen": 1793923542.3286145,
-    "ast_hash": "a7f977afcf1d80389f4c83f67a9e2cdd",
-    "semantic_hash": "a7f977afcf1d80389f4c83f67a9e2cdd"
+    "mtime": 1793938306.2596328,
+    "seen": 1793939015.9721916,
+    "ast_hash": "0f6b96c17f4e7fa403f6491a75eb31ab",
+    "semantic_hash": ""
   },
   "site/js/parede/medalhas.js": {
     "mtime": 1793923496.1992466,
@@ -186,9 +186,9 @@
     "semantic_hash": "7117b1739d20394c38328fa2c4e3042f"
   },
   "tests/e2e/rodar.mjs": {
-    "mtime": 1793931566.5725105,
-    "seen": 1793931687.713058,
-    "ast_hash": "bfd95482e181b60fe1da1fdd96b2e833",
+    "mtime": 1793938782.181353,
+    "seen": 1793939015.9722042,
+    "ast_hash": "219717a66fa19f1585e181b5e6a25b7d",
     "semantic_hash": ""
   },
   "tests/energia.test.mjs": {
@@ -198,10 +198,10 @@
     "semantic_hash": "e35de9defa0361a3cc0ea1d1d1e75636"
   },
   "tests/geral.test.mjs": {
-    "mtime": 1793923496.2047682,
-    "seen": 1793923542.3286257,
-    "ast_hash": "73920f44a298f516d6de2b4d7867ca22",
-    "semantic_hash": "73920f44a298f516d6de2b4d7867ca22"
+    "mtime": 1793938306.2590294,
+    "seen": 1793939015.9722064,
+    "ast_hash": "24f46865673ec29c3e3d6f7590dd0c91",
+    "semantic_hash": ""
   },
   "tests/github.test.mjs": {
     "mtime": 1793923496.2047682,

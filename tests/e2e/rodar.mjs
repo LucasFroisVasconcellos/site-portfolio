@@ -221,6 +221,27 @@ await caso('SG-02/SG-07', 'links externos com noopener e telas emuladas com “S
   for (const l of links) assert.ok(l.rel.includes('noopener') && l.rel.includes('noreferrer') && l.target === '_blank', l.href);
 });
 
+await caso('RF-05/IG/LI', 'notebook centralizado no foco; Instagram e LinkedIn com o conteúdo real', async (p) => {
+  // Visitante que clica no notebook com o passeio de abertura ainda rodando.
+  await p.goto(BASE);
+  await p.waitForSelector('#btn-pular:not([hidden])', { timeout: 20000 });
+  await p.click('[data-item=notebook]');
+  await p.waitForTimeout(1500); // fim da animação da câmera
+  // O foco num botão da tela não pode rolar o palco (bug: tela cortada à esquerda).
+  assert.deepEqual(await p.evaluate(() => [palco.scrollLeft, palco.scrollTop]), [0, 0]);
+  const caixa = await p.locator('[data-tela=notebook]').boundingBox();
+  const vw = p.viewportSize().width;
+  assert.ok(Math.abs(caixa.x + caixa.width / 2 - vw / 2) < 4, `centro ${caixa.x + caixa.width / 2} ≠ ${vw / 2}`);
+  await p.click('.nb-app[data-app=instagram]');
+  assert.equal(await p.locator('.ig-foto').count(), 15);
+  assert.equal(await p.locator('.ig-so-app').count(), 1); // posição sem foto: abre o Instagram
+  assert.ok((await p.textContent('.ig-bio')).includes('\n'));
+  await p.click('.nb-inicio');
+  await p.click('.nb-app[data-app=linkedin]');
+  assert.equal(await p.locator('img.li-capa').count(), 1);
+  assert.equal(await p.locator('img.li-avatar').count(), 1);
+});
+
 await caso('RF-32', 'idioma troca sem recarregar e sem fechar janelas; escolha lembrada', async (p) => {
   await abrirPulando(p);
   await p.click('[data-item=monitor]', { force: true });

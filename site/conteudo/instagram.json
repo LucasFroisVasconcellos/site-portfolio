@@ -1,6 +1,117 @@
 {
   "usuario": "lucas_frois1",
   "nome": "Lucas Frois",
-  "avatar": "img/avatar-iniciais.webp",
-  "fotos": []
+  "avatar": "img/instagram/avatar.webp",
+  "bio": {
+    "pt": "Atleta de Handebol em Cadeira de Rodas | @apsc.paradesportos\nBCC - UFSCar\nBrasilândia, SP → São Carlos\nApaixonado por esportes e tecnologia",
+    "en": "Wheelchair Handball athlete | @apsc.paradesportos\nComputer Science - UFSCar\nBrasilândia, SP → São Carlos\nPassionate about sports and technology"
+  },
+  "posts": 15,
+  "fotos": [
+    {
+      "arquivo": "img/instagram/post-01.webp",
+      "legenda": {
+        "pt": "Foto do Instagram do Lucas (handebol em cadeira de rodas)",
+        "en": "Photo from Lucas's Instagram (wheelchair handball)"
+      }
+    },
+    {
+      "arquivo": "img/instagram/post-02.webp",
+      "legenda": {
+        "pt": "Foto do Instagram do Lucas (handebol em cadeira de rodas)",
+        "en": "Photo from Lucas's Instagram (wheelchair handball)"
+      }
+    },
+    {
+      "arquivo": null,
+      "legenda": {
+        "pt": "Foto disponível só no Instagram",
+        "en": "Photo available only on Instagram"
+      }
+    },
+    {
+      "arquivo": "img/instagram/post-03.webp",
+      "legenda": {
+        "pt": "Foto do Instagram do Lucas (handebol em cadeira de rodas)",
+        "en": "Photo from Lucas's Instagram (wheelchair handball)"
+      }
+    },
+    {
+      "arquivo": "img/instagram/post-04.webp",
+      "legenda": {
+        "pt": "Foto do Instagram do Lucas (handebol em cadeira de rodas)",
+        "en": "Photo from Lucas's Instagram (wheelchair handball)"
+      }
+    },
+    {
+      "arquivo": "img/instagram/post-05.webp",
+      "legenda": {
+        "pt": "Foto do Instagram do Lucas (handebol em cadeira de rodas)",
+        "en": "Photo from Lucas's Instagram (wheelchair handball)"
+      }
+    },
+    {
+      "arquivo": "img/instagram/post-06.webp",
+      "legenda": {
+        "pt": "Foto do Instagram do Lucas (handebol em cadeira de rodas)",
+        "en": "Photo from Lucas's Instagram (wheelchair handball)"
+      }
+    },
+    {
+      "arquivo": "img/instagram/post-07.webp",
+      "legenda": {
+        "pt": "Foto do Instagram do Lucas (handebol em cadeira de rodas)",
+        "en": "Photo from Lucas's Instagram (wheelchair handball)"
+      }
+    },
+    {
+      "arquivo": "img/instagram/post-08.webp",
+      "legenda": {
+        "pt": "Foto do Instagram do Lucas (handebol em cadeira de rodas)",
+        "en": "Photo from Lucas's Instagram (wheelchair handball)"
+      }
+    },
+    {
+      "arquivo": "img/instagram/post-09.webp",
+      "legenda": {
+        "pt": "Foto do Instagram do Lucas (handebol em cadeira de rodas)",
+        "en": "Photo from Lucas's Instagram (wheelchair handball)"
+      }
+    },
+    {
+      "arquivo": "img/instagram/post-10.webp",
+      "legenda": {
+        "pt": "Foto do Instagram do Lucas (handebol em cadeira de rodas)",
+        "en": "Photo from Lucas's Instagram (wheelchair handball)"
+      }
+    },
+    {
+      "arquivo": "img/instagram/post-11.webp",
+      "legenda": {
+        "pt": "Foto do Instagram do Lucas (handebol em cadeira de rodas)",
+        "en": "Photo from Lucas's Instagram (wheelchair handball)"
+      }
+    },
+    {
+      "arquivo": "img/instagram/post-12.webp",
+      "legenda": {
+        "pt": "Foto do Instagram do Lucas (handebol em cadeira de rodas)",
+        "en": "Photo from Lucas's Instagram (wheelchair handball)"
+      }
+    },
+    {
+      "arquivo": "img/instagram/post-13.webp",
+      "legenda": {
+        "pt": "Foto do Instagram do Lucas (handebol em cadeira de rodas)",
+        "en": "Photo from Lucas's Instagram (wheelchair handball)"
+      }
+    },
+    {
+      "arquivo": "img/instagram/post-14.webp",
+      "legenda": {
+        "pt": "Foto do Instagram do Lucas",
+        "en": "Photo from Lucas's Instagram"
+      }
+    }
+  ]
 }

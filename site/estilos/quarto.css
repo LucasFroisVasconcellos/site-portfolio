@@ -2,7 +2,10 @@
 body.modo-foco #palco { touch-action: none; }
 #palco {
   position: fixed; inset: 0; z-index: 1;
+  /* clip, não só hidden: hidden deixa o navegador rolar o palco ao focar um botão
+     fora da vista (tela do notebook cortada à esquerda). hidden fica de reserva. */
   overflow: hidden;
+  overflow: clip;
   perspective: 1400px;
   /* Pinça do navegador liberada no quarto (WCAG 1.4.4); no foco o site cuida da pinça. */
   touch-action: pinch-zoom;
@@ -45,6 +48,7 @@ body.modo-foco #palco { touch-action: none; }
   position: absolute; left: 0; top: 0;
   transform-origin: 0 0;
   overflow: hidden;
+  overflow: clip;
   pointer-events: none;
   z-index: 2;
 }

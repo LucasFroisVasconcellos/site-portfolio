@@ -92,7 +92,8 @@ test('Campos bilíngues dos arquivos de conteúdo têm PT e EN; links estão na 
   };
   for (const f of ['projetos', 'fotos', 'medalhas', 'instagram', 'linkedin']) conferir(json(`conteudo/${f}.json`), f);
   for (const f of json('conteudo/fotos.json').fotos) assert.ok(existsSync(join(SITE, f.arquivo)), f.arquivo);
-  for (const f of json('conteudo/instagram.json').fotos) assert.ok(existsSync(join(SITE, f.arquivo)), f.arquivo);
+  // Uma posição da grade pode ficar sem arquivo (foto só no Instagram): arquivo null.
+  for (const f of json('conteudo/instagram.json').fotos) if (f.arquivo !== null) assert.ok(existsSync(join(SITE, f.arquivo)), f.arquivo);
   for (const p of json('conteudo/projetos.json').projetos) if (p.imagem) assert.ok(existsSync(join(SITE, p.imagem)), p.imagem);
   // Nada de texto ou imagem de marcação publicado (auditoria de 17/10/2026).
   const valores = (o) => (typeof o === 'string' ? [o] : o && typeof o === 'object' ? Object.values(o).flatMap(valores) : []);
