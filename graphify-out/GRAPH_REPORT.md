@@ -1,17 +1,17 @@
 # Graph Report - site-portfolio  (2026-11-06)
 
 ## Corpus Check
-- 47 files · ~25,700 words
+- 47 files · ~25,761 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 13 file(s) not represented in the graph (top: .css 6, (none) 4, .woff2 2)
 
 ## Summary
-- 347 nodes · 829 edges · 16 communities (15 shown, 1 thin omitted)
+- 348 nodes · 832 edges · 16 communities (15 shown, 1 thin omitted)
 - Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 30 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `2ae499fd`
+- Built from commit: `e972f896`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -33,7 +33,7 @@
 - servidor.mjs
 
 ## God Nodes (most connected - your core abstractions)
-1. `criarQuarto()` - 31 edges
+1. `criarQuarto()` - 32 edges
 2. `el()` - 30 edges
 3. `criarSistema()` - 23 edges
 4. `criarNotebook()` - 20 edges
@@ -74,8 +74,8 @@ Cohesion: 0.14
 Nodes (30): criarArmazenamento(), VERSAO_ARMAZENAMENTO, criarClienteGitHub(), atualizarAgora(), chamar(), lerCache(), reserva(), rodada() (+22 more)
 
 ### Community 3 - "instalarModos"
-Cohesion: 0.31
-Nodes (9): instalarModos(), atualizarAvisoGire(), atualizarNomeParede(), definirModo(), focar(), girar(), precisaGirar(), voltar() (+1 more)
+Cohesion: 0.36
+Nodes (8): instalarModos(), atualizarAvisoGire(), atualizarNomeParede(), definirModo(), focar(), girar(), precisaGirar(), voltar()
 
 ### Community 4 - "instantaneo.mjs"
 Cohesion: 0.20
@@ -86,8 +86,8 @@ Cohesion: 0.13
 Nodes (40): CONFIG, botao(), el(), icone(), tempoRelativo(), abrirExterno(), analisar(), criarLink() (+32 more)
 
 ### Community 6 - "Gestos, idioma e main"
-Cohesion: 0.12
-Nodes (23): ARQUIVOS, carregarJSON(), mostrarErroCarregamento(), progresso(), criarContadorFps(), instalarIdioma(), instalarPasseio(), instalarTecladoEGestos() (+15 more)
+Cohesion: 0.11
+Nodes (25): ARQUIVOS, carregarJSON(), mostrarErroCarregamento(), progresso(), criarContadorFps(), instalarIdioma(), instalarPasseio(), instalarTecladoEGestos() (+17 more)
 
 ### Community 7 - "Verificação do build"
 Cohesion: 0.10
@@ -128,11 +128,11 @@ Nodes (3): PORTA, RAIZ, TIPOS
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `criarQuarto()` connect `Geometria e enquadramento` to `objetos.js`, `Gestos, idioma e main`?**
-  _High betweenness centrality (0.096) - this node is a cross-community bridge._
+  _High betweenness centrality (0.101) - this node is a cross-community bridge._
 - **Are the 8 inferred relationships involving `criarQuarto()` (e.g. with `carregarImagens()` and `encaixarTela()`) actually correct?**
   _`criarQuarto()` has 8 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Geometria e enquadramento` be split into smaller, more focused modules?**
-  _Cohesion score 0.08176100628930817 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.08455625436757512 - nodes in this community are weakly interconnected._
 - **Why does `criarSistema()` connect `Notebook e DOM` to `Links seguros e WhatsApp`, `Gestos, idioma e main`?**
   _High betweenness centrality (0.071) - this node is a cross-community bridge._
 - **Are the 4 inferred relationships involving `criarSistema()` (e.g. with `abrir()` and `fechar()`) actually correct?**
