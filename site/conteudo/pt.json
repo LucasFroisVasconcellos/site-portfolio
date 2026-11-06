@@ -140,9 +140,15 @@
   "medalha.sem3d": "Seu aparelho não mostra 3D. Aqui está a medalha em 2D.",
   "quadro.emBreve": "As fotos dos jogos entram aqui em breve.",
   "ig.verNoApp": "As publicações ficam no Instagram.",
-  "marca.sub": "· portfólio interativo",
+  "marca.sub": "portfólio interativo",
   "marca.paginas": "Páginas",
   "marca.sobre": "Sobre",
   "marca.privacidade": "Privacidade",
-  "marca.sobreTexto": "Sobre mim, em texto"
+  "marca.sobreTexto": "Sobre mim, em texto",
+  "dica.monitor": "meus projetos e commits ao vivo",
+  "dica.notebook": "WhatsApp, Instagram e LinkedIn",
+  "dica.energia": "liga e desliga o PC",
+  "dica.postit": "clique para ler",
+  "dica.quadro": "fotos do handebol",
+  "dica.medalhas": "minhas medalhas em 3D"
 }

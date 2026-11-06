@@ -129,7 +129,16 @@ export function criarQuarto({ raiz, i18n, aoClicarItem, reduzirMovimento, tempos
         });
         const alvo = document.createElement('span');
         alvo.className = 'alvo';
-        b.append(alvo);
+        // Bilhete a lápis com o nome do objeto e o que ele faz (aparece com o mouse em cima).
+        const bilhete = document.createElement('span');
+        bilhete.className = 'bilhete';
+        bilhete.setAttribute('aria-hidden', 'true');
+        const titulo = document.createElement('strong');
+        titulo.dataset.i18n = b.dataset.i18nAria;
+        const dica = document.createElement('span');
+        dica.dataset.i18n = `dica.${item.postit ? 'postit' : item.id}`;
+        bilhete.append(titulo, dica);
+        b.append(alvo, bilhete);
         b.addEventListener('click', (ev) => {
           ev.stopPropagation();
           aoClicarItem(item);

@@ -162,9 +162,9 @@
     "semantic_hash": "4e140d875db63dcf45a8d0a89151a89b"
   },
   "site/js/quarto.js": {
-    "mtime": 1793932877.142191,
-    "seen": 1793932971.50891,
-    "ast_hash": "5d9b58f7a73010776567293b5881f936",
+    "mtime": 1793937798.3947456,
+    "seen": 1793937898.8818424,
+    "ast_hash": "f9ae0993891c792e9d17aaa5146030ce",
     "semantic_hash": ""
   },
   "site/js/sem-suporte.js": {
@@ -276,9 +276,9 @@
     "semantic_hash": ""
   },
   "site/js/objetos.js": {
-    "mtime": 1793932861.1024208,
-    "seen": 1793932971.508903,
-    "ast_hash": "0510d1c3e3e5d7335d68b91bc4af8a7d",
+    "mtime": 1793937542.8283455,
+    "seen": 1793937898.8818297,
+    "ast_hash": "99f9042d4b880ed43b549bf30a108f28",
     "semantic_hash": ""
   }
 }

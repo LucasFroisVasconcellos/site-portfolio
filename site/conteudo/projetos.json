@@ -1,6 +1,45 @@
 {
   "projetos": [
     {
+      "id": "erp-associacoes",
+      "nome": {
+        "pt": "ERP Associações",
+        "en": "Association ERP"
+      },
+      "descricao": {
+        "pt": "Sistema de gestão completo para associações esportivas: contabilidade com importação de extratos, comprovantes por foto, calendário, tarefas por pessoa, filiações e verbas, com níveis de acesso e exportação em PDF e CSV.",
+        "en": "A complete management system for sports associations: accounting with bank statement import, receipts by photo, calendar, tasks per person, affiliations and funding, with access levels and PDF and CSV export."
+      },
+      "tecnologias": [
+        "JavaScript",
+        "Supabase",
+        "PostgreSQL",
+        "Cloudflare Pages"
+      ],
+      "imagem": null,
+      "link": "https://github.com/LucasFroisVasconcellos/erp-associacoes"
+    },
+    {
+      "id": "auditor-seguranca",
+      "nome": {
+        "pt": "Auditor de segurança",
+        "en": "Security auditor"
+      },
+      "descricao": {
+        "pt": "Programa para Windows que instala e roda a auditoria de segurança em cada projeto, no nível certo para ele: segredos vazados, bibliotecas vulneráveis, código inseguro, código repetido, testes, cabeçalhos e carga. Gera um resumo para pessoas e outro para IA.",
+        "en": "A Windows program that installs and runs a security audit on each project, at the right level for it: leaked secrets, vulnerable libraries, unsafe code, duplicated code, tests, headers and load. It writes one summary for people and another for AI."
+      },
+      "tecnologias": [
+        "PowerShell",
+        "Batch",
+        "Gitleaks",
+        "Semgrep",
+        "OSV-Scanner"
+      ],
+      "imagem": null,
+      "link": null
+    },
+    {
       "id": "site-portfolio",
       "nome": {
         "pt": "Este site",
